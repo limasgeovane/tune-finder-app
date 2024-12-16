@@ -50,7 +50,7 @@ class HomeView: UIView {
         NSLayoutConstraint.activate([
             searchLabel.topAnchor.constraint(equalTo: topAnchor, constant: 288),
             searchLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-            searchLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -208),
+            searchLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -176),
             
             searchBar.topAnchor.constraint(equalTo: searchLabel.bottomAnchor, constant: 136),
             searchBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
