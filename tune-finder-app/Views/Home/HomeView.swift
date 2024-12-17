@@ -18,17 +18,23 @@ class HomeView: UIView {
         return label
     }()
 
-    private lazy var searchBar: UISearchBar = {
-        let searchBar = UISearchBar()
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
-        searchBar.backgroundImage = UIImage()
-        searchBar.backgroundColor = .whitePrimaryColor
-        searchBar.placeholder = "Nome do artista..."
-        searchBar.barTintColor = .whitePrimaryColor
-        searchBar.searchTextField.textColor = .grayContrastColor
-        searchBar.layer.cornerRadius = 22
-        searchBar.searchTextField.layer.masksToBounds = true
-        return searchBar
+    private lazy var searchArtistTextField: UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "Nome do artista...",
+            attributes: [
+                .foregroundColor: UIColor.graySecundaryColor,
+                .font: UIFont.secondaryFont,
+            ]
+        )
+        textField.backgroundColor = .grayPrimaryColor
+        textField.textColor = .whitePrimaryColor
+        textField.layer.cornerRadius = 32
+        textField.layer.masksToBounds = true
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 32, height: 50))
+        textField.leftViewMode = .always
+        return textField
     }()
     
     override init(frame: CGRect) {
@@ -42,19 +48,20 @@ class HomeView: UIView {
     
     private func setupUI() {
         addSubview(searchLabel)
-        addSubview(searchBar)
+        addSubview(searchArtistTextField)
         setupUIConstraints()
     }
     
     private func setupUIConstraints() {
         NSLayoutConstraint.activate([
             searchLabel.topAnchor.constraint(equalTo: topAnchor, constant: 288),
-            searchLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
+            searchLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             searchLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -176),
             
-            searchBar.topAnchor.constraint(equalTo: searchLabel.bottomAnchor, constant: 136),
-            searchBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-            searchBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24)
+            searchArtistTextField.topAnchor.constraint(equalTo: searchLabel.bottomAnchor, constant: 136),
+            searchArtistTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            searchArtistTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            searchArtistTextField.heightAnchor.constraint(equalToConstant: 56)
         ])
     }
 }

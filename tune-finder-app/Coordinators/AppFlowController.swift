@@ -25,6 +25,6 @@ extension AppFlowController: SplashFlowDelegate {
     func decideNavigationFlow() {
         let homeView = HomeView()
         let homeViewController = HomeViewController(contentView: homeView)
-        navigationController?.pushViewController(homeViewController, animated: true)
+        navigationController?.pushViewController(homeViewController, animated: false)
     }
 }
