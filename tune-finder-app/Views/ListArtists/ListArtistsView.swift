@@ -45,6 +45,14 @@ class ListArtistsView: UIView {
         return stackView
     }()
     
+    private lazy var artistsTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(ListArtistsTableViewCell.self, forCellReuseIdentifier: ListArtistsTableViewCell.identifier)
+        tableView.backgroundColor = .black
+        return tableView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -56,6 +64,7 @@ class ListArtistsView: UIView {
     
     private func setupUI() {
         addSubview(searchStackView)
+        addSubview(artistsTableView)
         setupUIConstraints()
     }
     
@@ -63,7 +72,17 @@ class ListArtistsView: UIView {
         NSLayoutConstraint.activate([
             searchStackView.topAnchor.constraint(equalTo: topAnchor, constant: 64),
             searchStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            searchStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+            searchStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            
+            artistsTableView.topAnchor.constraint(equalTo: searchStackView.bottomAnchor, constant: 16),
+            artistsTableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            artistsTableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            artistsTableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+    
+    func configureTableViewDelegate(_ delegate: UITableViewDelegate, dataSource: UITableViewDataSource) {
+        artistsTableView.delegate = delegate
+        artistsTableView.dataSource = dataSource
     }
 }

@@ -1,16 +1,16 @@
 //
-//  ListArtistsViewController.swift
+//  ListAlbunsViewController.swift
 //  tune-finder-app
 //
-//  Created by Geovane Lima dos Santos on 16/12/24.
+//  Created by Geovane Lima dos Santos on 17/12/24.
 //
 
 import UIKit
 
-class ListArtistsViewController: UIViewController {
-    private let contentView: ListArtistsView
+class ListAlbunsViewController: UIViewController {
+    private let contentView: ListAlbunsView
     
-    init(contentView: ListArtistsView) {
+    init(contentView: ListAlbunsView) {
         self.contentView = contentView
         super.init(nibName: nil, bundle: nil)
     }

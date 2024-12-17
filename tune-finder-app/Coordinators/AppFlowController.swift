@@ -14,8 +14,10 @@ class AppFlowController {
     //}
     
     func startFlow() -> UINavigationController? {
-        let splashScreenView = SplashScreenView()
-        let splashScreenViewController = SplashScreenViewController(contentView: splashScreenView, delegate: self)
+        //let splashScreenView = SplashScreenView()
+        //let splashScreenViewController = SplashScreenViewController(contentView: splashScreenView, delegate: self)
+        let splashScreenView = ListAlbunsView()
+        let splashScreenViewController = ListAlbunsViewController(contentView: splashScreenView)//, delegate: self)
         self.navigationController = UINavigationController(rootViewController: splashScreenViewController)
         return navigationController
     }
