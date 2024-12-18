@@ -9,9 +9,11 @@ import UIKit
 
 class HomeViewController: UIViewController {
     private let contentView: HomeView
+    private let service: Service
     
-    init(contentView: HomeView) {
+    init(contentView: HomeView, service: Service) {
         self.contentView = contentView
+        self.service = service
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -21,6 +23,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        service.getSpotifyAccessToken()
         setupUI()
     }
     

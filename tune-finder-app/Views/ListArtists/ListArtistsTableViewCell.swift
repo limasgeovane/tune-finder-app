@@ -27,7 +27,7 @@ class ListArtistsTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var descriptionAlbuns: UILabel = {
+    private lazy var descriptionAlbums: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Adult standards, canadian pop, jazz pop..."
@@ -38,7 +38,7 @@ class ListArtistsTableViewCell: UITableViewCell {
     
     private lazy var textArtistsStackView: UIStackView = {
         let stackView = UIStackView(
-            arrangedSubviews: [titleArtist, descriptionAlbuns]
+            arrangedSubviews: [titleArtist, descriptionAlbums]
         )
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical

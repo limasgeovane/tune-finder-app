@@ -1,5 +1,5 @@
 //
-//  ListAlbunsViewController.swift
+//  ListAlbumsViewController.swift
 //  tune-finder-app
 //
 //  Created by Geovane Lima dos Santos on 17/12/24.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-class ListAlbunsViewController: UIViewController {
-    private let contentView: ListAlbunsView
+class ListAlbumsViewController: UIViewController {
+    private let contentView: ListAlbumsView
     
-    init(contentView: ListAlbunsView) {
+    init(contentView: ListAlbumsView) {
         self.contentView = contentView
         super.init(nibName: nil, bundle: nil)
     }

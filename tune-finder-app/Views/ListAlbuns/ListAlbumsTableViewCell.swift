@@ -1,5 +1,5 @@
 //
-//  ListAlbunsTableViewCell.swift
+//  ListAlbumsTableViewCell.swift
 //  tune-finder-app
 //
 //  Created by Geovane Lima dos Santos on 17/12/24.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-class ListAlbunsTableViewCell: UITableViewCell {
-    static let identifier: String = "ListAlbunsTableViewCell"
+class ListAlbumsTableViewCell: UITableViewCell {
+    static let identifier: String = "ListAlbumsTableViewCell"
     
     private lazy var imageAlbum: UIImageView = {
         let imageView = UIImageView()
@@ -27,7 +27,7 @@ class ListAlbunsTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var descriptionAlbuns: UILabel = {
+    private lazy var descriptionAlbums: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "18/11/2022 -  9 Músicas"
@@ -38,7 +38,7 @@ class ListAlbunsTableViewCell: UITableViewCell {
     
     private lazy var textAlbumStackView: UIStackView = {
         let stackView = UIStackView(
-            arrangedSubviews: [titleAlbum, descriptionAlbuns]
+            arrangedSubviews: [titleAlbum, descriptionAlbums]
         )
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -46,7 +46,7 @@ class ListAlbunsTableViewCell: UITableViewCell {
         return stackView
     }()
     
-    private lazy var albunsStackView: UIStackView = {
+    private lazy var albumsStackView: UIStackView = {
         let stackView = UIStackView(
             arrangedSubviews: [imageAlbum, textAlbumStackView]
         )
@@ -68,16 +68,16 @@ class ListAlbunsTableViewCell: UITableViewCell {
     private func setupUI() {
         backgroundColor = .clear
         selectionStyle = .none
-        addSubview(albunsStackView)
+        addSubview(albumsStackView)
         setupUIConstraints()
     }
     
     private func setupUIConstraints() {
         NSLayoutConstraint.activate([
-            albunsStackView.topAnchor.constraint(equalTo: topAnchor),
-            albunsStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            albunsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            albunsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            albumsStackView.topAnchor.constraint(equalTo: topAnchor),
+            albumsStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            albumsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            albumsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
         ])
     }
 }

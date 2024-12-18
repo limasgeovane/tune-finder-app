@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeView: UIView {
+class HomeView: UIView {    
     private lazy var searchLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false

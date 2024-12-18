@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		455A35122D131A2A00CE3737 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 455A35112D131A2A00CE3737 /* Alamofire */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		4578568A2D0F0C1D00998CB5 /* tune-finder-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tune-finder-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,16 +40,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				455A35122D131A2A00CE3737 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		455A35312D13294F00CE3737 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		457856812D0F0C1D00998CB5 = {
 			isa = PBXGroup;
 			children = (
 				4578568C2D0F0C1D00998CB5 /* tune-finder-app */,
+				455A35312D13294F00CE3737 /* Frameworks */,
 				4578568B2D0F0C1D00998CB5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -78,6 +91,7 @@
 			);
 			name = "tune-finder-app";
 			packageProductDependencies = (
+				455A35112D131A2A00CE3737 /* Alamofire */,
 			);
 			productName = "tune-finder-app";
 			productReference = 4578568A2D0F0C1D00998CB5 /* tune-finder-app.app */;
@@ -107,6 +121,9 @@
 			);
 			mainGroup = 457856812D0F0C1D00998CB5;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				455A35102D131A2A00CE3737 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4578568B2D0F0C1D00998CB5 /* Products */;
 			projectDirPath = "";
@@ -341,6 +358,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		455A35102D131A2A00CE3737 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		455A35112D131A2A00CE3737 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 455A35102D131A2A00CE3737 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 457856822D0F0C1D00998CB5 /* Project object */;
 }

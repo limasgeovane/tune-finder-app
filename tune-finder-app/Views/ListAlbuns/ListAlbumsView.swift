@@ -1,5 +1,5 @@
 //
-//  ListAlbunsView.swift
+//  ListAlbumsView.swift
 //  tune-finder-app
 //
 //  Created by Geovane Lima dos Santos on 17/12/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ListAlbunsView: UIView {
+class ListAlbumsView: UIView {
     private lazy var artistTitle: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -17,10 +17,10 @@ class ListAlbunsView: UIView {
         return label
     }()
     
-    private lazy var albunsTableView: UITableView = {
+    private lazy var albumsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(ListAlbunsTableViewCell.self, forCellReuseIdentifier: ListAlbunsTableViewCell.identifier)
+        tableView.register(ListAlbumsTableViewCell.self, forCellReuseIdentifier: ListAlbumsTableViewCell.identifier)
         tableView.backgroundColor = .black
         return tableView
     }()
@@ -36,7 +36,7 @@ class ListAlbunsView: UIView {
     
     private func setupUI() {
         addSubview(artistTitle)
-        addSubview(albunsTableView)
+        addSubview(albumsTableView)
         setupUIConstraints()
     }
     
@@ -45,15 +45,15 @@ class ListAlbunsView: UIView {
             artistTitle.centerXAnchor.constraint(equalTo: centerXAnchor),
             artistTitle.topAnchor.constraint(equalTo: topAnchor, constant: 64),
             
-            albunsTableView.topAnchor.constraint(equalTo: artistTitle.bottomAnchor, constant: 32),
-            albunsTableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            albunsTableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-            albunsTableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            albumsTableView.topAnchor.constraint(equalTo: artistTitle.bottomAnchor, constant: 32),
+            albumsTableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            albumsTableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            albumsTableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     
     func configureTableViewDelegate(_ delegate: UITableViewDelegate, dataSource: UITableViewDataSource) {
-        albunsTableView.delegate = delegate
-        albunsTableView.dataSource = dataSource
+        albumsTableView.delegate = delegate
+        albumsTableView.dataSource = dataSource
     }
 }
