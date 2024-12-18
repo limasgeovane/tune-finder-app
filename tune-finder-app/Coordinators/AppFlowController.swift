@@ -14,10 +14,10 @@ class AppFlowController {
     //}
     
     func startFlow() -> UINavigationController? {
-        //let splashScreenView = SplashScreenView()
-        //let splashScreenViewController = SplashScreenViewController(contentView: splashScreenView, delegate: self)
-        let splashScreenView = ListAlbunsView()
-        let splashScreenViewController = ListAlbunsViewController(contentView: splashScreenView)//, delegate: self)
+        let splashScreenView = SplashScreenView()
+        let splashScreenViewController = SplashScreenViewController(contentView: splashScreenView, delegate: self)
+        //let splashScreenView = ListAlbunsView()
+        //let splashScreenViewController = ListAlbunsViewController(contentView: splashScreenView)//, delegate: self)
         self.navigationController = UINavigationController(rootViewController: splashScreenViewController)
         return navigationController
     }
@@ -28,5 +28,26 @@ extension AppFlowController: SplashFlowDelegate {
         let homeView = HomeView()
         let homeViewController = HomeViewController(contentView: homeView)
         navigationController?.pushViewController(homeViewController, animated: false)
+    }
+}
+
+extension HomeView {
+    func navigateToListArtistsViewController() {
+        let listArtistsViewController = ListArtistsViewController(contentView: ListArtistsView())
+        
+        if let viewController = parentViewController() {
+            viewController.navigationController?.pushViewController(listArtistsViewController, animated: true)
+        }
+    }
+    
+    private func parentViewController() -> UIViewController? {
+        var parentResponder: UIResponder? = self
+        while parentResponder != nil {
+            parentResponder = parentResponder?.next
+            if let viewController = parentResponder as? UIViewController {
+                return viewController
+            }
+        }
+        return nil
     }
 }

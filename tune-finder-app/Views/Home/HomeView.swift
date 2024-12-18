@@ -17,7 +17,7 @@ class HomeView: UIView {
         label.numberOfLines = 0
         return label
     }()
-
+    
     private lazy var searchArtistTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -34,6 +34,7 @@ class HomeView: UIView {
         textField.layer.masksToBounds = true
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 32, height: 50))
         textField.leftViewMode = .always
+        textField.delegate = self
         return textField
     }()
     
