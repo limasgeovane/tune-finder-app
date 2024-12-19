@@ -8,10 +8,18 @@
 import Foundation
 
 struct ArtistResponse: Codable {
-    let id: String
+    let artists: Artists
+}
+
+struct Artists: Codable {
+    let items: [Item]
+}
+
+struct Item: Codable {
+    let images: [Image]
     let name: String
     let genres: [String]
-    let images: [Image]
+    let id: String
 }
 
 struct Image: Codable {

@@ -28,7 +28,7 @@ class Service {
                 if let data = data, let token = try? JSONDecoder().decode(SpotfyTokenResponse.self, from: data) {
                     print("Token: \(token.access_token)")
                     print(token.token_type)
-                    self.getArtists(tokenType: token.token_type, accessToken: token.access_token)
+                    self.getArtists(tokenType: token.token_type, accessToken: token.access_token, artistName: "Jaloo")
                 }
             case .failure(let error):
                 print("Erro ao obter o token: \(error)")
@@ -36,43 +36,64 @@ class Service {
         }
     }
     
-    private func getArtists(tokenType: String, accessToken: String) {
-        let baseURLArtists: String = "https://api.spotify.com/v1/artists/0rSTXALHu0EKAawPLBdODH"
+    func getArtists(tokenType: String, accessToken: String, artistName: String) {
+        
+        let baseURLArtists: String = "https://api.spotify.com/v1/search"
         
         let headers: HTTPHeaders = [
-            "Authorization": "\(tokenType) " + "\(accessToken)"
+            "Authorization": "\(tokenType) \(accessToken)"
         ]
         
-        AF.request(baseURLArtists, method: .get, headers: headers)
+        let parameters: [String: String] = [
+            "q": artistName,
+            "type": "artist",
+            "limit": "10"
+        ]
+        
+        AF.request(baseURLArtists, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers)
             .validate()
             .response { response in
                 switch response.result {
                 case .success(let data):
-                    if let data = data, let artist = try? JSONDecoder().decode(ArtistResponse.self, from: data) {
-                        print("Nome do artista: \(artist.name)")
-                        print("Gêneros do artista: \(artist.genres.joined(separator: ","))")
-                        print("ImagemUrl do artista: \(artist.images.first?.url ?? "")")
-                        self.getAlbums(tokenType: tokenType, accessToken: accessToken)
+                    if let data = data, let artists = try? JSONDecoder().decode(ArtistResponse.self, from: data) {
+                        for artists in artists.artists.items {
+                            print("Id: \(artists.id)")
+                            print("Nome do artista: \(artists.name)")
+                            print("Gêneros do artista: \(artists.genres.joined(separator: ","))")
+                            print("ImagemUrl do artista: \(artists.images.first?.url ?? "")")
+                        }
+                        self.getAlbums(tokenType: tokenType, accessToken: accessToken, artistId: "1rdXEdH8SRIqbuTbzQzd93")
+                    } else {
+                        print("Erro ao decodificar os dados dos artistas")
                     }
                 case .failure(let error):
                     print("Erro ao buscar dados do artista: \(error)")
+                    self.getSpotifyAccessToken()
                 }
             }
     }
     
-    private func getAlbums(tokenType: String, accessToken: String) {
-        let baseURLAlbums: String = "https://api.spotify.com/v1/artists/0rSTXALHu0EKAawPLBdODH/albums"
+    func getAlbums(tokenType: String, accessToken: String, artistId: String) {
+        let baseURLAlbums: String = "https://api.spotify.com/v1/artists/\(artistId)/albums"
         
         let headers: HTTPHeaders = [
-            "Authorization": "\(tokenType) " + "\(accessToken)"
+            "Authorization": "\(tokenType) \(accessToken)"
         ]
         
         AF.request(baseURLAlbums, method: .get, headers: headers).validate().response { response in
             switch response.result {
             case .success(let data):
                 if let data = data, let albums = try? JSONDecoder().decode(AlbumsResponse.self, from: data) {
-                    print(albums)
+                    for albums in albums.items {
+                        print("Imagem do album: \(albums.images.first?.url ?? "")")
+                        print("Nome do album: \(albums.name)")
+                        print("Data de lançamento: \(albums.release_date)")
+                        print("Total de músicas: \(albums.total_tracks)")
+                    }
+                } else {
+                    print("Erro ao decodificar os dados dos álbuns")
                 }
+                
             case .failure(let error):
                 print("Erro ao buscar álbuns: \(error)")
             }
