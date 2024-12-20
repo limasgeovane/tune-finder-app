@@ -10,7 +10,7 @@ import Alamofire
 
 class Service {
     static let tokenType = "Bearer"
-    static let accessToken = "BQBwk_UXGUfYngdZKtOqPRd0QWqQ9dpZllrXzS7uNaD8bFVcGOETZJjfjh0MuZXCzBxASxJr4yIdDJI8-NWk0VqHPsSTBuhsWZGaf8qbmhO-ST1qzvw"
+    static let accessToken = "BQD_w1vmlJQN0Hl7FvPm5xm5yXH_iCx0S5sQdN6AI5D6sMxZTQ0_fmwVnkWEQUvDjR1H_7gJJK5B-eOo4I6hhrB65BGH9aAnp8OAddfYLbpHhcaTBeA"
     
     func getSpotifyAccessToken(artistName: String) {
         let baseURL: String = "https://accounts.spotify.com/api/token"
@@ -32,9 +32,7 @@ class Service {
                     print("Token: \(token.access_token)")
                     print(token.token_type)
                     self.getArtists(tokenType: token.token_type, accessToken: token.access_token, artistName: artistName) { artists in
-                        // Passando os artistas para o completion ou processando-os aqui
                         print("Artistas obtidos: \(artists)")
-                        // Pode adicionar outras ações aqui se necessário
                     }
                 }
             case .failure(let error):
@@ -62,13 +60,6 @@ class Service {
                 case .success(let data):
                     if let data = data, let artists = try? JSONDecoder().decode(Artists.self, from: data) {
                         completion(artists.artists.items)
-                        for artists in artists.artists.items {
-                            print("Id: \(artists.id)")
-                            print("Nome do artista: \(artists.name)")
-                            print("Gêneros do artista: \(artists.genres.joined(separator: ","))")
-                            print("ImagemUrl do artista: \(artists.images.first?.url ?? "")")
-                        }
-                        //self.getAlbums(tokenType: tokenType, accessToken: accessToken, artistId: "1rdXEdH8SRIqbuTbzQzd93")
                     } else {
                         print("Erro ao decodificar os dados dos artistas")
                     }
@@ -79,7 +70,7 @@ class Service {
             }
     }
     
-    func getAlbums(tokenType: String, accessToken: String, artistId: String,completion: @escaping ([Item]) -> Void) {
+    func getAlbums(tokenType: String, accessToken: String, artistId: String, completion: @escaping ([Items]) -> Void) {
         let baseURLAlbums: String = "https://api.spotify.com/v1/artists/\(artistId)/albums"
         
         let headers: HTTPHeaders = [
@@ -90,12 +81,7 @@ class Service {
             switch response.result {
             case .success(let data):
                 if let data = data, let albums = try? JSONDecoder().decode(Albums.self, from: data) {
-                    for albums in albums.items {
-                        print("Imagem do album: \(albums.images.first?.url ?? "")")
-                        print("Nome do album: \(albums.name)")
-                        print("Data de lançamento: \(albums.release_date)")
-                        print("Total de músicas: \(albums.total_tracks)")
-                    }
+                    completion(albums.items)
                 } else {
                     print("Erro ao decodificar os dados dos álbuns")
                 }

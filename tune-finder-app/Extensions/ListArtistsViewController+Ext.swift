@@ -11,6 +11,11 @@ extension ListArtistsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         70
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedArtist = artists[indexPath.row]
+        didSelectArtist(artistId: selectedArtist.id)
+    }
 }
 
 extension ListArtistsViewController: UITableViewDataSource {
@@ -20,16 +25,10 @@ extension ListArtistsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListArtistsTableViewCell.identifier, for: indexPath) as? ListArtistsTableViewCell else {
-            
             return UITableViewCell()
-            
         }
-        
         let artist = artists[indexPath.row]
-        
         cell.configureCell(artist: artist)
-        
         return cell
     }
 }
-

@@ -80,4 +80,10 @@ class ListAlbumsTableViewCell: UITableViewCell {
             albumsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
         ])
     }
+    
+    func configureCell(albums: Items) {
+        imageAlbum.image = UIImage(named: "imageTestTableView2")
+        titleAlbum.text = albums.name
+        descriptionAlbums.text = albums.release_date
+    }
 }

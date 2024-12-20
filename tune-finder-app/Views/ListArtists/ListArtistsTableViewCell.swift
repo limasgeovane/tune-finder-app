@@ -74,23 +74,16 @@ class ListArtistsTableViewCell: UITableViewCell {
     
     private func setupUIConstraints() {
         NSLayoutConstraint.activate([
-            //imageArtist.widthAnchor.constraint(equalToConstant: 48),
-           // imageArtist.heightAnchor.constraint(equalToConstant: 48),
-            
             artistsStackView.topAnchor.constraint(equalTo: topAnchor),
             artistsStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
             artistsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             artistsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            
-           // textArtistsStackView.topAnchor.constraint(equalTo: imageArtist.topAnchor),
-           // textArtistsStackView.bottomAnchor.constraint(equalTo: imageArtist.bottomAnchor)
-        
         ])
     }
     
     func configureCell(artist: Item) {
+        imageArtist.image = UIImage(named: "imageTestTableView")
         titleArtist.text = artist.name
         descriptionAlbums.text = artist.genres.joined(separator: ", ")
-        //imageArtist.image = artist.images.first?.url?.getCString()
     }
 }

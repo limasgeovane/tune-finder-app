@@ -9,7 +9,7 @@ import UIKit
 
 class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
     private let contentView: ListArtistsView
-    private let service: Service
+    private let service: Service = Service()
     var artists: [Item] = []
     
     init(contentView: ListArtistsView) {
@@ -37,10 +37,10 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
     }
     
     func didSelectArtist(artistId: String) {
-        service.getAlbums(tokenType: Service.tokenType, accessToken: Service.accessToken, artistId: "5ukVsGwdu2xaIWF4ytxBtm") { [weak self] albums in
+        service.getAlbums(tokenType: Service.tokenType, accessToken: Service.accessToken, artistId: artistId) { [weak self] albums in
             self?.navigateToListAlbumsViewController(albums: albums)
         }
-       
+        
     }
     
     private func navigateToListAlbumsViewController(albums: [Items]) {

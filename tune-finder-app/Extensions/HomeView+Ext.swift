@@ -14,7 +14,6 @@ extension HomeView: UITextFieldDelegate {
         if let searchText = textField.text, !searchText.isEmpty {
             delegate?.searchArtist(artistName: searchText)
         }
-        
         return true
     }
 }

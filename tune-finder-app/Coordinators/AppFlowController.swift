@@ -13,16 +13,13 @@ class AppFlowController: SplashFlowDelegate{
     func startNavigate() -> UINavigationController? {
         let splashScreenView = SplashScreenView()
         let splashScreenViewController = SplashScreenViewController(contentView: splashScreenView, delegate: self)
-        //let splashScreenView = StateView()
-        //let splashScreenViewController = StateViewController(contentView: splashScreenView)//, delegate: self)
         self.navigationController = UINavigationController(rootViewController: splashScreenViewController)
         return navigationController
     }
     
     func navigateToHomeViewController() {
         let homeView = HomeView()
-        let service = Service()
-        let homeViewController = HomeViewController(contentView: homeView, service: service)
+        let homeViewController = HomeViewController(contentView: homeView)
         navigationController?.pushViewController(homeViewController, animated: false)
     }
 }

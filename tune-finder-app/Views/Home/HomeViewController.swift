@@ -9,11 +9,10 @@ import UIKit
 
 class HomeViewController: UIViewController, HomeViewDelegate {
     private let contentView: HomeView
-    private let service: Service
+    private let service: Service = Service()
     
-    init(contentView: HomeView, service: Service) {
+    init(contentView: HomeView) {
         self.contentView = contentView
-        self.service = service
         super.init(nibName: nil, bundle: nil)
         self.contentView.delegate = self
     }
@@ -45,7 +44,7 @@ class HomeViewController: UIViewController, HomeViewDelegate {
     private func navigateToListArtistsViewController(artists: [Item]) {
         let listArtistsView = ListArtistsView()
         let listArtistsViewController = ListArtistsViewController(contentView: listArtistsView)
-        listArtistsViewController.artists = artists  // Passa os artistas para a próxima tela
+        listArtistsViewController.artists = artists
         navigationController?.pushViewController(listArtistsViewController, animated: true)
     }
 }
