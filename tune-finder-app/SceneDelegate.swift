@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: windowScene)
         appFlowController = AppFlowController()
-        let rootViewController = appFlowController?.startFlow()
+        let rootViewController = appFlowController?.startNavigate()
         
         window.rootViewController = rootViewController
         self.window = window

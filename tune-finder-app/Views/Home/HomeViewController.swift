@@ -7,16 +7,15 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, HomeViewDelegate {
     private let contentView: HomeView
     private let service: Service
-    private let tokenType = "Bearer"
-    private let accessToken = "BQBWD68q4aCXgj-lrU9LVza62rCQJJkOkkn5RgdIVmwYFWLAIXMYEDKPRyJs8uBYOzyD6PvR5sfhdi5u4AR6mM6cYbCc8vZXFSsghJuByvB1ZGFUNEU"
     
     init(contentView: HomeView, service: Service) {
         self.contentView = contentView
         self.service = service
         super.init(nibName: nil, bundle: nil)
+        self.contentView.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -25,7 +24,6 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        service.getArtists(tokenType: tokenType, accessToken: accessToken, artistName: "Jaloo")
         setupUI()
     }
     
@@ -36,5 +34,18 @@ class HomeViewController: UIViewController {
     
     private func setupUIConstraints() {
         setupConstraintsViewController(contentView: contentView)
+    }
+    
+    func searchArtist(artistName: String) {
+        service.getArtists(tokenType: Service.tokenType, accessToken: Service.accessToken, artistName: artistName) { [weak self] artists in
+            self?.navigateToListArtistsViewController(artists: artists)
+        }
+    }
+    
+    private func navigateToListArtistsViewController(artists: [Item]) {
+        let listArtistsView = ListArtistsView()
+        let listArtistsViewController = ListArtistsViewController(contentView: listArtistsView)
+        listArtistsViewController.artists = artists  // Passa os artistas para a próxima tela
+        navigationController?.pushViewController(listArtistsViewController, animated: true)
     }
 }

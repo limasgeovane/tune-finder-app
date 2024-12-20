@@ -7,8 +7,10 @@
 
 import UIKit
 
-class ListArtistsViewController: UIViewController {
+class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
     private let contentView: ListArtistsView
+    private let service: Service
+    var artists: [Item] = []
     
     init(contentView: ListArtistsView) {
         self.contentView = contentView
@@ -32,5 +34,19 @@ class ListArtistsViewController: UIViewController {
     
     private func setupUIConstraints() {
         setupConstraintsViewController(contentView: contentView)
+    }
+    
+    func didSelectArtist(artistId: String) {
+        service.getAlbums(tokenType: Service.tokenType, accessToken: Service.accessToken, artistId: "5ukVsGwdu2xaIWF4ytxBtm") { [weak self] albums in
+            self?.navigateToListAlbumsViewController(albums: albums)
+        }
+       
+    }
+    
+    private func navigateToListAlbumsViewController(albums: [Items]) {
+        let listAlbumsView = ListAlbumsView()
+        let listAlbumsViewController = ListAlbumsViewController(contentView: listAlbumsView)
+        listAlbumsViewController.albums = albums
+        navigationController?.pushViewController(listAlbumsViewController, animated: true)
     }
 }

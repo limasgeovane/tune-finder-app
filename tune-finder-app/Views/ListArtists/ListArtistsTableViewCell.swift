@@ -87,4 +87,10 @@ class ListArtistsTableViewCell: UITableViewCell {
         
         ])
     }
+    
+    func configureCell(artist: Item) {
+        titleArtist.text = artist.name
+        descriptionAlbums.text = artist.genres.joined(separator: ", ")
+        //imageArtist.image = artist.images.first?.url?.getCString()
+    }
 }

@@ -7,13 +7,10 @@
 
 import UIKit
 
-class AppFlowController {
+class AppFlowController: SplashFlowDelegate{
     private var navigationController: UINavigationController?
-    
-    //init() {
-    //}
-    
-    func startFlow() -> UINavigationController? {
+
+    func startNavigate() -> UINavigationController? {
         let splashScreenView = SplashScreenView()
         let splashScreenViewController = SplashScreenViewController(contentView: splashScreenView, delegate: self)
         //let splashScreenView = StateView()
@@ -21,34 +18,11 @@ class AppFlowController {
         self.navigationController = UINavigationController(rootViewController: splashScreenViewController)
         return navigationController
     }
-}
-
-extension AppFlowController: SplashFlowDelegate {
-    func decideNavigationFlow() {
+    
+    func navigateToHomeViewController() {
         let homeView = HomeView()
         let service = Service()
         let homeViewController = HomeViewController(contentView: homeView, service: service)
         navigationController?.pushViewController(homeViewController, animated: false)
-    }
-}
-
-extension HomeView {
-    func navigateToListArtistsViewController() {
-        let listArtistsViewController = ListArtistsViewController(contentView: ListArtistsView())
-        
-        if let viewController = parentViewController() {
-            viewController.navigationController?.pushViewController(listArtistsViewController, animated: true)
-        }
-    }
-    
-    private func parentViewController() -> UIViewController? {
-        var parentResponder: UIResponder? = self
-        while parentResponder != nil {
-            parentResponder = parentResponder?.next
-            if let viewController = parentResponder as? UIViewController {
-                return viewController
-            }
-        }
-        return nil
     }
 }

@@ -9,7 +9,10 @@ import Foundation
 import Alamofire
 
 class Service {
-    func getSpotifyAccessToken() {
+    static let tokenType = "Bearer"
+    static let accessToken = "BQBwk_UXGUfYngdZKtOqPRd0QWqQ9dpZllrXzS7uNaD8bFVcGOETZJjfjh0MuZXCzBxASxJr4yIdDJI8-NWk0VqHPsSTBuhsWZGaf8qbmhO-ST1qzvw"
+    
+    func getSpotifyAccessToken(artistName: String) {
         let baseURL: String = "https://accounts.spotify.com/api/token"
         
         let headers: HTTPHeaders = [
@@ -28,7 +31,11 @@ class Service {
                 if let data = data, let token = try? JSONDecoder().decode(SpotfyTokenResponse.self, from: data) {
                     print("Token: \(token.access_token)")
                     print(token.token_type)
-                    self.getArtists(tokenType: token.token_type, accessToken: token.access_token, artistName: "Jaloo")
+                    self.getArtists(tokenType: token.token_type, accessToken: token.access_token, artistName: artistName) { artists in
+                        // Passando os artistas para o completion ou processando-os aqui
+                        print("Artistas obtidos: \(artists)")
+                        // Pode adicionar outras ações aqui se necessário
+                    }
                 }
             case .failure(let error):
                 print("Erro ao obter o token: \(error)")
@@ -36,8 +43,7 @@ class Service {
         }
     }
     
-    func getArtists(tokenType: String, accessToken: String, artistName: String) {
-        
+    func getArtists(tokenType: String, accessToken: String, artistName: String, completion: @escaping ([Item]) -> Void) {
         let baseURLArtists: String = "https://api.spotify.com/v1/search"
         
         let headers: HTTPHeaders = [
@@ -46,8 +52,7 @@ class Service {
         
         let parameters: [String: String] = [
             "q": artistName,
-            "type": "artist",
-            "limit": "10"
+            "type": "artist"//,
         ]
         
         AF.request(baseURLArtists, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers)
@@ -55,25 +60,26 @@ class Service {
             .response { response in
                 switch response.result {
                 case .success(let data):
-                    if let data = data, let artists = try? JSONDecoder().decode(ArtistResponse.self, from: data) {
+                    if let data = data, let artists = try? JSONDecoder().decode(Artists.self, from: data) {
+                        completion(artists.artists.items)
                         for artists in artists.artists.items {
                             print("Id: \(artists.id)")
                             print("Nome do artista: \(artists.name)")
                             print("Gêneros do artista: \(artists.genres.joined(separator: ","))")
                             print("ImagemUrl do artista: \(artists.images.first?.url ?? "")")
                         }
-                        self.getAlbums(tokenType: tokenType, accessToken: accessToken, artistId: "1rdXEdH8SRIqbuTbzQzd93")
+                        //self.getAlbums(tokenType: tokenType, accessToken: accessToken, artistId: "1rdXEdH8SRIqbuTbzQzd93")
                     } else {
                         print("Erro ao decodificar os dados dos artistas")
                     }
                 case .failure(let error):
                     print("Erro ao buscar dados do artista: \(error)")
-                    self.getSpotifyAccessToken()
+                    self.getSpotifyAccessToken(artistName: artistName)
                 }
             }
     }
     
-    func getAlbums(tokenType: String, accessToken: String, artistId: String) {
+    func getAlbums(tokenType: String, accessToken: String, artistId: String,completion: @escaping ([Item]) -> Void) {
         let baseURLAlbums: String = "https://api.spotify.com/v1/artists/\(artistId)/albums"
         
         let headers: HTTPHeaders = [
@@ -83,7 +89,7 @@ class Service {
         AF.request(baseURLAlbums, method: .get, headers: headers).validate().response { response in
             switch response.result {
             case .success(let data):
-                if let data = data, let albums = try? JSONDecoder().decode(AlbumsResponse.self, from: data) {
+                if let data = data, let albums = try? JSONDecoder().decode(Albums.self, from: data) {
                     for albums in albums.items {
                         print("Imagem do album: \(albums.images.first?.url ?? "")")
                         print("Nome do album: \(albums.name)")

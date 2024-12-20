@@ -15,14 +15,21 @@ extension ListArtistsViewController: UITableViewDelegate {
 
 extension ListArtistsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        20
+        artists.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListArtistsTableViewCell.identifier, for: indexPath) as? ListArtistsTableViewCell else {
+            
             return UITableViewCell()
+            
         }
+        
+        let artist = artists[indexPath.row]
+        
+        cell.configureCell(artist: artist)
         
         return cell
     }
 }
+

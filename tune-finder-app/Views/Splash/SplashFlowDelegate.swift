@@ -8,5 +8,5 @@
 import Foundation
 
 protocol SplashFlowDelegate: AnyObject {
-    func decideNavigationFlow()
+    func navigateToHomeViewController()
 }

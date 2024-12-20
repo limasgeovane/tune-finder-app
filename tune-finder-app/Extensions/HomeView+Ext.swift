@@ -12,7 +12,7 @@ extension HomeView: UITextFieldDelegate {
         textField.resignFirstResponder()
         
         if let searchText = textField.text, !searchText.isEmpty {
-            navigateToListArtistsViewController()
+            delegate?.searchArtist(artistName: searchText)
         }
         
         return true

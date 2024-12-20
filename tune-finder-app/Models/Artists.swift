@@ -1,5 +1,5 @@
 //
-//  ArtistResponse.swift
+//  Artists.swift
 //  tune-finder-app
 //
 //  Created by Geovane Lima dos Santos on 18/12/24.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct ArtistResponse: Codable {
-    let artists: Artists
+struct Artists: Codable {
+    let artists: Artist
 }
 
-struct Artists: Codable {
+struct Artist: Codable {
     let items: [Item]
 }
 

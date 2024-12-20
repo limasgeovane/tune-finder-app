@@ -7,7 +7,9 @@
 
 import UIKit
 
-class HomeView: UIView {    
+class HomeView: UIView {
+    weak var delegate: HomeViewDelegate?
+    
     private lazy var searchLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -48,6 +50,7 @@ class HomeView: UIView {
     }
     
     private func setupUI() {
+        searchArtistTextField.delegate = self
         addSubview(searchLabel)
         addSubview(searchArtistTextField)
         setupUIConstraints()

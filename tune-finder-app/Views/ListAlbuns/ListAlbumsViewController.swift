@@ -9,6 +9,7 @@ import UIKit
 
 class ListAlbumsViewController: UIViewController {
     private let contentView: ListAlbumsView
+    var albums: [Items] = []
     
     init(contentView: ListAlbumsView) {
         self.contentView = contentView

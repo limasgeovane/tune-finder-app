@@ -39,7 +39,7 @@ class SplashScreenViewController: UIViewController {
     
     private func decideFlow() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-            self?.delegate?.decideNavigationFlow()
+            self?.delegate?.navigateToHomeViewController()
         }
     }
 }
