@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ListArtistsTableViewCell: UITableViewCell {
     static let identifier: String = "ListArtistsTableViewCell"
@@ -13,7 +14,7 @@ class ListArtistsTableViewCell: UITableViewCell {
     private lazy var imageArtist: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "imageTestTableView")
+        imageView.image = UIImage(named: "imageDefaultTableView")
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -82,7 +83,11 @@ class ListArtistsTableViewCell: UITableViewCell {
     }
     
     func configureCell(artist: Item) {
-        imageArtist.image = UIImage(named: "imageTestTableView")
+        if let imageURLString = artist.images.first?.url, let imageURL = URL(string: imageURLString) {
+            imageArtist.kf.setImage(with: imageURL)
+        } else {
+            imageArtist.image = UIImage(named: "imageDefaultTableView")
+        }
         titleArtist.text = artist.name
         descriptionAlbums.text = artist.genres.joined(separator: ", ")
     }

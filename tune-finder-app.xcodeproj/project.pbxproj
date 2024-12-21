@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45091FDD2D1652F700EF8367 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 45091FDC2D1652F700EF8367 /* Kingfisher */; };
 		455A35122D131A2A00CE3737 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 455A35112D131A2A00CE3737 /* Alamofire */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45091FDD2D1652F700EF8367 /* Kingfisher in Frameworks */,
 				455A35122D131A2A00CE3737 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,6 +94,7 @@
 			name = "tune-finder-app";
 			packageProductDependencies = (
 				455A35112D131A2A00CE3737 /* Alamofire */,
+				45091FDC2D1652F700EF8367 /* Kingfisher */,
 			);
 			productName = "tune-finder-app";
 			productReference = 4578568A2D0F0C1D00998CB5 /* tune-finder-app.app */;
@@ -123,6 +126,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				455A35102D131A2A00CE3737 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				45091FDB2D1652F700EF8367 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4578568B2D0F0C1D00998CB5 /* Products */;
@@ -360,6 +364,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		45091FDB2D1652F700EF8367 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.3;
+			};
+		};
 		455A35102D131A2A00CE3737 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -371,6 +383,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		45091FDC2D1652F700EF8367 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45091FDB2D1652F700EF8367 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		455A35112D131A2A00CE3737 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 455A35102D131A2A00CE3737 /* XCRemoteSwiftPackageReference "Alamofire" */;

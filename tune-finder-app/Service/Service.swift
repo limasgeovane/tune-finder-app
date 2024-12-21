@@ -10,7 +10,7 @@ import Alamofire
 
 class Service {
     static let tokenType = "Bearer"
-    static let accessToken = "BQBiAu3gXojhVFj71XNm35V1QVXcc4QLPBQ3ghJdNA15SD2QPhIw-uKuSSHryEPkPTuBSmOCSdF2hfpQuIf1JdnkPD-agQkwv7kzeq2Me0jxoEbEAXc"
+    static let accessToken = "BQBX5MtrKTGZ2FMbU-d6P24hNDC8-fa85M3yV5hwnTcE8VqbgHcgnVq2ZRVy3ReXla5MUv40Vfbty0LeNhD1GfBvAX2qhahK_6wGpFQu5ZS_45WP_xk"
     
     func getSpotifyAccessToken(artistName: String) {
         let baseURL: String = "https://accounts.spotify.com/api/token"
@@ -32,7 +32,7 @@ class Service {
                     print("Token: \(token.access_token)")
                     print(token.token_type)
                     self.getArtists(tokenType: token.token_type, accessToken: token.access_token, artistName: artistName) { artists in
-                        print("Artistas obtidos: \(artists)")
+                        print("Artistas obtidos com sucesso")
                     }
                 }
             case .failure(let error):

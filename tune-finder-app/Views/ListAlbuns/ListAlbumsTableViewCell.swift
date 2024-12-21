@@ -13,7 +13,7 @@ class ListAlbumsTableViewCell: UITableViewCell {
     private lazy var imageAlbum: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "imageTestTableView2")
+        imageView.image = UIImage(named: "imageDefaultTableView2")
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -111,7 +111,11 @@ class ListAlbumsTableViewCell: UITableViewCell {
     }
     
     func configureCell(albums: Items) {
-        imageAlbum.image = UIImage(named: "imageTestTableView2")
+        if let imageURLString = albums.images.first?.url, let imageURL = URL(string: imageURLString) {
+            imageAlbum.kf.setImage(with: imageURL)
+        } else {
+            imageAlbum.image = UIImage(named: "imageDefaultTableView2")
+        }
         titleAlbum.text = albums.name
         releaseDateAlbum.text = albums.release_date.toBrazilianDateFormat()
         totalTracksAlbum.text = "\(albums.total_tracks) Músicas"

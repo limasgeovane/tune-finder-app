@@ -13,7 +13,7 @@ class HomeView: UIView {
     private lazy var searchLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "O que você gostaria de ouvir no TuneFinder?"
+        label.text = "Qual artista você gostaria de ouvir no TuneFinder?"
         label.textColor = .whitePrimaryColor
         label.font = .primaryFont
         label.numberOfLines = 0
