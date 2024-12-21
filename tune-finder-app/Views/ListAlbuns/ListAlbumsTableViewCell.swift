@@ -27,7 +27,7 @@ class ListAlbumsTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var descriptionAlbums: UILabel = {
+    private lazy var releaseDateAlbum: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "18/11/2022 -  9 Músicas"
@@ -36,9 +36,38 @@ class ListAlbumsTableViewCell: UITableViewCell {
         return label
     }()
     
+    private lazy var totalTracksAlbum: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "9 Músicas"
+        label.textColor = .graySecundaryColor
+        label.font = .secondaryFont
+        return label
+    }()
+    
+    private lazy var separatorToLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = " - "
+        label.textColor = .graySecundaryColor
+        label.font = .secondaryFont
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private lazy var releaseDateAndTrackStackView: UIStackView = {
+        let stackView = UIStackView(
+            arrangedSubviews: [releaseDateAlbum, separatorToLabel, totalTracksAlbum]
+        )
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = 6
+        return stackView
+    }()
+    
     private lazy var textAlbumStackView: UIStackView = {
         let stackView = UIStackView(
-            arrangedSubviews: [titleAlbum, descriptionAlbums]
+            arrangedSubviews: [titleAlbum, releaseDateAndTrackStackView]
         )
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -84,6 +113,7 @@ class ListAlbumsTableViewCell: UITableViewCell {
     func configureCell(albums: Items) {
         imageAlbum.image = UIImage(named: "imageTestTableView2")
         titleAlbum.text = albums.name
-        descriptionAlbums.text = albums.release_date
+        releaseDateAlbum.text = albums.release_date.toBrazilianDateFormat()
+        totalTracksAlbum.text = "\(albums.total_tracks) Músicas"
     }
 }

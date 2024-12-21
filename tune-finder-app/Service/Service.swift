@@ -10,7 +10,7 @@ import Alamofire
 
 class Service {
     static let tokenType = "Bearer"
-    static let accessToken = "BQD_w1vmlJQN0Hl7FvPm5xm5yXH_iCx0S5sQdN6AI5D6sMxZTQ0_fmwVnkWEQUvDjR1H_7gJJK5B-eOo4I6hhrB65BGH9aAnp8OAddfYLbpHhcaTBeA"
+    static let accessToken = "BQBiAu3gXojhVFj71XNm35V1QVXcc4QLPBQ3ghJdNA15SD2QPhIw-uKuSSHryEPkPTuBSmOCSdF2hfpQuIf1JdnkPD-agQkwv7kzeq2Me0jxoEbEAXc"
     
     func getSpotifyAccessToken(artistName: String) {
         let baseURL: String = "https://accounts.spotify.com/api/token"
@@ -50,7 +50,7 @@ class Service {
         
         let parameters: [String: String] = [
             "q": artistName,
-            "type": "artist"//,
+            "type": "artist",
         ]
         
         AF.request(baseURLArtists, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers)
@@ -70,7 +70,7 @@ class Service {
             }
     }
     
-    func getAlbums(tokenType: String, accessToken: String, artistId: String, completion: @escaping ([Items]) -> Void) {
+    func getAlbums(tokenType: String, accessToken: String, artistId: String,completion: @escaping ([Items]) -> Void) {
         let baseURLAlbums: String = "https://api.spotify.com/v1/artists/\(artistId)/albums"
         
         let headers: HTTPHeaders = [
