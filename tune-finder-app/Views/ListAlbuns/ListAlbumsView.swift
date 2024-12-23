@@ -42,8 +42,8 @@ class ListAlbumsView: UIView {
     
     private func setupUIConstraints() {
         NSLayoutConstraint.activate([
-            artistTitle.centerXAnchor.constraint(equalTo: centerXAnchor),
-            artistTitle.topAnchor.constraint(equalTo: topAnchor, constant: 64),
+            artistTitle.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+            artistTitle.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8),
             
             albumsTableView.topAnchor.constraint(equalTo: artistTitle.bottomAnchor, constant: 32),
             albumsTableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),

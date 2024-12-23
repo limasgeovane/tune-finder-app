@@ -19,5 +19,5 @@ struct Items: Codable {
 }
 
 struct Images: Codable {
-    let url: String
+    let url: String?
 }

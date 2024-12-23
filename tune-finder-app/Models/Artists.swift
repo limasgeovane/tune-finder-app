@@ -18,10 +18,10 @@ struct Artist: Codable {
 struct Item: Codable {
     let images: [Image]
     let name: String
-    let genres: [String]
+    let genres: [String]?
     let id: String
 }
 
 struct Image: Codable {
-    let url: String
+    let url: String?
 }

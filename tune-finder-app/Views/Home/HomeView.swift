@@ -32,7 +32,7 @@ class HomeView: UIView {
         )
         textField.backgroundColor = .grayPrimaryColor
         textField.textColor = .whitePrimaryColor
-        textField.layer.cornerRadius = 32
+        textField.layer.cornerRadius = 24
         textField.layer.masksToBounds = true
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 32, height: 50))
         textField.leftViewMode = .always

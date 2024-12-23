@@ -14,32 +14,36 @@ class ListArtistsTableViewCell: UITableViewCell {
     private lazy var imageArtist: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "imageDefaultTableView")
+        imageView.image = UIImage(named: "imageError")
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 34
+        imageView.clipsToBounds = true
         return imageView
     }()
     
-    private lazy var titleArtist: UILabel = {
+    private lazy var nameArtist: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Michael Jackson"
         label.textColor = .whitePrimaryColor
         label.font = .secondaryFont
+        label.numberOfLines = 0
         return label
     }()
     
-    private lazy var descriptionAlbums: UILabel = {
+    private lazy var genresArtist: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Adult standards, canadian pop, jazz pop..."
         label.textColor = .graySecundaryColor
         label.font = .secondaryFont
+        label.numberOfLines = 3
         return label
     }()
     
     private lazy var textArtistsStackView: UIStackView = {
         let stackView = UIStackView(
-            arrangedSubviews: [titleArtist, descriptionAlbums]
+            arrangedSubviews: [nameArtist, genresArtist]
         )
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -53,7 +57,8 @@ class ListArtistsTableViewCell: UITableViewCell {
         )
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.spacing = 32
+        stackView.spacing = 16
+        stackView.alignment = .center
         return stackView
     }()
     
@@ -75,10 +80,12 @@ class ListArtistsTableViewCell: UITableViewCell {
     
     private func setupUIConstraints() {
         NSLayoutConstraint.activate([
-            artistsStackView.topAnchor.constraint(equalTo: topAnchor),
-            artistsStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            artistsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            artistsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            imageArtist.widthAnchor.constraint(equalToConstant: 68),
+            
+            artistsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            artistsStackView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            artistsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            artistsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
         ])
     }
     
@@ -86,9 +93,13 @@ class ListArtistsTableViewCell: UITableViewCell {
         if let imageURLString = artist.images.first?.url, let imageURL = URL(string: imageURLString) {
             imageArtist.kf.setImage(with: imageURL)
         } else {
-            imageArtist.image = UIImage(named: "imageDefaultTableView")
+            imageArtist.image = UIImage(named: "imageError")
         }
-        titleArtist.text = artist.name
-        descriptionAlbums.text = artist.genres.joined(separator: ", ")
+        nameArtist.text = artist.name
+        if let genres = artist.genres, !genres.isEmpty {
+            genresArtist.text = genres.joined(separator: ", ")
+        } else {
+            genresArtist.text = "-"
+        }
     }
 }

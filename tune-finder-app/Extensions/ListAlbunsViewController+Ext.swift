@@ -9,7 +9,7 @@ import UIKit
 
 extension ListAlbumsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        70
+        130
     }
 }
 
@@ -22,6 +22,7 @@ extension ListAlbumsViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListAlbumsTableViewCell.identifier, for: indexPath) as? ListAlbumsTableViewCell else {
             return UITableViewCell()
         }
+        
         let albums = albums[indexPath.row]
         cell.configureCell(albums: albums)
         return cell

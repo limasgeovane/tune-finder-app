@@ -70,9 +70,9 @@ class ListArtistsView: UIView {
     
     private func setupUIConstraints() {
         NSLayoutConstraint.activate([
-            searchStackView.topAnchor.constraint(equalTo: topAnchor, constant: 64),
-            searchStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            searchStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            searchStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8),
+            searchStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            searchStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8),
             
             artistsTableView.topAnchor.constraint(equalTo: searchStackView.bottomAnchor, constant: 16),
             artistsTableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),

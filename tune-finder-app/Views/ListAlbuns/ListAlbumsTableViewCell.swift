@@ -13,7 +13,7 @@ class ListAlbumsTableViewCell: UITableViewCell {
     private lazy var imageAlbum: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "imageDefaultTableView2")
+        imageView.image = UIImage(named: "imageError")
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -24,13 +24,14 @@ class ListAlbumsTableViewCell: UITableViewCell {
         label.text = "Thriller 40"
         label.textColor = .whitePrimaryColor
         label.font = .secondaryFont
+        label.numberOfLines = 0
         return label
     }()
     
     private lazy var releaseDateAlbum: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "18/11/2022 -  9 Músicas"
+        label.text = "18/11/2022 - 9 Músicas"
         label.textColor = .graySecundaryColor
         label.font = .secondaryFont
         return label
@@ -51,7 +52,6 @@ class ListAlbumsTableViewCell: UITableViewCell {
         label.text = " - "
         label.textColor = .graySecundaryColor
         label.font = .secondaryFont
-        label.textAlignment = .center
         return label
     }()
     
@@ -61,11 +61,11 @@ class ListAlbumsTableViewCell: UITableViewCell {
         )
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.spacing = 6
+        stackView.spacing = -1
         return stackView
     }()
     
-    private lazy var textAlbumStackView: UIStackView = {
+    private lazy var descriptionAlbumStackView: UIStackView = {
         let stackView = UIStackView(
             arrangedSubviews: [titleAlbum, releaseDateAndTrackStackView]
         )
@@ -77,11 +77,12 @@ class ListAlbumsTableViewCell: UITableViewCell {
     
     private lazy var albumsStackView: UIStackView = {
         let stackView = UIStackView(
-            arrangedSubviews: [imageAlbum, textAlbumStackView]
+            arrangedSubviews: [imageAlbum, descriptionAlbumStackView]
         )
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.spacing = 32
+        stackView.spacing = 16
+        stackView.alignment = .center
         return stackView
     }()
     
@@ -103,10 +104,12 @@ class ListAlbumsTableViewCell: UITableViewCell {
     
     private func setupUIConstraints() {
         NSLayoutConstraint.activate([
-            albumsStackView.topAnchor.constraint(equalTo: topAnchor),
-            albumsStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            albumsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            albumsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            imageAlbum.widthAnchor.constraint(equalToConstant: 114),
+            
+            albumsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            albumsStackView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            albumsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            albumsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
         ])
     }
     
@@ -114,10 +117,15 @@ class ListAlbumsTableViewCell: UITableViewCell {
         if let imageURLString = albums.images.first?.url, let imageURL = URL(string: imageURLString) {
             imageAlbum.kf.setImage(with: imageURL)
         } else {
-            imageAlbum.image = UIImage(named: "imageDefaultTableView2")
+            imageAlbum.image = UIImage(named: "imageError")
         }
         titleAlbum.text = albums.name
         releaseDateAlbum.text = albums.release_date.toBrazilianDateFormat()
-        totalTracksAlbum.text = "\(albums.total_tracks) Músicas"
+        if albums.total_tracks == 1 {
+            totalTracksAlbum.text = "\(albums.total_tracks) Música"
+        } else {
+            totalTracksAlbum.text = "\(albums.total_tracks) Músicas"
+            
+        }
     }
 }

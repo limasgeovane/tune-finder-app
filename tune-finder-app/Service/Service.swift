@@ -10,9 +10,9 @@ import Alamofire
 
 class Service {
     static let tokenType = "Bearer"
-    static let accessToken = "BQBX5MtrKTGZ2FMbU-d6P24hNDC8-fa85M3yV5hwnTcE8VqbgHcgnVq2ZRVy3ReXla5MUv40Vfbty0LeNhD1GfBvAX2qhahK_6wGpFQu5ZS_45WP_xk"
+    static let accessToken = "BQB3T2AdRgh2v9olePk7s5tLQyAFWBBGTEpfw2SVKVper6Yyc2qqkjd3TZVUGKowCAxFCZ_4XeqFeNeTqvK9M92GTTX-SKpTPWoa831VMySpM_fJ-r0"
     
-    func getSpotifyAccessToken(artistName: String) {
+    private func getSpotifyAccessToken(artistName: String) {
         let baseURL: String = "https://accounts.spotify.com/api/token"
         
         let headers: HTTPHeaders = [
@@ -85,7 +85,6 @@ class Service {
                 } else {
                     print("Erro ao decodificar os dados dos álbuns")
                 }
-                
             case .failure(let error):
                 print("Erro ao buscar álbuns: \(error)")
             }
