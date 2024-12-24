@@ -8,7 +8,7 @@
 import UIKit
 
 class ListAlbumsView: UIView {
-    private lazy var artistTitle: UILabel = {
+    lazy var artistTitle: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Álbuns de Michael Jackson"

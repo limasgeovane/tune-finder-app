@@ -36,17 +36,18 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
         setupConstraintsViewController(contentView: contentView)
     }
     
-    func didSelectArtist(artistId: String) {
+    func didSelectArtist(artistId: String, artistName: String) {
         service.getAlbums(tokenType: Service.tokenType, accessToken: Service.accessToken, artistId: artistId) { [weak self] albums in
-            self?.navigateToListAlbumsViewController(albums: albums)
+            self?.navigateToListAlbumsViewController(albums: albums, artistName: artistName)
         }
         
     }
     
-    private func navigateToListAlbumsViewController(albums: [Items]) {
+    private func navigateToListAlbumsViewController(albums: [Items], artistName: String) {
         let listAlbumsView = ListAlbumsView()
         let listAlbumsViewController = ListAlbumsViewController(contentView: listAlbumsView)
         listAlbumsViewController.albums = albums
+        listAlbumsViewController.artistName = artistName
         navigationController?.pushViewController(listAlbumsViewController, animated: true)
     }
 }

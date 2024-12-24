@@ -10,6 +10,7 @@ import UIKit
 class ListAlbumsViewController: UIViewController {
     private let contentView: ListAlbumsView
     var albums: [Items] = []
+    var artistName: String =  ""
     
     init(contentView: ListAlbumsView) {
         self.contentView = contentView
@@ -23,6 +24,7 @@ class ListAlbumsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         contentView.configureTableViewDelegate(self, dataSource: self)
+        contentView.artistTitle.text = "Álbuns de \(artistName)"
         setupUI()
     }
     

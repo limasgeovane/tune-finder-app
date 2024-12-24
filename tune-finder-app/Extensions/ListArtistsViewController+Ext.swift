@@ -14,7 +14,7 @@ extension ListArtistsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedArtist = artists[indexPath.row]
-        didSelectArtist(artistId: selectedArtist.id)
+        didSelectArtist(artistId: selectedArtist.id, artistName: selectedArtist.name)
     }
 }
 
