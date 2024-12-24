@@ -8,6 +8,8 @@
 import UIKit
 
 class ListArtistsView: UIView {
+    weak var delegate: ListArtistsViewDelegate?
+    
     private lazy var searchArtistTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -33,6 +35,7 @@ class ListArtistsView: UIView {
         button.setTitle("Cancelar", for: .normal)
         button.setTitleColor(.whitePrimaryColor, for: .normal)
         button.titleLabel?.font = .buttonFont
+        button.addTarget(self, action: #selector(clearSearchArtistTextField), for: .touchUpInside)
         return button
     }()
     
@@ -45,7 +48,7 @@ class ListArtistsView: UIView {
         return stackView
     }()
     
-    private lazy var artistsTableView: UITableView = {
+    lazy var artistsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(ListArtistsTableViewCell.self, forCellReuseIdentifier: ListArtistsTableViewCell.identifier)
@@ -56,6 +59,7 @@ class ListArtistsView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        searchArtistTextField.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -84,5 +88,20 @@ class ListArtistsView: UIView {
     func configureTableViewDelegate(_ delegate: UITableViewDelegate, dataSource: UITableViewDataSource) {
         artistsTableView.delegate = delegate
         artistsTableView.dataSource = dataSource
+    }
+    
+    @objc
+    private func clearSearchArtistTextField() {
+        UIView.animate(withDuration: 0.1,
+                       animations: {
+            self.cancelButton.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+            self.cancelButton.setTitleColor(.greenSecondaryColor, for: .normal)
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.1) {
+                self.cancelButton.transform = CGAffineTransform.identity
+                self.cancelButton.setTitleColor(.whitePrimaryColor, for: .normal)
+            }
+        })
+        searchArtistTextField.text = ""
     }
 }

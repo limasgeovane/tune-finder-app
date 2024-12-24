@@ -125,7 +125,6 @@ class ListAlbumsTableViewCell: UITableViewCell {
             totalTracksAlbum.text = "\(albums.total_tracks) Música"
         } else {
             totalTracksAlbum.text = "\(albums.total_tracks) Músicas"
-            
         }
     }
 }

@@ -24,6 +24,7 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         contentView.configureTableViewDelegate(self, dataSource: self)
+        contentView.delegate = self
         setupUI()
     }
     
@@ -36,11 +37,17 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
         setupConstraintsViewController(contentView: contentView)
     }
     
+    func searchArtist(artistName: String) {
+        service.getArtists(tokenType: Service.tokenType, accessToken: Service.accessToken, artistName: artistName) {[weak self] artists in
+            self?.artists = artists
+            self?.contentView.artistsTableView.reloadData()
+        }
+    }
+    
     func didSelectArtist(artistId: String, artistName: String) {
         service.getAlbums(tokenType: Service.tokenType, accessToken: Service.accessToken, artistId: artistId) { [weak self] albums in
             self?.navigateToListAlbumsViewController(albums: albums, artistName: artistName)
         }
-        
     }
     
     private func navigateToListAlbumsViewController(albums: [Items], artistName: String) {

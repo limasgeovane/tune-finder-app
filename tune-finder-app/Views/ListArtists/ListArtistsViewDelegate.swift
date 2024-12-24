@@ -9,4 +9,5 @@ import Foundation
 
 protocol ListArtistsViewDelegate: AnyObject {
     func didSelectArtist(artistId: String, artistName: String)
+    func searchArtist(artistName: String)
 }
