@@ -1,5 +1,5 @@
 //
-//  StateViewController.swift
+//  StatusViewController.swift
 //  tune-finder-app
 //
 //  Created by Geovane Lima dos Santos on 17/12/24.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-class StateViewController: UIViewController {
-    private let contentView: StateView
+class StatusViewController: UIViewController {
+    private let contentView: StatusView
     
-    init(contentView: StateView) {
+    init(contentView: StatusView) {
         self.contentView = contentView
         super.init(nibName: nil, bundle: nil)
     }
@@ -32,5 +32,9 @@ class StateViewController: UIViewController {
     
     private func setupUIConstraints() {
         setupConstraintsViewController(contentView: contentView)
+    }
+    
+    func setStatus(status: ServiceStatus) {
+        contentView.configure(status: status)
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 class ListArtistsView: UIView {
     weak var delegate: ListArtistsViewDelegate?
     
-    private lazy var searchArtistTextField: UITextField = {
+    lazy var searchArtistTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.attributedPlaceholder = NSAttributedString(

@@ -12,6 +12,17 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
     private let service: Service = Service()
     var artists: [Item] = []
     
+    private lazy var statusView: StatusView = {
+        let view = StatusView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var statusViewController: StatusViewController = {
+        let viewController = StatusViewController(contentView: statusView)
+        return viewController
+    }()
+    
     init(contentView: ListArtistsView) {
         self.contentView = contentView
         super.init(nibName: nil, bundle: nil)
@@ -25,7 +36,20 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
         super.viewDidLoad()
         contentView.configureTableViewDelegate(self, dataSource: self)
         contentView.delegate = self
+        setupStatusViewController()
+        
+        statusView.retryActionHandler = { [weak self] in
+            if let seachrText = self?.contentView.searchArtistTextField.text {
+                self?.searchArtist(artistName: seachrText)
+            }
+        }
         setupUI()
+    }
+
+    private func setupStatusViewController() {
+        addChild(statusViewController)
+        statusViewController.didMove(toParent: self)
+        view.addSubview(statusView)
     }
     
     private func setupUI() {
@@ -34,19 +58,59 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
     }
     
     private func setupUIConstraints() {
+        NSLayoutConstraint.activate([
+            statusView.topAnchor.constraint(equalTo: view.topAnchor),
+            statusView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            statusView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            statusView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
         setupConstraintsViewController(contentView: contentView)
     }
     
     func searchArtist(artistName: String) {
-        service.getArtists(tokenType: Service.tokenType, accessToken: Service.accessToken, artistName: artistName) {[weak self] artists in
-            self?.artists = artists
-            self?.contentView.artistsTableView.reloadData()
+        self.contentView.isHidden = true
+     
+        statusViewController.setStatus(status: .loading(resource: "artistas"))
+        service.getArtists(tokenType: Service.tokenType, accessToken: Service.accessToken, artistName: artistName) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let artists):
+                if artists.isEmpty {
+                    self.statusViewController.setStatus(status: .empty(resource: "artistas"))
+                } else {
+                    self.artists = artists
+                    self.contentView.artistsTableView.reloadData()
+                    self.statusViewController.setStatus(status: .success)
+                    self.contentView.isHidden = false
+                }
+            case .failure(let error):
+                self.statusViewController.setStatus(status: .error)
+                print("Erro: \(error.localizedDescription)")
+            }
         }
     }
     
     func didSelectArtist(artistId: String, artistName: String) {
-        service.getAlbums(tokenType: Service.tokenType, accessToken: Service.accessToken, artistId: artistId) { [weak self] albums in
-            self?.navigateToListAlbumsViewController(albums: albums, artistName: artistName)
+        self.contentView.isHidden = true
+        
+        statusViewController.setStatus(status: .loading(resource: "álbuns"))
+        service.getAlbums(tokenType: Service.tokenType, accessToken: Service.accessToken, artistId: artistId) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let albums):
+                if albums.isEmpty {
+                    self.statusViewController.setStatus(status: .empty(resource: "álbuns"))
+                } else {
+                    self.statusViewController.setStatus(status: .success)
+                    self.navigateToListAlbumsViewController(albums: albums, artistName: artistName)
+                }
+            case .failure(let error):
+                self.statusViewController.setStatus(status: .error)
+                print("Erro: \(error.localizedDescription)")
+            }
+            
         }
     }
     
@@ -56,5 +120,13 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
         listAlbumsViewController.albums = albums
         listAlbumsViewController.artistName = artistName
         navigationController?.pushViewController(listAlbumsViewController, animated: true)
+    }
+    
+    func returnToPreviousView() {
+        self.statusViewController.setStatus(status: .success)
+        self.contentView.isHidden = false
+        self.contentView.searchArtistTextField.text = ""
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.viewWillAppear(true)
     }
 }

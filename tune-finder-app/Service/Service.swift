@@ -10,7 +10,7 @@ import Alamofire
 
 class Service {
     static let tokenType = "Bearer"
-    static let accessToken = "BQCNEiAkadSCfREWHOMJDv9yVQZJnZ5IrArdsNGEESLvLsIjDOHqnkZzTyOEoeRoE_Ob7_UOeRSKWeMlxqzK73tIYaDf-DAlMY7f0lWgGtkRAvpuHWg"
+    static let accessToken = "BQA-uFnpgZGg9t463YJe35zXBWxA71tCr9AGRCDYdoK67B05ng-FxsJSUmcrXEbbriC13IoVDfhjqtLtrpQw_ArcZzVYS9qAxz0YHs__vv7k4TlBsyc"
     
     private func getSpotifyAccessToken(artistName: String) {
         let baseURL: String = "https://accounts.spotify.com/api/token"
@@ -41,7 +41,10 @@ class Service {
         }
     }
     
-    func getArtists(tokenType: String, accessToken: String, artistName: String, completion: @escaping ([Item]) -> Void) {
+    func getArtists(tokenType: String, accessToken: String, artistName: String, completion: @escaping (Result<[Item], Error>) -> Void) {
+        
+        //completion(.success([])) //Testar busca vazia
+        
         let baseURLArtists: String = "https://api.spotify.com/v1/search"
         
         let headers: HTTPHeaders = [
@@ -59,18 +62,20 @@ class Service {
                 switch response.result {
                 case .success(let data):
                     if let data = data, let artists = try? JSONDecoder().decode(Artists.self, from: data) {
-                        completion(artists.artists.items)
+                        completion(.success(artists.artists.items))
                     } else {
                         print("Erro ao decodificar os dados dos artistas")
+                        completion(.failure(NSError(domain: "Decodificação", code: 1, userInfo: [NSLocalizedDescriptionKey: "Erro ao decodificar os dados dos artistas"])))
                     }
                 case .failure(let error):
+                    completion(.failure(error))
                     print("Erro ao buscar dados do artista: \(error)")
                     self.getSpotifyAccessToken(artistName: artistName)
                 }
             }
     }
     
-    func getAlbums(tokenType: String, accessToken: String, artistId: String,completion: @escaping ([Items]) -> Void) {
+    func getAlbums(tokenType: String, accessToken: String, artistId: String, completion: @escaping (Result<[Items], Error>) -> Void) {
         let baseURLAlbums: String = "https://api.spotify.com/v1/artists/\(artistId)/albums"
         
         let headers: HTTPHeaders = [
@@ -81,11 +86,13 @@ class Service {
             switch response.result {
             case .success(let data):
                 if let data = data, let albums = try? JSONDecoder().decode(Albums.self, from: data) {
-                    completion(albums.items)
+                    completion(.success(albums.items))
                 } else {
                     print("Erro ao decodificar os dados dos álbuns")
+                    completion(.failure(NSError(domain: "Decodificação", code: 1, userInfo: [NSLocalizedDescriptionKey: "Erro ao decodificar os dados dos álbuns"])))
                 }
             case .failure(let error):
+                completion(.failure(error))
                 print("Erro ao buscar álbuns: \(error)")
             }
         }
