@@ -34,7 +34,7 @@ class StatusViewController: UIViewController {
         setupConstraintsViewController(contentView: contentView)
     }
     
-    func setStatus(status: ServiceStatus) {
+    func setStatus(status: Status) {
         contentView.configure(status: status)
     }
 }

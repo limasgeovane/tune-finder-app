@@ -9,7 +9,8 @@ import UIKit
 
 class HomeViewController: UIViewController, HomeViewDelegate {
     private let contentView: HomeView
-    private let service: Service = Service()
+    private let network: Network = Network()
+    private let userDefaults = UserDefaults.standard
     
     private lazy var statusView: StatusView = {
         let view = StatusView()
@@ -69,7 +70,7 @@ class HomeViewController: UIViewController, HomeViewDelegate {
         self.contentView.isHidden = true
         
         statusViewController.setStatus(status: .loading(resource: "artistas"))
-        service.getArtists(tokenType: Service.tokenType, accessToken: Service.accessToken, artistName: artistName) { [weak self] result in
+        network.getArtists(tokenType: Network.tokenType, accessToken: Network.accessToken, artistName: artistName) { [weak self] result in
             guard let self = self else { return }
             
             switch result {
@@ -78,7 +79,7 @@ class HomeViewController: UIViewController, HomeViewDelegate {
                     self.statusViewController.setStatus(status: .empty(resource: "artistas"))
                 } else {
                     self.statusViewController.setStatus(status: .success)
-                    self.navigateToListArtistsViewController(artists: artists)
+                    self.navigateToListArtistsViewController(artists: artists, artistName: artistName)
                 }
             case .failure(let error):
                 self.statusViewController.setStatus(status: .error)
@@ -87,7 +88,10 @@ class HomeViewController: UIViewController, HomeViewDelegate {
         }
     }
     
-    private func navigateToListArtistsViewController(artists: [Item]) {
+    private func navigateToListArtistsViewController(artists: [Item], artistName: String) {
+        userDefaults.set(true, forKey: "hasSearchedBefore")
+        userDefaults.set(artistName, forKey: "lastArtistSearched")
+        
         let listArtistsView = ListArtistsView()
         let listArtistsViewController = ListArtistsViewController(contentView: listArtistsView)
         listArtistsViewController.artists = artists

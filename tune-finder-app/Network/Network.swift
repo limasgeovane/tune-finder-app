@@ -1,5 +1,5 @@
 //
-//  Service.swift
+//  Network.swift
 //  tune-finder-app
 //
 //  Created by Geovane Lima dos Santos on 18/12/24.
@@ -8,9 +8,9 @@
 import Foundation
 import Alamofire
 
-class Service {
+class Network {
     static let tokenType = "Bearer"
-    static let accessToken = "BQA-uFnpgZGg9t463YJe35zXBWxA71tCr9AGRCDYdoK67B05ng-FxsJSUmcrXEbbriC13IoVDfhjqtLtrpQw_ArcZzVYS9qAxz0YHs__vv7k4TlBsyc"
+    static let accessToken = "BQD5R36nIGsUQlr1-dqxV-Z-1KIDXB53jv_cG0x9R5nKZCh57T0ai7AkQ2JgxGaipLjWa7GTrW2Qy8vHbg86Xfc-UdZBA8JiPtVJWXt3taShpJf0yGo"
     
     private func getSpotifyAccessToken(artistName: String) {
         let baseURL: String = "https://accounts.spotify.com/api/token"

@@ -9,8 +9,11 @@ import UIKit
 
 class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
     private let contentView: ListArtistsView
-    private let service: Service = Service()
+    private let network: Network = Network()
     var artists: [Item] = []
+    var lastArtistSearched: String?
+    private let userDefaults = UserDefaults.standard
+    
     
     private lazy var statusView: StatusView = {
         let view = StatusView()
@@ -44,8 +47,12 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
             }
         }
         setupUI()
+    
+        if let lastArtistSearched = lastArtistSearched, !lastArtistSearched.isEmpty {
+            searchArtist(artistName: lastArtistSearched)
+        }
     }
-
+    
     private func setupStatusViewController() {
         addChild(statusViewController)
         statusViewController.didMove(toParent: self)
@@ -68,10 +75,15 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
     }
     
     func searchArtist(artistName: String) {
+        userDefaults.removeObject(forKey: "hasSearchedBefore")
+        userDefaults.removeObject(forKey: "lastArtistSearched")
+        userDefaults.set(true, forKey: "hasSearchedBefore")
+        userDefaults.set(artistName, forKey: "lastArtistSearched")
+        
         self.contentView.isHidden = true
-     
+        
         statusViewController.setStatus(status: .loading(resource: "artistas"))
-        service.getArtists(tokenType: Service.tokenType, accessToken: Service.accessToken, artistName: artistName) { [weak self] result in
+        network.getArtists(tokenType: Network.tokenType, accessToken: Network.accessToken, artistName: artistName) { [weak self] result in
             guard let self = self else { return }
             
             switch result {
@@ -95,7 +107,7 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
         self.contentView.isHidden = true
         
         statusViewController.setStatus(status: .loading(resource: "álbuns"))
-        service.getAlbums(tokenType: Service.tokenType, accessToken: Service.accessToken, artistId: artistId) { [weak self] result in
+        network.getAlbums(tokenType: Network.tokenType, accessToken: Network.accessToken, artistId: artistId) { [weak self] result in
             guard let self = self else { return }
             
             switch result {

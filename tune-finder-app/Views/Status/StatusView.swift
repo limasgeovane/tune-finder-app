@@ -45,7 +45,7 @@ class StatusView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(status: ServiceStatus) {
+    func configure(status: Status) {
         switch status {
         case .loading:
             statusImageView.image = UIImage(systemName: "hourglass")

@@ -1,5 +1,5 @@
 //
-//  ServiceStatus.swift
+//  Status.swift
 //  tune-finder-app
 //
 //  Created by Geovane Lima dos Santos on 24/12/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ServiceStatus {
+enum Status {
     case loading(resource: String)
     case success
     case error
