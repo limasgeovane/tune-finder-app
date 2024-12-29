@@ -89,13 +89,13 @@ class HomeViewController: UIViewController, HomeViewDelegate {
     }
     
     private func navigateToListArtistsViewController(artists: [Item], artistName: String) {
-        userDefaults.set(true, forKey: "hasSearchedBefore")
-        userDefaults.set(artistName, forKey: "lastArtistSearched")
-        
         let listArtistsView = ListArtistsView()
         let listArtistsViewController = ListArtistsViewController(contentView: listArtistsView)
         listArtistsViewController.artists = artists
         navigationController?.pushViewController(listArtistsViewController, animated: true)
+        
+        userDefaults.set(true, forKey: "hasSearchedBefore")
+        userDefaults.set(artistName, forKey: "lastArtistSearched")
     }
     
     func returnToPreviousView() {

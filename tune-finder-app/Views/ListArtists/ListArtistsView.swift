@@ -9,6 +9,18 @@ import UIKit
 
 class ListArtistsView: UIView {
     weak var delegate: ListArtistsViewDelegate?
+    // var lastArtistSearched: String?
+    private let userDefaults = UserDefaults.standard
+    
+    lazy var lastSearchLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Última busca"
+        label.textColor = .whitePrimaryColor
+        label.font = .secondaryFont
+        label.numberOfLines = 0
+        return label
+    }()
     
     lazy var searchArtistTextField: UITextField = {
         let textField = UITextField()
@@ -36,6 +48,7 @@ class ListArtistsView: UIView {
         button.setTitleColor(.whitePrimaryColor, for: .normal)
         button.titleLabel?.font = .buttonFont
         button.addTarget(self, action: #selector(clearSearchArtistTextField), for: .touchUpInside)
+        button.setContentHuggingPriority(.required, for: .horizontal)
         return button
     }()
     
@@ -43,8 +56,8 @@ class ListArtistsView: UIView {
         let stackView = UIStackView(arrangedSubviews: [searchArtistTextField, cancelButton])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.distribution = .fill
-        stackView.spacing = 16
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 8
         return stackView
     }()
     
@@ -73,12 +86,25 @@ class ListArtistsView: UIView {
     }
     
     private func setupUIConstraints() {
+        let lastArtistSearched = userDefaults.string(forKey: "lastArtistSearched")
+        
+        if let lastArtistSearched = lastArtistSearched, !lastArtistSearched.isEmpty {
+            addSubview(lastSearchLabel)
+            NSLayoutConstraint.activate([
+                lastSearchLabel.topAnchor.constraint(equalTo: searchStackView.bottomAnchor, constant: 16),
+                lastSearchLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+                
+                artistsTableView.topAnchor.constraint(equalTo: lastSearchLabel.bottomAnchor, constant: 16)
+            ])
+        } else {
+            artistsTableView.topAnchor.constraint(equalTo: searchStackView.bottomAnchor, constant: 16).isActive = true
+        }
+        
         NSLayoutConstraint.activate([
             searchStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8),
             searchStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
             searchStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8),
             
-            artistsTableView.topAnchor.constraint(equalTo: searchStackView.bottomAnchor, constant: 16),
             artistsTableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             artistsTableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             artistsTableView.bottomAnchor.constraint(equalTo: bottomAnchor)

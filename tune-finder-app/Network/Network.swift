@@ -10,7 +10,7 @@ import Alamofire
 
 class Network {
     static let tokenType = "Bearer"
-    static let accessToken = "BQD5R36nIGsUQlr1-dqxV-Z-1KIDXB53jv_cG0x9R5nKZCh57T0ai7AkQ2JgxGaipLjWa7GTrW2Qy8vHbg86Xfc-UdZBA8JiPtVJWXt3taShpJf0yGo"
+    static let accessToken = "BQDSNCPUXNy0WfYL27WTPgt3PUoVCmLTcq-fSe8wAX6pg9LAbCxs84LVSJmtiEYZjSh7hXMDbL1lXnmwXzwMaz1Ki0ovVdy-xh8GL6eAxzohbZ5tXso"
     
     private func getSpotifyAccessToken(artistName: String) {
         let baseURL: String = "https://accounts.spotify.com/api/token"

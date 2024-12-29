@@ -28,7 +28,6 @@ class AppFlowController: SplashFlowDelegate{
         let lastArtistSearched = userDefaults.string(forKey: "lastArtistSearched") ?? ""
         let listArtistsView = ListArtistsView()
         let listArtistsViewController = ListArtistsViewController(contentView: listArtistsView)
-        listArtistsView.searchArtistTextField.text = lastArtistSearched
         listArtistsViewController.lastArtistSearched = lastArtistSearched
         let navigationController = UINavigationController(rootViewController: listArtistsViewController)
         return navigationController
