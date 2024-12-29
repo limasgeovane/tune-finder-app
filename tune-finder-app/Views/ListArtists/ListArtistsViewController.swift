@@ -47,7 +47,7 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
             }
         }
         setupUI()
-    
+        
         if let lastArtistSearched = lastArtistSearched, !lastArtistSearched.isEmpty {
             searchArtist(artistName: lastArtistSearched)
         }
@@ -83,7 +83,7 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
         self.contentView.isHidden = true
         
         statusViewController.setStatus(status: .loading(resource: "artistas"))
-        network.getArtists(tokenType: Network.tokenType, accessToken: Network.accessToken, artistName: artistName) { [weak self] result in
+        network.getArtists(artistName: artistName) { [weak self] result in
             guard let self = self else { return }
             
             switch result {
@@ -107,7 +107,7 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
         self.contentView.isHidden = true
         
         statusViewController.setStatus(status: .loading(resource: "álbuns"))
-        network.getAlbums(tokenType: Network.tokenType, accessToken: Network.accessToken, artistId: artistId) { [weak self] result in
+        network.getAlbums(artistId: artistId) { [weak self] result in
             guard let self = self else { return }
             
             switch result {

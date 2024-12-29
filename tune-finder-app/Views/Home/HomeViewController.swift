@@ -70,9 +70,8 @@ class HomeViewController: UIViewController, HomeViewDelegate {
         self.contentView.isHidden = true
         
         statusViewController.setStatus(status: .loading(resource: "artistas"))
-        network.getArtists(tokenType: Network.tokenType, accessToken: Network.accessToken, artistName: artistName) { [weak self] result in
+        network.getArtists(artistName: artistName) { [weak self] result in
             guard let self = self else { return }
-            
             switch result {
             case .success(let artists):
                 if artists.isEmpty {
