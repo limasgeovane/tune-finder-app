@@ -1,0 +1,6 @@
+framework module Pods_tune_finder_app {
+  umbrella header "Pods-tune-finder-app-umbrella.h"
+
+  export *
+  module * { export * }
+}
