@@ -5,8 +5,6 @@
 //  Created by Geovane Lima dos Santos on 18/12/24.
 //
 
-import Foundation
-
 struct Artists: Codable {
     let artists: Artist
 }
