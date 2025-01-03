@@ -69,3 +69,14 @@ class HomeView: UIView {
         ])
     }
 }
+
+extension HomeView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        if let searchText = textField.text, !searchText.isEmpty {
+            delegate?.searchArtist(artistName: searchText)
+        }
+        return true
+    }
+}

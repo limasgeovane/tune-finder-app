@@ -10,10 +10,6 @@
 		45091FDD2D1652F700EF8367 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 45091FDC2D1652F700EF8367 /* Kingfisher */; };
 		4598B9B02D22031C009FE677 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4598B9942D22031C009FE677 /* Assets.xcassets */; };
 		4598B9B22D22031C009FE677 /* AppFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9812D22031C009FE677 /* AppFlowController.swift */; };
-		4598B9B32D22031C009FE677 /* HomeView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9832D22031C009FE677 /* HomeView+Ext.swift */; };
-		4598B9B42D22031C009FE677 /* ListAlbunsViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9842D22031C009FE677 /* ListAlbunsViewController+Ext.swift */; };
-		4598B9B52D22031C009FE677 /* ListArtistsView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9852D22031C009FE677 /* ListArtistsView+Ext.swift */; };
-		4598B9B62D22031C009FE677 /* ListArtistsViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9862D22031C009FE677 /* ListArtistsViewController+Ext.swift */; };
 		4598B9B72D22031C009FE677 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9872D22031C009FE677 /* String+Ext.swift */; };
 		4598B9B82D22031C009FE677 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9882D22031C009FE677 /* UIColor+Ext.swift */; };
 		4598B9B92D22031C009FE677 /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9892D22031C009FE677 /* UIFont+Ext.swift */; };
@@ -47,10 +43,6 @@
 /* Begin PBXFileReference section */
 		4578568A2D0F0C1D00998CB5 /* tune-finder-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tune-finder-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4598B9812D22031C009FE677 /* AppFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowController.swift; sourceTree = "<group>"; };
-		4598B9832D22031C009FE677 /* HomeView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeView+Ext.swift"; sourceTree = "<group>"; };
-		4598B9842D22031C009FE677 /* ListAlbunsViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListAlbunsViewController+Ext.swift"; sourceTree = "<group>"; };
-		4598B9852D22031C009FE677 /* ListArtistsView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListArtistsView+Ext.swift"; sourceTree = "<group>"; };
-		4598B9862D22031C009FE677 /* ListArtistsViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListArtistsViewController+Ext.swift"; sourceTree = "<group>"; };
 		4598B9872D22031C009FE677 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		4598B9882D22031C009FE677 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		4598B9892D22031C009FE677 /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
@@ -144,10 +136,6 @@
 		4598B98B2D22031C009FE677 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				4598B9832D22031C009FE677 /* HomeView+Ext.swift */,
-				4598B9842D22031C009FE677 /* ListAlbunsViewController+Ext.swift */,
-				4598B9852D22031C009FE677 /* ListArtistsView+Ext.swift */,
-				4598B9862D22031C009FE677 /* ListArtistsViewController+Ext.swift */,
 				4598B9872D22031C009FE677 /* String+Ext.swift */,
 				4598B9882D22031C009FE677 /* UIColor+Ext.swift */,
 				4598B9892D22031C009FE677 /* UIFont+Ext.swift */,
@@ -391,10 +379,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4598B9B22D22031C009FE677 /* AppFlowController.swift in Sources */,
-				4598B9B32D22031C009FE677 /* HomeView+Ext.swift in Sources */,
-				4598B9B42D22031C009FE677 /* ListAlbunsViewController+Ext.swift in Sources */,
-				4598B9B52D22031C009FE677 /* ListArtistsView+Ext.swift in Sources */,
-				4598B9B62D22031C009FE677 /* ListArtistsViewController+Ext.swift in Sources */,
 				4598B9B72D22031C009FE677 /* String+Ext.swift in Sources */,
 				4598B9B82D22031C009FE677 /* UIColor+Ext.swift in Sources */,
 				4598B9B92D22031C009FE677 /* UIFont+Ext.swift in Sources */,

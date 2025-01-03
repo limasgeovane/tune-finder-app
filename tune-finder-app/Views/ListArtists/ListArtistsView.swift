@@ -9,7 +9,6 @@ import UIKit
 
 class ListArtistsView: UIView {
     weak var delegate: ListArtistsViewDelegate?
-    // var lastArtistSearched: String?
     private let userDefaults = UserDefaults.standard
     
     lazy var lastSearchLabel: UILabel = {
@@ -129,5 +128,15 @@ class ListArtistsView: UIView {
             }
         })
         searchArtistTextField.text = ""
+    }
+}
+
+extension ListArtistsView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if let searchText = textField.text, !searchText.isEmpty {
+            delegate?.searchArtist(artistName: searchText)
+        }
+        return true
     }
 }
