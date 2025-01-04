@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol HomeViewDelegate: AnyObject {
+    func searchArtist(artistName: String)
+}
+
 class HomeView: UIView {
     weak var delegate: HomeViewDelegate?
     
@@ -42,6 +46,7 @@ class HomeView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        searchArtistTextField.delegate = self
         setupUI()
     }
     
@@ -50,7 +55,6 @@ class HomeView: UIView {
     }
     
     private func setupUI() {
-        searchArtistTextField.delegate = self
         addSubview(searchLabel)
         addSubview(searchArtistTextField)
         setupUIConstraints()

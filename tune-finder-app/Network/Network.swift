@@ -8,7 +8,7 @@
 import Alamofire
 
 class Network {
-    func getArtists(artistName: String, completion: @escaping (Result<[Item], Error>) -> Void) {
+    func getArtists(artistName: String, completion: @escaping (Result<[Artists.Artist.Item], Error>) -> Void) {
         TokenManager.shared.getValidToken { result in
             switch result {
             case .success(let tokenData):
@@ -21,7 +21,7 @@ class Network {
         }
     }
     
-    private func performGetArtists(tokenType: String, accessToken: String, artistName: String, completion: @escaping (Result<[Item], Error>) -> Void) {
+    private func performGetArtists(tokenType: String, accessToken: String, artistName: String, completion: @escaping (Result<[Artists.Artist.Item], Error>) -> Void) {
         let baseURLArtists: String = "https://api.spotify.com/v1/search"
         
         let headers: HTTPHeaders = [
@@ -50,7 +50,7 @@ class Network {
             }
     }
     
-    func getAlbums(artistId: String, completion: @escaping (Result<[Items], Error>) -> Void) {
+    func getAlbums(artistId: String, completion: @escaping (Result<[Albums.Item], Error>) -> Void) {
         TokenManager.shared.getValidToken { result in
             switch result {
             case .success(let tokenData):
@@ -63,7 +63,7 @@ class Network {
         }
     }
 
-    private func performGetAlbums(tokenType: String, accessToken: String, artistId: String, completion: @escaping (Result<[Items], Error>) -> Void) {
+    private func performGetAlbums(tokenType: String, accessToken: String, artistId: String, completion: @escaping (Result<[Albums.Item], Error>) -> Void) {
         let baseURLAlbums: String = "https://api.spotify.com/v1/artists/\(artistId)/albums"
         
         let headers: HTTPHeaders = [

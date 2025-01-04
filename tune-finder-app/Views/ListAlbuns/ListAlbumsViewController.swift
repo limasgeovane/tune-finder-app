@@ -9,7 +9,7 @@ import UIKit
 
 class ListAlbumsViewController: UIViewController {
     private let contentView: ListAlbumsView
-    var albums: [Items] = []
+    var albums: [Albums.Item] = []
     var artistName: String =  ""
     
     init(contentView: ListAlbumsView) {

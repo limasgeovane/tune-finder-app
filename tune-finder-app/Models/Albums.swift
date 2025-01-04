@@ -5,17 +5,24 @@
 //  Created by Geovane Lima dos Santos on 18/12/24.
 //
 
-struct Albums: Codable {
-    let items: [Items]
-}
-
-struct Items: Codable {
-    let name: String
-    let total_tracks: Int
-    let release_date: String
-    let images: [Images]
-}
-
-struct Images: Codable {
-    let url: String?
+struct Albums: Decodable {
+    let items: [Item]
+    
+    struct Item: Decodable {
+        let name: String
+        let totalTracks: Int
+        let releaseDate: String
+        let images: [Image]
+        
+        struct Image: Decodable {
+            let url: String?
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case name
+            case totalTracks = "total_tracks"
+            case releaseDate = "release_date"
+            case images
+        }
+    }
 }

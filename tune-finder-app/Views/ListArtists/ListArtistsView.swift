@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol ListArtistsViewDelegate: AnyObject {
+    func didSelectArtist(artistId: String, artistName: String)
+    func searchArtist(artistName: String)
+}
+
 class ListArtistsView: UIView {
     weak var delegate: ListArtistsViewDelegate?
     private let userDefaults = UserDefaults.standard
@@ -70,8 +75,8 @@ class ListArtistsView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupUI()
         searchArtistTextField.delegate = self
+        setupUI()
     }
     
     required init?(coder: NSCoder) {

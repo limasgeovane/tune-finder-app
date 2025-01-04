@@ -5,21 +5,21 @@
 //  Created by Geovane Lima dos Santos on 18/12/24.
 //
 
-struct Artists: Codable {
+struct Artists: Decodable {
     let artists: Artist
-}
-
-struct Artist: Codable {
-    let items: [Item]
-}
-
-struct Item: Codable {
-    let images: [Image]
-    let name: String
-    let genres: [String]?
-    let id: String
-}
-
-struct Image: Codable {
-    let url: String?
+    
+    struct Artist: Decodable {
+        let items: [Item]
+        
+        struct Item: Decodable {
+            let images: [Image]
+            let name: String
+            let genres: [String]?
+            let id: String
+            
+            struct Image: Decodable {
+                let url: String?
+            }
+        }
+    }
 }

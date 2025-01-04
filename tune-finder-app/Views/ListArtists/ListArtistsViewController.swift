@@ -10,10 +10,9 @@ import UIKit
 class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
     private let contentView: ListArtistsView
     private let network: Network = Network()
-    var artists: [Item] = []
+    var artists: [Artists.Artist.Item] = []
     var lastArtistSearched: String?
     private let userDefaults = UserDefaults.standard
-    
     
     private lazy var statusView: StatusView = {
         let view = StatusView()
@@ -126,7 +125,7 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
         }
     }
     
-    private func navigateToListAlbumsViewController(albums: [Items], artistName: String) {
+    private func navigateToListAlbumsViewController(albums: [Albums.Item], artistName: String) {
         let listAlbumsView = ListAlbumsView()
         let listAlbumsViewController = ListAlbumsViewController(contentView: listAlbumsView)
         listAlbumsViewController.albums = albums

@@ -113,18 +113,18 @@ class ListAlbumsTableViewCell: UITableViewCell {
         ])
     }
     
-    func configureCell(albums: Items) {
+    func configureCell(albums: Albums.Item) {
         if let imageURLString = albums.images.first?.url, let imageURL = URL(string: imageURLString) {
             imageAlbum.kf.setImage(with: imageURL)
         } else {
             imageAlbum.image = UIImage(named: "imageError")
         }
         titleAlbum.text = albums.name
-        releaseDateAlbum.text = albums.release_date.toBrazilianDateFormat()
-        if albums.total_tracks == 1 {
-            totalTracksAlbum.text = "\(albums.total_tracks) Música"
+        releaseDateAlbum.text = albums.releaseDate.toBrazilianDateFormat()
+        if albums.totalTracks == 1 {
+            totalTracksAlbum.text = "\(albums.totalTracks) Música"
         } else {
-            totalTracksAlbum.text = "\(albums.total_tracks) Músicas"
+            totalTracksAlbum.text = "\(albums.totalTracks) Músicas"
         }
     }
 }

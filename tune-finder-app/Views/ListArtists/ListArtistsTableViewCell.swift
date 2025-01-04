@@ -89,7 +89,7 @@ class ListArtistsTableViewCell: UITableViewCell {
         ])
     }
     
-    func configureCell(artist: Item) {
+    func configureCell(artist: Artists.Artist.Item) {
         if let imageURLString = artist.images.first?.url, let imageURL = URL(string: imageURLString) {
             imageArtist.kf.setImage(with: imageURL)
         } else {

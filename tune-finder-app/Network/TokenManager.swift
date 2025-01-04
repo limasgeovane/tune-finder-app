@@ -34,12 +34,12 @@ class TokenManager {
             .response { response in
                 switch response.result {
                 case .success(let data):
-                    if let data = data, let token = try? JSONDecoder().decode(SpotfyTokenResponse.self, from: data) {
-                        let expirationTime = Date().addingTimeInterval(TimeInterval(token.expires_in))
-                        self.accessToken = token.access_token
-                        self.tokenType = token.token_type
+                    if let data = data, let token = try? JSONDecoder().decode(SpotifyTokenResponse.self, from: data) {
+                        let expirationTime = Date().addingTimeInterval(TimeInterval(token.expiresIn))
+                        self.accessToken = token.accessToken
+                        self.tokenType = token.tokenType
                         self.tokenExpirationDate = expirationTime
-                        completion(.success((token.token_type, token.access_token)))
+                        completion(.success((token.tokenType, token.accessToken)))
                     } else {
                         completion(.failure(NSError(domain: "Decodificação", code: 1, userInfo: [NSLocalizedDescriptionKey: "Erro ao decodificar o token"])))
                     }

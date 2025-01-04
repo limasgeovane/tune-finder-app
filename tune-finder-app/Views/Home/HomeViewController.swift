@@ -87,7 +87,7 @@ class HomeViewController: UIViewController, HomeViewDelegate {
         }
     }
     
-    private func navigateToListArtistsViewController(artists: [Item], artistName: String) {
+    private func navigateToListArtistsViewController(artists: [Artists.Artist.Item], artistName: String) {
         let listArtistsView = ListArtistsView()
         let listArtistsViewController = ListArtistsViewController(contentView: listArtistsView)
         listArtistsViewController.artists = artists
