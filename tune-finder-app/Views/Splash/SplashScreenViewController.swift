@@ -20,21 +20,15 @@ class SplashScreenViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func loadView() {
+        view = contentView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        decideFlow()
-    }
-    
-    private func setupUI() {
-        view.addSubview(contentView)
         self.navigationController?.navigationBar.isHidden = true
-        setupUIConstraints()
-    }
-    
-    private func setupUIConstraints() {
-        setupConstraintsViewController(contentView: contentView)
+        decideFlow()
     }
     
     private func decideFlow() {

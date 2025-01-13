@@ -34,11 +34,16 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        view = contentView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         contentView.configureTableViewDelegate(self, dataSource: self)
         contentView.delegate = self
         setupStatusViewController()
+        statusView.isHidden = true
         
         statusView.retryActionHandler = { [weak self] in
             if let seachrText = self?.contentView.searchArtistTextField.text {
@@ -59,7 +64,6 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
     }
     
     private func setupUI() {
-        view.addSubview(contentView)
         setupUIConstraints()
     }
     
@@ -70,7 +74,6 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
             statusView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             statusView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        setupConstraintsViewController(contentView: contentView)
     }
     
     func searchArtist(artistName: String) {
@@ -80,6 +83,7 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
         userDefaults.set(artistName, forKey: "lastArtistSearched")
         
         self.contentView.isHidden = true
+        self.statusView.isHidden = false
         
         statusViewController.setStatus(status: .loading(resource: "artistas"))
         network.getArtists(artistName: artistName) { [weak self] result in
@@ -89,14 +93,17 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
             case .success(let artists):
                 if artists.isEmpty {
                     self.statusViewController.setStatus(status: .empty(resource: "artistas"))
+                    self.statusView.isHidden = false
                 } else {
                     self.artists = artists
                     self.contentView.artistsTableView.reloadData()
                     self.statusViewController.setStatus(status: .success)
                     self.contentView.isHidden = false
+                    self.statusView.isHidden = true
                 }
             case .failure(let error):
                 self.statusViewController.setStatus(status: .error)
+                self.statusView.isHidden = false
                 print("Erro: \(error.localizedDescription)")
             }
         }
@@ -139,6 +146,7 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
         self.contentView.searchArtistTextField.text = ""
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.viewWillAppear(true)
+        self.statusView.isHidden = true
     }
 }
 

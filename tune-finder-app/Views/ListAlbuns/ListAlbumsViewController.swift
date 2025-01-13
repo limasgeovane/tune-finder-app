@@ -21,20 +21,14 @@ class ListAlbumsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        view = contentView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         contentView.configureTableViewDelegate(self, dataSource: self)
         contentView.artistTitle.text = "Álbuns de \(artistName)"
-        setupUI()
-    }
-    
-    private func setupUI() {
-        view.addSubview(contentView)
-        setupUIConstraints()
-    }
-    
-    private func setupUIConstraints() {
-        setupConstraintsViewController(contentView: contentView)
     }
 }
 

@@ -13,7 +13,6 @@
 		4598B9B72D22031C009FE677 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9872D22031C009FE677 /* String+Ext.swift */; };
 		4598B9B82D22031C009FE677 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9882D22031C009FE677 /* UIColor+Ext.swift */; };
 		4598B9B92D22031C009FE677 /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9892D22031C009FE677 /* UIFont+Ext.swift */; };
-		4598B9BA2D22031C009FE677 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B98A2D22031C009FE677 /* UIViewController+Ext.swift */; };
 		4598B9BB2D22031C009FE677 /* Albums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B98C2D22031C009FE677 /* Albums.swift */; };
 		4598B9BC2D22031C009FE677 /* Artists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B98D2D22031C009FE677 /* Artists.swift */; };
 		4598B9BD2D22031C009FE677 /* SpotifyTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B98E2D22031C009FE677 /* SpotifyTokenResponse.swift */; };
@@ -44,7 +43,6 @@
 		4598B9872D22031C009FE677 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		4598B9882D22031C009FE677 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		4598B9892D22031C009FE677 /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
-		4598B98A2D22031C009FE677 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		4598B98C2D22031C009FE677 /* Albums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Albums.swift; sourceTree = "<group>"; };
 		4598B98D2D22031C009FE677 /* Artists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artists.swift; sourceTree = "<group>"; };
 		4598B98E2D22031C009FE677 /* SpotifyTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyTokenResponse.swift; sourceTree = "<group>"; };
@@ -135,7 +133,6 @@
 				4598B9872D22031C009FE677 /* String+Ext.swift */,
 				4598B9882D22031C009FE677 /* UIColor+Ext.swift */,
 				4598B9892D22031C009FE677 /* UIFont+Ext.swift */,
-				4598B98A2D22031C009FE677 /* UIViewController+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -376,7 +373,6 @@
 				4598B9B72D22031C009FE677 /* String+Ext.swift in Sources */,
 				4598B9B82D22031C009FE677 /* UIColor+Ext.swift in Sources */,
 				4598B9B92D22031C009FE677 /* UIFont+Ext.swift in Sources */,
-				4598B9BA2D22031C009FE677 /* UIViewController+Ext.swift in Sources */,
 				4598B9BB2D22031C009FE677 /* Albums.swift in Sources */,
 				4598B9BC2D22031C009FE677 /* Artists.swift in Sources */,
 				4598B9BD2D22031C009FE677 /* SpotifyTokenResponse.swift in Sources */,

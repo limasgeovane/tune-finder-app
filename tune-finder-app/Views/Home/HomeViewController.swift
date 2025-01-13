@@ -33,9 +33,14 @@ class HomeViewController: UIViewController, HomeViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        view = contentView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupStatusViewController()
+        statusView.isHidden = true
         
         statusView.retryActionHandler = { [weak self] in
             if let searchText = self?.contentView.searchArtistTextField.text {
@@ -52,7 +57,6 @@ class HomeViewController: UIViewController, HomeViewDelegate {
     }
     
     private func setupUI() {
-        view.addSubview(contentView)
         setupUIConstraints()
     }
     
@@ -63,11 +67,11 @@ class HomeViewController: UIViewController, HomeViewDelegate {
             statusView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             statusView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        setupConstraintsViewController(contentView: contentView)
     }
     
     func searchArtist(artistName: String) {
         self.contentView.isHidden = true
+        self.statusView.isHidden = false
         
         statusViewController.setStatus(status: .loading(resource: "artistas"))
         network.getArtists(artistName: artistName) { [weak self] result in
@@ -76,12 +80,15 @@ class HomeViewController: UIViewController, HomeViewDelegate {
             case .success(let artists):
                 if artists.isEmpty {
                     self.statusViewController.setStatus(status: .empty(resource: "artistas"))
+                    self.statusView.isHidden = false
                 } else {
                     self.statusViewController.setStatus(status: .success)
+                    self.statusView.isHidden = true
                     self.navigateToListArtistsViewController(artists: artists, artistName: artistName)
                 }
             case .failure(let error):
                 self.statusViewController.setStatus(status: .error)
+                self.statusView.isHidden = false
                 print("Erro: \(error.localizedDescription)")
             }
         }
@@ -103,5 +110,6 @@ class HomeViewController: UIViewController, HomeViewDelegate {
         self.contentView.searchArtistTextField.text = ""
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.viewWillAppear(true)
+        self.statusView.isHidden = true
     }
 }
