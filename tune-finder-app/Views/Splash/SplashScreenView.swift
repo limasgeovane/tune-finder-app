@@ -26,8 +26,8 @@ class SplashScreenView: UIView {
     }
     
     private func setupUI() {
-        self.backgroundColor = .black
-        self.addSubview(logoImageView)
+        backgroundColor = .black
+        addSubview(logoImageView)
         setupUIConstraints()
     }
     

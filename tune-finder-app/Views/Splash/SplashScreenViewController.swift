@@ -7,11 +7,15 @@
 
 import UIKit
 
+protocol SplashScreenDelegate: AnyObject {
+    func splashScreenDidFinishAnimation()
+}
+
 class SplashScreenViewController: UIViewController {
     private let contentView: SplashScreenView
-    private weak var delegate: SplashFlowDelegate?
+    private var delegate: SplashScreenDelegate
     
-    init(contentView: SplashScreenView, delegate: SplashFlowDelegate) {
+    init(contentView: SplashScreenView, delegate: SplashScreenDelegate) {
         self.contentView = contentView
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
@@ -33,7 +37,7 @@ class SplashScreenViewController: UIViewController {
     
     private func decideFlow() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-            self?.delegate?.navigateToHomeViewController()
+            self?.delegate.splashScreenDidFinishAnimation()
         }
     }
 }

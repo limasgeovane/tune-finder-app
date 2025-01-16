@@ -7,12 +7,13 @@
 
 import UIKit
 
-class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
-    private let contentView: ListArtistsView
-    private let network: Network = Network()
+protocol ListArtistsViewControllerDelegate: AnyObject {
+    func listArtistsDidSelectArtist(albums: [Albums.Item], artistName: String)
+}
+
+class ListArtistsViewController: UIViewController {
     var artists: [Artists.Artist.Item] = []
     var lastArtistSearched: String?
-    private let userDefaults = UserDefaults.standard
     
     private lazy var statusView: StatusView = {
         let view = StatusView()
@@ -25,8 +26,13 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
         return viewController
     }()
     
-    init(contentView: ListArtistsView) {
+    private let contentView: ListArtistsView
+    private weak var delegate: ListArtistsViewControllerDelegate?
+    private let network: Network = Network()
+    
+    init(contentView: ListArtistsView, delegate: ListArtistsViewControllerDelegate) {
         self.contentView = contentView
+        self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -76,11 +82,38 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
         ])
     }
     
+    
+}
+
+extension ListArtistsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        84
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedArtist = artists[indexPath.row]
+        didSelectArtist(artistId: selectedArtist.id, artistName: selectedArtist.name)
+    }
+}
+
+extension ListArtistsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        artists.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ListArtistsTableViewCell.identifier, for: indexPath) as? ListArtistsTableViewCell else {
+            return UITableViewCell()
+        }
+        let artist = artists[indexPath.row]
+        cell.configureCell(artist: artist)
+        return cell
+    }
+}
+
+extension ListArtistsViewController: ListArtistsViewDelegate {
     func searchArtist(artistName: String) {
-        userDefaults.removeObject(forKey: "hasSearchedBefore")
-        userDefaults.removeObject(forKey: "lastArtistSearched")
-        userDefaults.set(true, forKey: "hasSearchedBefore")
-        userDefaults.set(artistName, forKey: "lastArtistSearched")
+        UserDefaults.standard.set(artistName, forKey: "lastArtistSearched")
         
         self.contentView.isHidden = true
         self.statusView.isHidden = false
@@ -122,7 +155,7 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
                     self.statusViewController.setStatus(status: .empty(resource: "álbuns"))
                 } else {
                     self.statusViewController.setStatus(status: .success)
-                    self.navigateToListAlbumsViewController(albums: albums, artistName: artistName)
+                    delegate?.listArtistsDidSelectArtist(albums: albums, artistName: artistName)
                 }
             case .failure(let error):
                 self.statusViewController.setStatus(status: .error)
@@ -130,48 +163,5 @@ class ListArtistsViewController: UIViewController, ListArtistsViewDelegate {
             }
             
         }
-    }
-    
-    private func navigateToListAlbumsViewController(albums: [Albums.Item], artistName: String) {
-        let listAlbumsView = ListAlbumsView()
-        let listAlbumsViewController = ListAlbumsViewController(contentView: listAlbumsView)
-        listAlbumsViewController.albums = albums
-        listAlbumsViewController.artistName = artistName
-        navigationController?.pushViewController(listAlbumsViewController, animated: true)
-    }
-    
-    func returnToPreviousView() {
-        self.statusViewController.setStatus(status: .success)
-        self.contentView.isHidden = false
-        self.contentView.searchArtistTextField.text = ""
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController?.viewWillAppear(true)
-        self.statusView.isHidden = true
-    }
-}
-
-extension ListArtistsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        84
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedArtist = artists[indexPath.row]
-        didSelectArtist(artistId: selectedArtist.id, artistName: selectedArtist.name)
-    }
-}
-
-extension ListArtistsViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        artists.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ListArtistsTableViewCell.identifier, for: indexPath) as? ListArtistsTableViewCell else {
-            return UITableViewCell()
-        }
-        let artist = artists[indexPath.row]
-        cell.configureCell(artist: artist)
-        return cell
     }
 }

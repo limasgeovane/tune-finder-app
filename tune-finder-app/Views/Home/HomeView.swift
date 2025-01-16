@@ -55,6 +55,7 @@ class HomeView: UIView {
     }
     
     private func setupUI() {
+        backgroundColor = .black
         addSubview(searchLabel)
         addSubview(searchArtistTextField)
         setupUIConstraints()

@@ -10,22 +10,14 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    private var appFlowController: AppFlowController?
-    private let userDefaults = UserDefaults.standard
-    
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
-        let hasSearchedBefore = userDefaults.bool(forKey: "hasSearchedBefore")
-        let rootViewController: UIViewController
-        appFlowController = AppFlowController()
-        
-        if hasSearchedBefore {
-            rootViewController = appFlowController?.navigateToListArtistsViewController() ?? UIViewController()
-        } else {
-            rootViewController = appFlowController?.startNavigate() ?? UIViewController()
-        }
+        let startAppCoordinator = StartAppCoordinator()
+        let rootViewController: UIViewController = startAppCoordinator.start()
+    
         window.rootViewController = rootViewController
         self.window = window
         window.makeKeyAndVisible()
@@ -36,8 +28,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
         // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
-        userDefaults.removeObject(forKey: "hasSearchedBefore")
-        userDefaults.removeObject(forKey: "lastArtistSearched")
+        UserDefaults.standard.removeObject(forKey: "isSearchedBefore")
+        UserDefaults.standard.removeObject(forKey: "lastArtistSearched")
         print("Dados removidos do UserDefaults (app fechado)")
     }
     

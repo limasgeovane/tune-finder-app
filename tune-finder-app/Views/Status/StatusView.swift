@@ -72,9 +72,9 @@ class StatusView: UIView {
         } else if self.statusButton.titleLabel?.text == "Voltar" {
             if let navigationController = self.findViewController()?.navigationController {
                 if let homeViewController = navigationController.viewControllers.first(where: { $0 is HomeViewController }) as? HomeViewController {
-                    homeViewController.returnToPreviousView()
+                    //homeViewController.returnToPreviousView()
                 } else if let listArtistsViewController = navigationController.viewControllers.first(where: { $0 is ListArtistsViewController}) as? ListArtistsViewController {
-                    listArtistsViewController.returnToPreviousView()
+                    //listArtistsViewController.returnToPreviousView()
                 }
             }
         }

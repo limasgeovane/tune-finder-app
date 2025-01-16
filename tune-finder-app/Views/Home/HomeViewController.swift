@@ -7,11 +7,11 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, HomeViewDelegate {
-    private let contentView: HomeView
-    private let network: Network = Network()
-    private let userDefaults = UserDefaults.standard
-    
+protocol HomeViewControllerDelegate: AnyObject {
+    func homeDidSearchArtist(artists: [Artists.Artist.Item], artistName: String)
+}
+
+class HomeViewController: UIViewController {
     private lazy var statusView: StatusView = {
         let view = StatusView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -23,8 +23,13 @@ class HomeViewController: UIViewController, HomeViewDelegate {
         return viewController
     }()
     
-    init(contentView: HomeView) {
+    private let contentView: HomeView
+    private let network: Network = Network()
+    private weak var delegate: HomeViewControllerDelegate?
+    
+    init(contentView: HomeView, delegate: HomeViewControllerDelegate) {
         self.contentView = contentView
+        self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
         self.contentView.delegate = self
     }
@@ -41,7 +46,6 @@ class HomeViewController: UIViewController, HomeViewDelegate {
         super.viewDidLoad()
         setupStatusViewController()
         statusView.isHidden = true
-        
         statusView.retryActionHandler = { [weak self] in
             if let searchText = self?.contentView.searchArtistTextField.text {
                 self?.searchArtist(artistName: searchText)
@@ -68,7 +72,9 @@ class HomeViewController: UIViewController, HomeViewDelegate {
             statusView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-    
+}
+
+extension HomeViewController: HomeViewDelegate {
     func searchArtist(artistName: String) {
         self.contentView.isHidden = true
         self.statusView.isHidden = false
@@ -84,7 +90,7 @@ class HomeViewController: UIViewController, HomeViewDelegate {
                 } else {
                     self.statusViewController.setStatus(status: .success)
                     self.statusView.isHidden = true
-                    self.navigateToListArtistsViewController(artists: artists, artistName: artistName)
+                    self.delegate?.homeDidSearchArtist(artists: artists, artistName: artistName)
                 }
             case .failure(let error):
                 self.statusViewController.setStatus(status: .error)
@@ -92,24 +98,5 @@ class HomeViewController: UIViewController, HomeViewDelegate {
                 print("Erro: \(error.localizedDescription)")
             }
         }
-    }
-    
-    private func navigateToListArtistsViewController(artists: [Artists.Artist.Item], artistName: String) {
-        let listArtistsView = ListArtistsView()
-        let listArtistsViewController = ListArtistsViewController(contentView: listArtistsView)
-        listArtistsViewController.artists = artists
-        navigationController?.pushViewController(listArtistsViewController, animated: true)
-        
-        userDefaults.set(true, forKey: "hasSearchedBefore")
-        userDefaults.set(artistName, forKey: "lastArtistSearched")
-    }
-    
-    func returnToPreviousView() {
-        self.statusViewController.setStatus(status: .success)
-        self.contentView.isHidden = false
-        self.contentView.searchArtistTextField.text = ""
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController?.viewWillAppear(true)
-        self.statusView.isHidden = true
     }
 }

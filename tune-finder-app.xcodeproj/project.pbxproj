@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		45091FDD2D1652F700EF8367 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 45091FDC2D1652F700EF8367 /* Kingfisher */; };
 		4598B9B02D22031C009FE677 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4598B9942D22031C009FE677 /* Assets.xcassets */; };
-		4598B9B22D22031C009FE677 /* AppFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9812D22031C009FE677 /* AppFlowController.swift */; };
 		4598B9B72D22031C009FE677 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9872D22031C009FE677 /* String+Ext.swift */; };
 		4598B9B82D22031C009FE677 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9882D22031C009FE677 /* UIColor+Ext.swift */; };
 		4598B9B92D22031C009FE677 /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9892D22031C009FE677 /* UIFont+Ext.swift */; };
@@ -27,19 +26,19 @@
 		4598B9C72D22031C009FE677 /* ListArtistsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B99F2D22031C009FE677 /* ListArtistsTableViewCell.swift */; };
 		4598B9C82D22031C009FE677 /* ListArtistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9A02D22031C009FE677 /* ListArtistsView.swift */; };
 		4598B9C92D22031C009FE677 /* ListArtistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9A12D22031C009FE677 /* ListArtistsViewController.swift */; };
-		4598B9CB2D22031C009FE677 /* SplashFlowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9A42D22031C009FE677 /* SplashFlowDelegate.swift */; };
 		4598B9CC2D22031C009FE677 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9A52D22031C009FE677 /* SplashScreenView.swift */; };
 		4598B9CD2D22031C009FE677 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9A62D22031C009FE677 /* SplashScreenViewController.swift */; };
 		4598B9CE2D22031C009FE677 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9A82D22031C009FE677 /* StatusView.swift */; };
 		4598B9CF2D22031C009FE677 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9A92D22031C009FE677 /* StatusViewController.swift */; };
 		4598B9D02D22031C009FE677 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9AC2D22031C009FE677 /* AppDelegate.swift */; };
 		4598B9D12D22031C009FE677 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9AE2D22031C009FE677 /* SceneDelegate.swift */; };
+		45A610102D370C800098494E /* StartAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A6100F2D370C800098494E /* StartAppCoordinator.swift */; };
+		45A610122D3717230098494E /* ArtistsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A610112D3717230098494E /* ArtistsCoordinator.swift */; };
 		870E177E7E053CCE394D9A2E /* Pods_tune_finder_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7CD7E85B46743176DEBD857 /* Pods_tune_finder_app.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4578568A2D0F0C1D00998CB5 /* tune-finder-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tune-finder-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4598B9812D22031C009FE677 /* AppFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowController.swift; sourceTree = "<group>"; };
 		4598B9872D22031C009FE677 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		4598B9882D22031C009FE677 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		4598B9892D22031C009FE677 /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
@@ -58,7 +57,6 @@
 		4598B99F2D22031C009FE677 /* ListArtistsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListArtistsTableViewCell.swift; sourceTree = "<group>"; };
 		4598B9A02D22031C009FE677 /* ListArtistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListArtistsView.swift; sourceTree = "<group>"; };
 		4598B9A12D22031C009FE677 /* ListArtistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListArtistsViewController.swift; sourceTree = "<group>"; };
-		4598B9A42D22031C009FE677 /* SplashFlowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashFlowDelegate.swift; sourceTree = "<group>"; };
 		4598B9A52D22031C009FE677 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		4598B9A62D22031C009FE677 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		4598B9A82D22031C009FE677 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
@@ -66,6 +64,8 @@
 		4598B9AC2D22031C009FE677 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4598B9AD2D22031C009FE677 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4598B9AE2D22031C009FE677 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		45A6100F2D370C800098494E /* StartAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartAppCoordinator.swift; sourceTree = "<group>"; };
+		45A610112D3717230098494E /* ArtistsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsCoordinator.swift; sourceTree = "<group>"; };
 		A7A594776749DEE1ECE0E2BF /* Pods-tune-finder-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tune-finder-app.debug.xcconfig"; path = "Target Support Files/Pods-tune-finder-app/Pods-tune-finder-app.debug.xcconfig"; sourceTree = "<group>"; };
 		B7CD7E85B46743176DEBD857 /* Pods_tune_finder_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tune_finder_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA31235967B3E2A85B513233 /* Pods-tune-finder-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tune-finder-app.release.xcconfig"; path = "Target Support Files/Pods-tune-finder-app/Pods-tune-finder-app.release.xcconfig"; sourceTree = "<group>"; };
@@ -122,7 +122,8 @@
 		4598B9822D22031C009FE677 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				4598B9812D22031C009FE677 /* AppFlowController.swift */,
+				45A6100F2D370C800098494E /* StartAppCoordinator.swift */,
+				45A610112D3717230098494E /* ArtistsCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -204,7 +205,6 @@
 		4598B9A72D22031C009FE677 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
-				4598B9A42D22031C009FE677 /* SplashFlowDelegate.swift */,
 				4598B9A52D22031C009FE677 /* SplashScreenView.swift */,
 				4598B9A62D22031C009FE677 /* SplashScreenViewController.swift */,
 			);
@@ -369,11 +369,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4598B9B22D22031C009FE677 /* AppFlowController.swift in Sources */,
 				4598B9B72D22031C009FE677 /* String+Ext.swift in Sources */,
 				4598B9B82D22031C009FE677 /* UIColor+Ext.swift in Sources */,
 				4598B9B92D22031C009FE677 /* UIFont+Ext.swift in Sources */,
 				4598B9BB2D22031C009FE677 /* Albums.swift in Sources */,
+				45A610102D370C800098494E /* StartAppCoordinator.swift in Sources */,
 				4598B9BC2D22031C009FE677 /* Artists.swift in Sources */,
 				4598B9BD2D22031C009FE677 /* SpotifyTokenResponse.swift in Sources */,
 				4598B9BE2D22031C009FE677 /* Status.swift in Sources */,
@@ -387,7 +387,7 @@
 				4598B9C72D22031C009FE677 /* ListArtistsTableViewCell.swift in Sources */,
 				4598B9C82D22031C009FE677 /* ListArtistsView.swift in Sources */,
 				4598B9C92D22031C009FE677 /* ListArtistsViewController.swift in Sources */,
-				4598B9CB2D22031C009FE677 /* SplashFlowDelegate.swift in Sources */,
+				45A610122D3717230098494E /* ArtistsCoordinator.swift in Sources */,
 				4598B9CC2D22031C009FE677 /* SplashScreenView.swift in Sources */,
 				4598B9CD2D22031C009FE677 /* SplashScreenViewController.swift in Sources */,
 				4598B9CE2D22031C009FE677 /* StatusView.swift in Sources */,
