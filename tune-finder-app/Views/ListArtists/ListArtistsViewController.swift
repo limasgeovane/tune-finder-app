@@ -12,26 +12,19 @@ protocol ListArtistsViewControllerDelegate: AnyObject {
 }
 
 class ListArtistsViewController: UIViewController {
-    var artists: [Artists.Artist.Item] = []
-    var lastArtistSearched: String?
-    
-    private lazy var statusView: StatusView = {
-        let view = StatusView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private lazy var statusViewController: StatusViewController = {
-        let viewController = StatusViewController(contentView: statusView)
-        return viewController
-    }()
-    
+    private var artists: [Artists.Artist.Item] = []
+
     private let contentView: ListArtistsView
+    private var artistName: String
+    private let network: Network
+    private let isShowLastArtist: Bool
     private weak var delegate: ListArtistsViewControllerDelegate?
-    private let network: Network = Network()
     
-    init(contentView: ListArtistsView, delegate: ListArtistsViewControllerDelegate) {
+    init(contentView: ListArtistsView, artistName: String, network: Network, isShowLastArtist: Bool, delegate: ListArtistsViewControllerDelegate) {
         self.contentView = contentView
+        self.artistName = artistName
+        self.network = network
+        self.isShowLastArtist = isShowLastArtist
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
     }
@@ -48,41 +41,9 @@ class ListArtistsViewController: UIViewController {
         super.viewDidLoad()
         contentView.configureTableViewDelegate(self, dataSource: self)
         contentView.delegate = self
-        setupStatusViewController()
-        statusView.isHidden = true
-        
-        statusView.retryActionHandler = { [weak self] in
-            if let seachrText = self?.contentView.searchArtistTextField.text {
-                self?.searchArtist(artistName: seachrText)
-            }
-        }
-        setupUI()
-        
-        if let lastArtistSearched = lastArtistSearched, !lastArtistSearched.isEmpty {
-            searchArtist(artistName: lastArtistSearched)
-        }
+        contentView.setupLastSearchState(isShowLastArtist: isShowLastArtist)
+        searchArtist(artistName: artistName)
     }
-    
-    private func setupStatusViewController() {
-        addChild(statusViewController)
-        statusViewController.didMove(toParent: self)
-        view.addSubview(statusView)
-    }
-    
-    private func setupUI() {
-        setupUIConstraints()
-    }
-    
-    private func setupUIConstraints() {
-        NSLayoutConstraint.activate([
-            statusView.topAnchor.constraint(equalTo: view.topAnchor),
-            statusView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            statusView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            statusView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-    }
-    
-    
 }
 
 extension ListArtistsViewController: UITableViewDelegate {
@@ -115,50 +76,26 @@ extension ListArtistsViewController: ListArtistsViewDelegate {
     func searchArtist(artistName: String) {
         UserDefaults.standard.set(artistName, forKey: "lastArtistSearched")
         
-        self.contentView.isHidden = true
-        self.statusView.isHidden = false
-        
-        statusViewController.setStatus(status: .loading(resource: "artistas"))
         network.getArtists(artistName: artistName) { [weak self] result in
             guard let self = self else { return }
             
             switch result {
             case .success(let artists):
-                if artists.isEmpty {
-                    self.statusViewController.setStatus(status: .empty(resource: "artistas"))
-                    self.statusView.isHidden = false
-                } else {
-                    self.artists = artists
-                    self.contentView.artistsTableView.reloadData()
-                    self.statusViewController.setStatus(status: .success)
-                    self.contentView.isHidden = false
-                    self.statusView.isHidden = true
-                }
+                self.artists = artists
+                self.contentView.artistsTableView.reloadData()
             case .failure(let error):
-                self.statusViewController.setStatus(status: .error)
-                self.statusView.isHidden = false
                 print("Erro: \(error.localizedDescription)")
             }
         }
     }
     
     func didSelectArtist(artistId: String, artistName: String) {
-        self.contentView.isHidden = true
-        
-        statusViewController.setStatus(status: .loading(resource: "álbuns"))
         network.getAlbums(artistId: artistId) { [weak self] result in
             guard let self = self else { return }
-            
             switch result {
             case .success(let albums):
-                if albums.isEmpty {
-                    self.statusViewController.setStatus(status: .empty(resource: "álbuns"))
-                } else {
-                    self.statusViewController.setStatus(status: .success)
-                    delegate?.listArtistsDidSelectArtist(albums: albums, artistName: artistName)
-                }
+                delegate?.listArtistsDidSelectArtist(albums: albums, artistName: artistName)
             case .failure(let error):
-                self.statusViewController.setStatus(status: .error)
                 print("Erro: \(error.localizedDescription)")
             }
             

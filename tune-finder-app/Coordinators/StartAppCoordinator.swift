@@ -24,8 +24,8 @@ class StartAppCoordinator {
         navigationController.pushViewController(homeViewController, animated: true)
     }
     
-    private func navigationToArtist(artists: [Artists.Artist.Item] = [], artistName: String = "") {
-        let artistsCoordinator = ArtistsCoordinator(navigationController: navigationController, artists: artists, artistName: artistName)
+    private func navigationToArtist(artistName: String, isShowLastArtist: Bool) {
+        let artistsCoordinator = ArtistsCoordinator(navigationController: navigationController, artistName: artistName, isShowLastArtist: isShowLastArtist)
         self.artistsCoordinator = artistsCoordinator
         artistsCoordinator.start()
     }
@@ -34,9 +34,10 @@ class StartAppCoordinator {
 extension StartAppCoordinator: SplashScreenDelegate {
     func splashScreenDidFinishAnimation() {
         let isSearchedArtistBefore = UserDefaults.standard.bool(forKey: "isSearchedBefore")
+        let lastArtistNameSearched = UserDefaults.standard.string(forKey: "lastArtistSearched")
         
         if isSearchedArtistBefore {
-            navigationToArtist()
+            navigationToArtist(artistName: lastArtistNameSearched ?? "", isShowLastArtist: true)
         } else {
             navigationToHome()
         }
@@ -44,9 +45,9 @@ extension StartAppCoordinator: SplashScreenDelegate {
 }
 
 extension StartAppCoordinator: HomeViewControllerDelegate {
-    func homeDidSearchArtist(artists: [Artists.Artist.Item], artistName: String) {
+    func homeDidSearchArtist(artistName: String) {
         UserDefaults.standard.set(true, forKey: "isSearchedBefore")
         UserDefaults.standard.set(artistName, forKey: "lastArtistSearched")
-        navigationToArtist(artists: artists, artistName: artistName)
+        navigationToArtist(artistName: artistName, isShowLastArtist: false)
     }
 }

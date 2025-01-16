@@ -9,20 +9,24 @@ import UIKit
 
 class ArtistsCoordinator {
     private let navigationController: UINavigationController
-    private let artists: [Artists.Artist.Item]
     private let artistName: String
+    private let isShowLastArtist: Bool
     
-    init(navigationController: UINavigationController, artists: [Artists.Artist.Item], artistName: String) {
+    init(navigationController: UINavigationController, artistName: String, isShowLastArtist: Bool) {
         self.navigationController = navigationController
-        self.artists = artists
         self.artistName = artistName
+        self.isShowLastArtist = isShowLastArtist
     }
     
     func start() {
         let listArtitsView = ListArtistsView()
-        let listArtistsViewController = ListArtistsViewController(contentView: listArtitsView, delegate: self)
-        listArtistsViewController.artists = artists
-        listArtistsViewController.lastArtistSearched = artistName
+        let listArtistsViewController = ListArtistsViewController(
+            contentView: listArtitsView,
+            artistName: artistName,
+            network: Network(),
+            isShowLastArtist: isShowLastArtist,
+            delegate: self
+        )
         navigationController.pushViewController(listArtistsViewController, animated: true)
     }
 }

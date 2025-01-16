@@ -120,6 +120,10 @@ class ListArtistsView: UIView {
         artistsTableView.dataSource = dataSource
     }
     
+    func setupLastSearchState(isShowLastArtist: Bool) {
+        lastSearchLabel.isHidden = !isShowLastArtist
+    }
+    
     @objc
     private func clearSearchArtistTextField() {
         UIView.animate(withDuration: 0.1,
