@@ -16,7 +16,7 @@ class ListArtistsView: UIView {
     weak var delegate: ListArtistsViewDelegate?
     private let userDefaults = UserDefaults.standard
     
-    lazy var lastSearchLabel: UILabel = {
+    let lastSearchLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Última busca"
@@ -26,7 +26,7 @@ class ListArtistsView: UIView {
         return label
     }()
     
-    lazy var searchArtistTextField: UITextField = {
+    let searchArtistTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.attributedPlaceholder = NSAttributedString(
@@ -84,6 +84,7 @@ class ListArtistsView: UIView {
     }
     
     private func setupUI() {
+        backgroundColor = .black
         addSubview(searchStackView)
         addSubview(artistsTableView)
         setupUIConstraints()

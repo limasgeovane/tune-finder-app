@@ -8,16 +8,15 @@
 import UIKit
 
 class ListAlbumsView: UIView {
-    lazy var artistTitle: UILabel = {
+    let artistTitle: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Álbuns de Michael Jackson"
         label.textColor = .whitePrimaryColor
         label.font = .primaryFont
         return label
     }()
     
-    private lazy var albumsTableView: UITableView = {
+    private let albumsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(ListAlbumsTableViewCell.self, forCellReuseIdentifier: ListAlbumsTableViewCell.identifier)
@@ -35,6 +34,7 @@ class ListAlbumsView: UIView {
     }
     
     private func setupUI() {
+        backgroundColor = .black
         addSubview(artistTitle)
         addSubview(albumsTableView)
         setupUIConstraints()

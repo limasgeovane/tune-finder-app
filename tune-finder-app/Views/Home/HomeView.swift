@@ -14,7 +14,7 @@ protocol HomeViewDelegate: AnyObject {
 class HomeView: UIView {
     weak var delegate: HomeViewDelegate?
     
-    private lazy var searchLabel: UILabel = {
+    private let searchLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Qual artista você gostaria de ouvir no TuneFinder?"
@@ -24,7 +24,7 @@ class HomeView: UIView {
         return label
     }()
     
-    lazy var searchArtistTextField: UITextField = {
+    private lazy var searchArtistTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.attributedPlaceholder = NSAttributedString(

@@ -10,7 +10,7 @@ import UIKit
 class ListAlbumsTableViewCell: UITableViewCell {
     static let identifier: String = "ListAlbumsTableViewCell"
     
-    private lazy var imageAlbum: UIImageView = {
+    private let imageAlbum: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "imageError")
@@ -18,7 +18,7 @@ class ListAlbumsTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    private lazy var titleAlbum: UILabel = {
+    private let titleAlbum: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Thriller 40"
@@ -28,7 +28,7 @@ class ListAlbumsTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var releaseDateAlbum: UILabel = {
+    private let releaseDateAlbum: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "18/11/2022 - 9 Músicas"
@@ -37,7 +37,7 @@ class ListAlbumsTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var totalTracksAlbum: UILabel = {
+    private let totalTracksAlbum: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "9 Músicas"
@@ -46,7 +46,7 @@ class ListAlbumsTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var separatorToLabel: UILabel = {
+    private let separatorToLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = " - "

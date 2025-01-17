@@ -8,7 +8,7 @@
 import UIKit
 
 class SplashScreenView: UIView {
-    private lazy var logoImageView: UIImageView = {
+    private let logoImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(named: "logoImage")

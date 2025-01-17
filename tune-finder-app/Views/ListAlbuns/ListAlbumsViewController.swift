@@ -30,6 +30,16 @@ class ListAlbumsViewController: UIViewController {
         contentView.configureTableViewDelegate(self, dataSource: self)
         contentView.artistTitle.text = "Álbuns de \(artistName)"
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
 }
 
 extension ListAlbumsViewController: UITableViewDelegate {

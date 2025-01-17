@@ -11,7 +11,7 @@ import Kingfisher
 class ListArtistsTableViewCell: UITableViewCell {
     static let identifier: String = "ListArtistsTableViewCell"
     
-    private lazy var imageArtist: UIImageView = {
+    private let imageArtist: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "imageError")
@@ -21,7 +21,7 @@ class ListArtistsTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    private lazy var nameArtist: UILabel = {
+    private let nameArtist: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Michael Jackson"
@@ -31,7 +31,7 @@ class ListArtistsTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var genresArtist: UILabel = {
+    private let genresArtist: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Adult standards, canadian pop, jazz pop..."
