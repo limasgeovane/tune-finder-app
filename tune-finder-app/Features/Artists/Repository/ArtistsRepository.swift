@@ -6,3 +6,19 @@
 //
 
 import Foundation
+
+protocol ArtistsRepositoryLogic {
+    func fetchArtists(artistName: String, completion: @escaping (Result<Artists, NSError>) -> Void)
+}
+
+struct ArtistsRepository: ArtistsRepositoryLogic {
+    private let network: Network
+    
+    init(network: Network = Network()) {
+        self.network = network
+    }
+    
+    func fetchArtists(artistName: String, completion: @escaping (Result<Artists, NSError>) -> Void) {
+        network.requestTokenized(configuration: ArtistsConfiguration(artistName: artistName), completion: completion)
+    }
+}

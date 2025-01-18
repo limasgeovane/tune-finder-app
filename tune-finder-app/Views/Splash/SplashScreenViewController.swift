@@ -31,7 +31,7 @@ class SplashScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.isHidden = true
         decideFlow()
     }
     

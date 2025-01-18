@@ -6,6 +6,6 @@
 //
 
 enum NetworkBaseURL: String {
-    case token = "https://accounts.spotify.com"
-    case `default` = "https://api.spotify.com"
+    case spotifyAccounts = "https://accounts.spotify.com"
+    case spotify = "https://api.spotify.com"
 }

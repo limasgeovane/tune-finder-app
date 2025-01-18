@@ -1,5 +1,5 @@
 //
-//  NetworkRequest.swift
+//  AlamofireNetworkRequest.swift
 //  tune-finder-app
 //
 //  Created by Geovane Lima dos Santos on 17/01/25.

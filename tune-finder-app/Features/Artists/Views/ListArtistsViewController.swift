@@ -8,22 +8,22 @@
 import UIKit
 
 protocol ListArtistsViewControllerDelegate: AnyObject {
-    func listArtistsDidSelectArtist(albums: [Albums.Item], artistName: String)
+    func listArtistsDidSelectArtist(artistId: String, artistName: String)
 }
 
 class ListArtistsViewController: UIViewController {
     private var artists: [Artists.Artist.Item] = []
-
+    
     private let contentView: ListArtistsView
     private var artistName: String
-    private let network: Network
+    private let repository: ArtistsRepositoryLogic
     private let isShowLastArtist: Bool
     private weak var delegate: ListArtistsViewControllerDelegate?
     
-    init(contentView: ListArtistsView, artistName: String, network: Network, isShowLastArtist: Bool, delegate: ListArtistsViewControllerDelegate) {
+    init(contentView: ListArtistsView, artistName: String, repository: ArtistsRepositoryLogic, isShowLastArtist: Bool, delegate: ListArtistsViewControllerDelegate) {
         self.contentView = contentView
         self.artistName = artistName
-        self.network = network
+        self.repository = repository
         self.isShowLastArtist = isShowLastArtist
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
@@ -76,12 +76,12 @@ extension ListArtistsViewController: ListArtistsViewDelegate {
     func searchArtist(artistName: String) {
         UserDefaults.standard.set(artistName, forKey: "lastArtistSearched")
         
-        network.getArtists(artistName: artistName) { [weak self] result in
+        repository.fetchArtists(artistName: artistName) { [weak self] result in
             guard let self = self else { return }
             
             switch result {
             case .success(let artists):
-                self.artists = artists
+                self.artists = artists.artists.items
                 contentView.artistsTableView.reloadData()
             case .failure(let error):
                 print("Erro: \(error.localizedDescription)")
@@ -90,15 +90,6 @@ extension ListArtistsViewController: ListArtistsViewDelegate {
     }
     
     func didSelectArtist(artistId: String, artistName: String) {
-        network.getAlbums(artistId: artistId) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let albums):
-                delegate?.listArtistsDidSelectArtist(albums: albums, artistName: artistName)
-            case .failure(let error):
-                print("Erro: \(error.localizedDescription)")
-            }
-            
-        }
+        delegate?.listArtistsDidSelectArtist(artistId: artistId, artistName: artistName)
     }
 }

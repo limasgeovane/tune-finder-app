@@ -6,3 +6,19 @@
 //
 
 import Foundation
+
+protocol AlbumsRepositoryLogic {
+    func fetchAlbums(artistId: String, completion: @escaping (Result<Albums, NSError>) -> Void)
+}
+
+struct AlbumsRepository: AlbumsRepositoryLogic {
+    private let network: Network
+    
+    init(network: Network = Network()) {
+        self.network = network
+    }
+    
+    func fetchAlbums(artistId: String, completion: @escaping (Result<Albums, NSError>) -> Void) {
+        network.requestTokenized(configuration: AlbumsConfiguration(artistId: artistId), completion: completion)
+    }
+}

@@ -5,4 +5,14 @@
 //  Created by Geovane Lima dos Santos on 18/01/25.
 //
 
-import Foundation
+struct AlbumsConfiguration: NetworkRequestConfigurator {
+    private let artistId: String
+    
+    init(artistId: String) {
+        self.artistId = artistId
+    }
+    
+    var path: String {
+        "/v1/artists/\(artistId)/albums"
+    }
+}
