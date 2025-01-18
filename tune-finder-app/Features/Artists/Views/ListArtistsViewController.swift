@@ -82,7 +82,7 @@ extension ListArtistsViewController: ListArtistsViewDelegate {
             switch result {
             case .success(let artists):
                 self.artists = artists
-                self.contentView.artistsTableView.reloadData()
+                contentView.artistsTableView.reloadData()
             case .failure(let error):
                 print("Erro: \(error.localizedDescription)")
             }

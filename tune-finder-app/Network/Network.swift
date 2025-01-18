@@ -1,87 +1,79 @@
 //
-//  Network.swift
+//  NewNetwork.swift
 //  tune-finder-app
 //
-//  Created by Geovane Lima dos Santos on 18/12/24.
+//  Created by Geovane Lima dos Santos on 18/01/25.
 //
 
-import Alamofire
+import Foundation
 
-class Network {
-    func getArtists(artistName: String, completion: @escaping (Result<[Artists.Artist.Item], Error>) -> Void) {
-        TokenManager.shared.getValidToken { result in
-            switch result {
-            case .success(let tokenData):
-                let (tokenType, accessToken) = tokenData
-                self.performGetArtists(tokenType: tokenType, accessToken: accessToken, artistName: artistName, completion: completion)
-            case .failure(let error):
-                completion(.failure(error))
-                print("Erro ao obter token: \(error)")
-            }
-        }
+protocol NetworkLogic {
+    func requestTokenized<T: Decodable>(
+        configuration: NetworkRequestConfigurator,
+        completion: @escaping (Result<T, NSError>) -> Void
+    )
+}
+
+class Network: NetworkLogic {
+    private var spotifyTokenExpirationDate = Date()
+    private var spotifyToken: SpotifyToken?
+    
+    private let networkRequest: NetworkRequester
+    private let networkDeserialization: NetworkDeserialization
+    
+    init(
+        networkRequest: NetworkRequester = AlamofireNetworkRequest(),
+        networkDeserialization: NetworkDeserialization = NetworkDeserialization()
+    ) {
+        self.networkRequest = networkRequest
+        self.networkDeserialization = networkDeserialization
     }
     
-    private func performGetArtists(tokenType: String, accessToken: String, artistName: String, completion: @escaping (Result<[Artists.Artist.Item], Error>) -> Void) {
-        let baseURLArtists: String = "https://api.spotify.com/v1/search"
-        
-        let headers: HTTPHeaders = [
-            "Authorization": "\(tokenType) \(accessToken)"
-        ]
-        
-        let parameters: [String: String] = [
-            "q": artistName,
-            "type": "artist",
-        ]
-        AF.request(baseURLArtists, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers)
-            .validate()
-            .response { response in
-                switch response.result {
-                case .success(let data):
-                    if let data = data, let artists = try? JSONDecoder().decode(Artists.self, from: data) {
-                        completion(.success(artists.artists.items))
-                    } else {
-                        print("Erro ao decodificar os dados dos artistas")
-                        completion(.failure(NSError(domain: "Decodificação", code: 1, userInfo: [NSLocalizedDescriptionKey: "Erro ao decodificar os dados dos artistas"])))
-                    }
+    func requestTokenized<T: Decodable>(
+        configuration: NetworkRequestConfigurator,
+        completion: @escaping (Result<T, NSError>) -> Void
+    ) {
+        if let spotifyToken, spotifyTokenExpirationDate > Date() {
+            var hearders: [String:String] = configuration.hearders
+            hearders["Authorization"] = "\(spotifyToken.tokenType) \(spotifyToken.accessToken)"
+            request(configuration: configuration, customHeaders: hearders, completion: completion)
+        } else {
+            request(configuration: SpotifyTokenConfiguration()) { [weak self] (result: Result<SpotifyToken, NSError>) in
+                switch result {
+                case .success(let token):
+                    self?.spotifyTokenExpirationDate = Date().addingTimeInterval(TimeInterval(token.expiresIn))
+                    self?.spotifyToken = token
+                    self?.requestTokenized(configuration: configuration, completion: completion)
                 case .failure(let error):
                     completion(.failure(error))
-                    print("Erro ao buscar dados do artista: \(error)")
                 }
-            }
-    }
-    
-    func getAlbums(artistId: String, completion: @escaping (Result<[Albums.Item], Error>) -> Void) {
-        TokenManager.shared.getValidToken { result in
-            switch result {
-            case .success(let tokenData):
-                let (tokenType, accessToken) = tokenData
-                self.performGetAlbums(tokenType: tokenType, accessToken: accessToken, artistId: artistId, completion: completion)
-            case .failure(let error):
-                completion(.failure(error))
-                print("Erro ao obter token: \(error)")
             }
         }
     }
-
-    private func performGetAlbums(tokenType: String, accessToken: String, artistId: String, completion: @escaping (Result<[Albums.Item], Error>) -> Void) {
-        let baseURLAlbums: String = "https://api.spotify.com/v1/artists/\(artistId)/albums"
-        
-        let headers: HTTPHeaders = [
-            "Authorization": "\(tokenType) \(accessToken)"
-        ]
     
-        AF.request(baseURLAlbums, method: .get, headers: headers).validate().response { response in
-            switch response.result {
+    private func request<T: Decodable>(
+        configuration: NetworkRequestConfigurator,
+        customHeaders: [String: String]? = nil,
+        completion: @escaping (Result<T, NSError>) -> Void
+    ) {
+        networkRequest.request(
+            url: configuration.baseURL.rawValue + configuration.path,
+            method: configuration.method,
+            parameters: configuration.parameters,
+            encoding: configuration.enconding,
+            headers: customHeaders ?? configuration.hearders
+        ) { [weak self] result in
+            guard let self else { return }
+            switch result {
             case .success(let data):
-                if let data = data, let albums = try? JSONDecoder().decode(Albums.self, from: data) {
-                    completion(.success(albums.items))
-                } else {
-                    print("Erro ao decodificar os dados dos álbuns")
-                    completion(.failure(NSError(domain: "Decodificação", code: 1, userInfo: [NSLocalizedDescriptionKey: "Erro ao decodificar os dados dos álbuns"])))
+                do {
+                    let decodedData = try networkDeserialization.decode(data: data) as T
+                    completion(.success(decodedData))
+                } catch {
+                    completion(.failure(error as NSError))
                 }
             case .failure(let error):
                 completion(.failure(error))
-                print("Erro ao buscar álbuns: \(error)")
             }
         }
     }
