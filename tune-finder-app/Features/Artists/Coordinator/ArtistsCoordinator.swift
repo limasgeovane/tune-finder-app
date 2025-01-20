@@ -20,11 +20,11 @@ class ArtistsCoordinator {
     
     func start() {
         let listArtitsView = ListArtistsView()
+        let viewModel = ArtistsViewModel(repository: ArtistsRepository(), artistName: artistName)
         let listArtistsViewController = ListArtistsViewController(
             contentView: listArtitsView,
-            artistName: artistName,
-            repository: ArtistsRepository(),
             isShowLastArtist: isShowLastArtist,
+            viewModel: viewModel,
             delegate: self
         )
         navigationController.pushViewController(listArtistsViewController, animated: true)

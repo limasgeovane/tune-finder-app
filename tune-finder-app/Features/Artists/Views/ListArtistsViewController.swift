@@ -11,20 +11,21 @@ protocol ListArtistsViewControllerDelegate: AnyObject {
     func listArtistsDidSelectArtist(artistId: String, artistName: String)
 }
 
+protocol ListArtistsDisplayable: AnyObject {
+    func displayArtists(artists: [Artist])
+    func displayArtist(id: String, name: String)
+}
+
 class ListArtistsViewController: UIViewController {
-    private var artists: [Artists.Artist.Item] = []
-    
     private let contentView: ListArtistsView
-    private var artistName: String
-    private let repository: ArtistsRepositoryLogic
     private let isShowLastArtist: Bool
+    private var viewModel: ArtistsViewModelLogic
     private weak var delegate: ListArtistsViewControllerDelegate?
     
-    init(contentView: ListArtistsView, artistName: String, repository: ArtistsRepositoryLogic, isShowLastArtist: Bool, delegate: ListArtistsViewControllerDelegate) {
+    init(contentView: ListArtistsView, isShowLastArtist: Bool, viewModel: ArtistsViewModelLogic, delegate: ListArtistsViewControllerDelegate) {
         self.contentView = contentView
-        self.artistName = artistName
-        self.repository = repository
         self.isShowLastArtist = isShowLastArtist
+        self.viewModel = viewModel
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
     }
@@ -39,57 +40,29 @@ class ListArtistsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        contentView.configureTableViewDelegate(self, dataSource: self)
+        viewModel.display = self
         contentView.delegate = self
         contentView.setupLastSearchState(isShowLastArtist: isShowLastArtist)
-        searchArtist(artistName: artistName)
+        viewModel.fetchArtists()
     }
 }
 
-extension ListArtistsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        84
+extension ListArtistsViewController: ListArtistsDisplayable {
+    func displayArtists(artists: [Artist]) {
+        contentView.artists = artists
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedArtist = artists[indexPath.row]
-        didSelectArtist(artistId: selectedArtist.id, artistName: selectedArtist.name)
-    }
-}
-
-extension ListArtistsViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        artists.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ListArtistsTableViewCell.identifier, for: indexPath) as? ListArtistsTableViewCell else {
-            return UITableViewCell()
-        }
-        let artist = artists[indexPath.row]
-        cell.configureCell(artist: artist)
-        return cell
+    func displayArtist(id: String, name: String) {
+        delegate?.listArtistsDidSelectArtist(artistId: id, artistName: name)
     }
 }
 
 extension ListArtistsViewController: ListArtistsViewDelegate {
-    func searchArtist(artistName: String) {
-        UserDefaults.standard.set(artistName, forKey: "lastArtistSearched")
-        
-        repository.fetchArtists(artistName: artistName) { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let artists):
-                self.artists = artists.artists.items
-                contentView.artistsTableView.reloadData()
-            case .failure(let error):
-                print("Erro: \(error.localizedDescription)")
-            }
-        }
+    func didSelectArtist(indexPath: IndexPath) {
+        viewModel.selectArtist(indexPath: indexPath)
     }
     
-    func didSelectArtist(artistId: String, artistName: String) {
-        delegate?.listArtistsDidSelectArtist(artistId: artistId, artistName: artistName)
+    func searchArtist(artistName: String) {
+        viewModel.fetchArtists(artistName: artistName   )
     }
 }

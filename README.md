@@ -6,10 +6,8 @@
 
 ## 🚧 App em Desenvolvimento - Próximos passos
 
-- Refatoração da navegação do App
 - Inclusão da camada de ViewModel (Refatoração da arquitetura)
-- Inclusão da camada de Testes Unitários
-- Listagem de Músicas
+- Inclusão da camada de Testes
 
 ---
 

@@ -8,11 +8,16 @@
 import UIKit
 
 protocol ListArtistsViewDelegate: AnyObject {
-    func didSelectArtist(artistId: String, artistName: String)
+    func didSelectArtist(indexPath: IndexPath)
     func searchArtist(artistName: String)
 }
 
 class ListArtistsView: UIView {
+    var artists: [Artist] = [] {
+        didSet{
+            artistsTableView.reloadData()
+        }
+    }
     weak var delegate: ListArtistsViewDelegate?
     private let userDefaults = UserDefaults.standard
     
@@ -65,11 +70,13 @@ class ListArtistsView: UIView {
         return stackView
     }()
     
-    lazy var artistsTableView: UITableView = {
+    private lazy var artistsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(ListArtistsTableViewCell.self, forCellReuseIdentifier: ListArtistsTableViewCell.identifier)
         tableView.backgroundColor = .black
+        tableView.delegate = self
+        tableView.dataSource = self
         return tableView
     }()
     
@@ -116,11 +123,6 @@ class ListArtistsView: UIView {
         ])
     }
     
-    func configureTableViewDelegate(_ delegate: UITableViewDelegate, dataSource: UITableViewDataSource) {
-        artistsTableView.delegate = delegate
-        artistsTableView.dataSource = dataSource
-    }
-    
     func setupLastSearchState(isShowLastArtist: Bool) {
         lastSearchLabel.isHidden = !isShowLastArtist
     }
@@ -148,5 +150,30 @@ extension ListArtistsView: UITextFieldDelegate {
             delegate?.searchArtist(artistName: searchText)
         }
         return true
+    }
+}
+
+extension ListArtistsView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        84
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.didSelectArtist(indexPath: indexPath)
+    }
+}
+
+extension ListArtistsView: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        artists.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ListArtistsTableViewCell.identifier, for: indexPath) as? ListArtistsTableViewCell else {
+            return UITableViewCell()
+        }
+        let artist = artists[indexPath.row]
+        cell.configureCell(artist: artist)
+        return cell
     }
 }
