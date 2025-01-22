@@ -2,10 +2,12 @@
 
 **TuneFinder** é um aplicativo que te oferece uma maneira simples de buscar o seu artista favorito e seus respectivos álbuns, utilizando a API do Spotify para fornecer as informações.
 
-![Imagem 1](Images-demo/imagem1.png)
-![Imagem 2](Images-demo/imagem2.png)
-![Imagem 3](Images-demo/imagem3.png)
-![Imagem 4](Images-demo/imagem4.png)
+<div style="display: flex; justify-content: space-around;">
+  <img src="Images-demo/imagem1.png" width="200" alt="Imagem 1" />
+  <img src="Images-demo/imagem2.png" width="200" alt="Imagem 2" />
+  <img src="Images-demo/imagem3.png" width="200" alt="Imagem 3" />
+  <img src="Images-demo/imagem4.png" width="200" alt="Imagem 4" />
+</div>
 
 ---
 
