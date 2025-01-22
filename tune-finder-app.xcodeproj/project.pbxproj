@@ -12,7 +12,7 @@
 		4598B9B72D22031C009FE677 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9872D22031C009FE677 /* String+Ext.swift */; };
 		4598B9B82D22031C009FE677 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9882D22031C009FE677 /* UIColor+Ext.swift */; };
 		4598B9B92D22031C009FE677 /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9892D22031C009FE677 /* UIFont+Ext.swift */; };
-		4598B9BB2D22031C009FE677 /* Albums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B98C2D22031C009FE677 /* Albums.swift */; };
+		4598B9BB2D22031C009FE677 /* AlbumsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B98C2D22031C009FE677 /* AlbumsResponse.swift */; };
 		4598B9BC2D22031C009FE677 /* ArtistsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B98D2D22031C009FE677 /* ArtistsResponse.swift */; };
 		4598B9BD2D22031C009FE677 /* SpotifyToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B98E2D22031C009FE677 /* SpotifyToken.swift */; };
 		4598B9C12D22031C009FE677 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9972D22031C009FE677 /* HomeView.swift */; };
@@ -44,6 +44,8 @@
 		45D97DB22D3C45FC007F2222 /* AlbumsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D97DB12D3C45FC007F2222 /* AlbumsConfiguration.swift */; };
 		45D97DBC2D3DD5FB007F2222 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D97DBB2D3DD5FB007F2222 /* Artist.swift */; };
 		45D97DBE2D3DD89B007F2222 /* ArtistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D97DBD2D3DD89B007F2222 /* ArtistsViewModel.swift */; };
+		45D97DC02D3F240C007F2222 /* AlbumsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D97DBF2D3F240C007F2222 /* AlbumsViewModel.swift */; };
+		45D97DC22D3F2547007F2222 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D97DC12D3F2547007F2222 /* Album.swift */; };
 		870E177E7E053CCE394D9A2E /* Pods_tune_finder_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7CD7E85B46743176DEBD857 /* Pods_tune_finder_app.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,7 +54,7 @@
 		4598B9872D22031C009FE677 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		4598B9882D22031C009FE677 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		4598B9892D22031C009FE677 /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
-		4598B98C2D22031C009FE677 /* Albums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Albums.swift; sourceTree = "<group>"; };
+		4598B98C2D22031C009FE677 /* AlbumsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsResponse.swift; sourceTree = "<group>"; };
 		4598B98D2D22031C009FE677 /* ArtistsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsResponse.swift; sourceTree = "<group>"; };
 		4598B98E2D22031C009FE677 /* SpotifyToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyToken.swift; sourceTree = "<group>"; };
 		4598B9942D22031C009FE677 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -86,6 +88,8 @@
 		45D97DB12D3C45FC007F2222 /* AlbumsConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsConfiguration.swift; sourceTree = "<group>"; };
 		45D97DBB2D3DD5FB007F2222 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		45D97DBD2D3DD89B007F2222 /* ArtistsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsViewModel.swift; sourceTree = "<group>"; };
+		45D97DBF2D3F240C007F2222 /* AlbumsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsViewModel.swift; sourceTree = "<group>"; };
+		45D97DC12D3F2547007F2222 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		A7A594776749DEE1ECE0E2BF /* Pods-tune-finder-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tune-finder-app.debug.xcconfig"; path = "Target Support Files/Pods-tune-finder-app/Pods-tune-finder-app.debug.xcconfig"; sourceTree = "<group>"; };
 		B7CD7E85B46743176DEBD857 /* Pods_tune_finder_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tune_finder_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA31235967B3E2A85B513233 /* Pods-tune-finder-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tune-finder-app.release.xcconfig"; path = "Target Support Files/Pods-tune-finder-app/Pods-tune-finder-app.release.xcconfig"; sourceTree = "<group>"; };
@@ -309,7 +313,8 @@
 		45D97DAA2D3C450C007F2222 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4598B98C2D22031C009FE677 /* Albums.swift */,
+				4598B98C2D22031C009FE677 /* AlbumsResponse.swift */,
+				45D97DC12D3F2547007F2222 /* Album.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -336,6 +341,7 @@
 		45D97DAD2D3C4525007F2222 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				45D97DBF2D3F240C007F2222 /* AlbumsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -506,7 +512,7 @@
 				4598B9B72D22031C009FE677 /* String+Ext.swift in Sources */,
 				4598B9B82D22031C009FE677 /* UIColor+Ext.swift in Sources */,
 				4598B9B92D22031C009FE677 /* UIFont+Ext.swift in Sources */,
-				4598B9BB2D22031C009FE677 /* Albums.swift in Sources */,
+				4598B9BB2D22031C009FE677 /* AlbumsResponse.swift in Sources */,
 				45A610102D370C800098494E /* StartAppCoordinator.swift in Sources */,
 				4598B9BC2D22031C009FE677 /* ArtistsResponse.swift in Sources */,
 				45D97DA62D3C380D007F2222 /* ArtistsRepository.swift in Sources */,
@@ -528,6 +534,7 @@
 				4598B9C92D22031C009FE677 /* ListArtistsViewController.swift in Sources */,
 				45D97DB02D3C45E9007F2222 /* AlbumsRepository.swift in Sources */,
 				45D7BE072D3B26B200010084 /* AlamofireNetworkRequest.swift in Sources */,
+				45D97DC22D3F2547007F2222 /* Album.swift in Sources */,
 				45D97DBE2D3DD89B007F2222 /* ArtistsViewModel.swift in Sources */,
 				45D97DA82D3C381B007F2222 /* ArtistsConfiguration.swift in Sources */,
 				45D7BE0A2D3B2D5200010084 /* NetworkMethod.swift in Sources */,
@@ -535,6 +542,7 @@
 				45D7BE0C2D3B33C000010084 /* NetworkParameterEncoding.swift in Sources */,
 				45D97D902D3B5345007F2222 /* Network.swift in Sources */,
 				4598B9CC2D22031C009FE677 /* SplashScreenView.swift in Sources */,
+				45D97DC02D3F240C007F2222 /* AlbumsViewModel.swift in Sources */,
 				4598B9CD2D22031C009FE677 /* SplashScreenViewController.swift in Sources */,
 				4598B9D02D22031C009FE677 /* AppDelegate.swift in Sources */,
 				4598B9D12D22031C009FE677 /* SceneDelegate.swift in Sources */,

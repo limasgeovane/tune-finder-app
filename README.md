@@ -6,7 +6,6 @@
 
 ## 🚧 App em Desenvolvimento - Próximos passos
 
-- Inclusão da camada de ViewModel (Refatoração da arquitetura)
 - Inclusão da camada de Testes
 
 ---

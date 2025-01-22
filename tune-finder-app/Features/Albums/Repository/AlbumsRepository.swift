@@ -8,7 +8,7 @@
 import Foundation
 
 protocol AlbumsRepositoryLogic {
-    func fetchAlbums(artistId: String, completion: @escaping (Result<Albums, NSError>) -> Void)
+    func fetchAlbums(artistId: String, completion: @escaping (Result<AlbumsResponse, NSError>) -> Void)
 }
 
 struct AlbumsRepository: AlbumsRepositoryLogic {
@@ -18,7 +18,7 @@ struct AlbumsRepository: AlbumsRepositoryLogic {
         self.network = network
     }
     
-    func fetchAlbums(artistId: String, completion: @escaping (Result<Albums, NSError>) -> Void) {
+    func fetchAlbums(artistId: String, completion: @escaping (Result<AlbumsResponse, NSError>) -> Void) {
         network.requestTokenized(configuration: AlbumsConfiguration(artistId: artistId), completion: completion)
     }
 }

@@ -8,6 +8,12 @@
 import UIKit
 
 class ListAlbumsView: UIView {
+    var albums: [Album] = [] {
+        didSet{
+            albumsTableView.reloadData()
+        }
+    }
+    
     let artistTitle: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -16,11 +22,13 @@ class ListAlbumsView: UIView {
         return label
     }()
     
-    let albumsTableView: UITableView = {
+    private lazy var albumsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(ListAlbumsTableViewCell.self, forCellReuseIdentifier: ListAlbumsTableViewCell.identifier)
         tableView.backgroundColor = .black
+        tableView.delegate = self
+        tableView.dataSource = self
         return tableView
     }()
     
@@ -51,9 +59,25 @@ class ListAlbumsView: UIView {
             albumsTableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
+}
+
+extension ListAlbumsView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        130
+    }
+}
+
+extension ListAlbumsView: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        albums.count
+    }
     
-    func configureTableViewDelegate(_ delegate: UITableViewDelegate, dataSource: UITableViewDataSource) {
-        albumsTableView.delegate = delegate
-        albumsTableView.dataSource = dataSource
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ListAlbumsTableViewCell.identifier, for: indexPath) as? ListAlbumsTableViewCell else {
+            return UITableViewCell()
+        }
+        let album = albums[indexPath.row]
+        cell.configureCell(album: album)
+        return cell
     }
 }

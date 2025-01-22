@@ -1,11 +1,11 @@
 //
-//  Albums.swift
+//  AlbumsResponse.swift
 //  tune-finder-app
 //
 //  Created by Geovane Lima dos Santos on 18/12/24.
 //
 
-struct Albums: Decodable {
+struct AlbumsResponse: Decodable {
     let items: [Item]
     
     struct Item: Decodable {
