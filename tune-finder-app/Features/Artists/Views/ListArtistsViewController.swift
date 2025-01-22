@@ -44,6 +44,8 @@ class ListArtistsViewController: UIViewController {
         contentView.delegate = self
         contentView.setupLastSearchState(isShowLastArtist: isShowLastArtist)
         viewModel.fetchArtists()
+
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Voltar", style: .plain, target: nil, action: nil)
     }
 }
 
