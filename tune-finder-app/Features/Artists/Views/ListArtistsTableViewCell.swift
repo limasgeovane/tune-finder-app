@@ -24,7 +24,6 @@ class ListArtistsTableViewCell: UITableViewCell {
     private let nameArtist: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Michael Jackson"
         label.textColor = .whitePrimaryColor
         label.font = .secondaryFont
         label.numberOfLines = 0
@@ -34,7 +33,6 @@ class ListArtistsTableViewCell: UITableViewCell {
     private let genresArtist: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Adult standards, canadian pop, jazz pop..."
         label.textColor = .graySecundaryColor
         label.font = .secondaryFont
         label.numberOfLines = 3

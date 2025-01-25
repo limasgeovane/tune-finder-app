@@ -17,11 +17,13 @@ class AlbumsViewModel: AlbumsViewModelLogic {
     private var albumsResponse: AlbumsResponse?
     
     private let repository: AlbumsRepositoryLogic
-    private var artistId: String
+    private let artistId: String
+    private let artistName: String
  
-    init(repository: AlbumsRepositoryLogic, artistId: String) {
+    init(repository: AlbumsRepositoryLogic, artistId: String, artistName: String) {
         self.repository = repository
         self.artistId = artistId
+        self.artistName = artistName
     }
     
     func fetchAlbums() {
@@ -32,7 +34,7 @@ class AlbumsViewModel: AlbumsViewModelLogic {
             case .success(let albumsResponse):
                 self.albumsResponse = albumsResponse
                 let albums = toAlbums(response: albumsResponse)
-                display?.displayAlbums(albums: albums)
+                display?.displayAlbums(artistName: "Álbuns de \(self.artistName)", albums: albums)
             case .failure(let error):
                 print("Erro: \(error.localizedDescription)")
             }

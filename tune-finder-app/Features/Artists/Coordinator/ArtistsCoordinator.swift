@@ -34,10 +34,9 @@ class ArtistsCoordinator {
 extension ArtistsCoordinator: ListArtistsViewControllerDelegate {
     func listArtistsDidSelectArtist(artistId: String, artistName: String) {
         let listAlbumsView = ListAlbumsView()
-        let viewModel = AlbumsViewModel(repository: AlbumsRepository(), artistId: artistId)
+        let viewModel = AlbumsViewModel(repository: AlbumsRepository(), artistId: artistId, artistName: artistName)
         let listAlbumsViewController = ListAlbumsViewController(
             contentView: listAlbumsView,
-            artistName: artistName,
             viewModel: viewModel
         )
         navigationController.pushViewController(listAlbumsViewController, animated: true)

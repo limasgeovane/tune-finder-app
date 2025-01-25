@@ -8,17 +8,15 @@
 import UIKit
 
 protocol ListAlbumsDisplayable: AnyObject {
-    func displayAlbums(albums: [Album])
+    func displayAlbums(artistName: String, albums: [Album])
 }
 
 class ListAlbumsViewController: UIViewController {
     private let contentView: ListAlbumsView
-    private let artistName: String
     private var viewModel: AlbumsViewModelLogic
     
-    init(contentView: ListAlbumsView, artistName: String, viewModel: AlbumsViewModelLogic) {
+    init(contentView: ListAlbumsView, viewModel: AlbumsViewModelLogic) {
         self.contentView = contentView
-        self.artistName = artistName
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -35,7 +33,6 @@ class ListAlbumsViewController: UIViewController {
         super.viewDidLoad()
         viewModel.display = self
         viewModel.fetchAlbums()
-        contentView.artistTitle.text = "Álbuns de \(artistName)"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,7 +48,8 @@ class ListAlbumsViewController: UIViewController {
 }
 
 extension ListAlbumsViewController: ListAlbumsDisplayable {
-    func displayAlbums(albums: [Album]) {
+    func displayAlbums(artistName: String, albums: [Album]) {
+        contentView.artistName = artistName
         contentView.albums = albums
     }
 }

@@ -8,8 +8,14 @@
 import UIKit
 
 class ListAlbumsView: UIView {
+    var artistName: String = "" {
+        didSet {
+            artistTitle.text = artistName
+        }
+    }
+    
     var albums: [Album] = [] {
-        didSet{
+        didSet {
             albumsTableView.reloadData()
         }
     }

@@ -21,7 +21,6 @@ class ListAlbumsTableViewCell: UITableViewCell {
     private let titleAlbum: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Thriller 40"
         label.textColor = .whitePrimaryColor
         label.font = .secondaryFont
         label.numberOfLines = 0
@@ -31,7 +30,6 @@ class ListAlbumsTableViewCell: UITableViewCell {
     private let releaseDateAlbum: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "18/11/2022 - 9 Músicas"
         label.textColor = .graySecundaryColor
         label.font = .secondaryFont
         return label
@@ -40,7 +38,6 @@ class ListAlbumsTableViewCell: UITableViewCell {
     private let totalTracksAlbum: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "9 Músicas"
         label.textColor = .graySecundaryColor
         label.font = .secondaryFont
         return label
