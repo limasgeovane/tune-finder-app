@@ -60,7 +60,7 @@ class ArtistsViewModel: ArtistsViewModelLogic {
             .init(
                 image: $0.images.first?.url,
                 name: $0.name,
-                genres: $0.genres?.reduce("") { $0.isEmpty ? $1 : $0 + "," + $1 } ?? "-"
+                genres: $0.genres?.reduce("") { $0.isEmpty ? $1 : $0 + ", " + $1 } ?? "-"
             )
         }
     }

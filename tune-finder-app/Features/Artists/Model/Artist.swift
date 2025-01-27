@@ -5,7 +5,7 @@
 //  Created by Geovane Lima dos Santos on 19/01/25.
 //
 
-struct Artist {
+struct Artist: Equatable {
     let image: String?
     let name: String
     let genres: String

@@ -7,21 +7,19 @@
 
 import UIKit
 
+protocol ListArtistsViewLogic: AnyObject, UIView {
+    var artists: [Artist] { get set }
+    var delegate: ListArtistsViewDelegate? { get set }
+    func setupLastSearchState(isShowLastArtist: Bool)
+}
+
 protocol ListArtistsViewDelegate: AnyObject {
     func didSelectArtist(indexPath: IndexPath)
     func searchArtist(artistName: String)
 }
 
-class ListArtistsView: UIView {
-    var artists: [Artist] = [] {
-        didSet{
-            artistsTableView.reloadData()
-        }
-    }
-    weak var delegate: ListArtistsViewDelegate?
-    private let userDefaults = UserDefaults.standard
-    
-    let lastSearchLabel: UILabel = {
+class ListArtistsView: UIView, ListArtistsViewLogic {
+    private let lastSearchLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Última busca"
@@ -31,7 +29,7 @@ class ListArtistsView: UIView {
         return label
     }()
     
-    let searchArtistTextField: UITextField = {
+    private let searchArtistTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.attributedPlaceholder = NSAttributedString(
@@ -79,6 +77,15 @@ class ListArtistsView: UIView {
         tableView.dataSource = self
         return tableView
     }()
+    
+    var artists: [Artist] = [] {
+        didSet{
+            artistsTableView.reloadData()
+        }
+    }
+    
+    weak var delegate: ListArtistsViewDelegate?
+    private let userDefaults = UserDefaults.standard
     
     override init(frame: CGRect) {
         super.init(frame: frame)

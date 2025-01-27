@@ -5,7 +5,7 @@
 //  Created by Geovane Lima dos Santos on 18/01/25.
 //
 
-struct ArtistsConfiguration: NetworkRequestConfigurator {
+struct ArtistsConfiguration: NetworkRequestConfigurator, Equatable {
     private let artistName: String
     
     init(artistName: String) {

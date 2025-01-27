@@ -17,12 +17,12 @@ protocol ListArtistsDisplayable: AnyObject {
 }
 
 class ListArtistsViewController: UIViewController {
-    private let contentView: ListArtistsView
+    private let contentView: ListArtistsViewLogic
     private let isShowLastArtist: Bool
     private var viewModel: ArtistsViewModelLogic
     private weak var delegate: ListArtistsViewControllerDelegate?
     
-    init(contentView: ListArtistsView, isShowLastArtist: Bool, viewModel: ArtistsViewModelLogic, delegate: ListArtistsViewControllerDelegate) {
+    init(contentView: ListArtistsViewLogic, isShowLastArtist: Bool, viewModel: ArtistsViewModelLogic, delegate: ListArtistsViewControllerDelegate) {
         self.contentView = contentView
         self.isShowLastArtist = isShowLastArtist
         self.viewModel = viewModel

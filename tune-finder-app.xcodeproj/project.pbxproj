@@ -29,6 +29,19 @@
 		4598B9D12D22031C009FE677 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598B9AE2D22031C009FE677 /* SceneDelegate.swift */; };
 		45A610102D370C800098494E /* StartAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A6100F2D370C800098494E /* StartAppCoordinator.swift */; };
 		45A610122D3717230098494E /* ArtistsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A610112D3717230098494E /* ArtistsCoordinator.swift */; };
+		45BE04A82D45A2D800D61B3E /* ArtistsConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BE04A72D45A2D800D61B3E /* ArtistsConfigurationTests.swift */; };
+		45BE04AA2D45A75600D61B3E /* ArtistsRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BE04A92D45A75000D61B3E /* ArtistsRepositoryTests.swift */; };
+		45BE04AE2D45AFC300D61B3E /* NetworkSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BE04AD2D45AFBF00D61B3E /* NetworkSpy.swift */; };
+		45CD4FF52D45CADD000246C3 /* ArtistsResponseFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CD4FF42D45CAD9000246C3 /* ArtistsResponseFixture.swift */; };
+		45CD4FF82D45D398000246C3 /* NSErrorFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CD4FF72D45D392000246C3 /* NSErrorFixture.swift */; };
+		45CD4FFB2D45D751000246C3 /* ArtistsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CD4FFA2D45D74E000246C3 /* ArtistsViewModelTests.swift */; };
+		45CD4FFE2D45D7A1000246C3 /* ArtistsRepositorySpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CD4FFD2D45D7A1000246C3 /* ArtistsRepositorySpy.swift */; };
+		45CD50002D45D929000246C3 /* ListArtistsDisplaySpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CD4FFF2D45D91E000246C3 /* ListArtistsDisplaySpy.swift */; };
+		45CD50022D45DA6D000246C3 /* ArtistFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CD50012D45DA6A000246C3 /* ArtistFixture.swift */; };
+		45CD50072D46FE5A000246C3 /* ListArtistsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CD50062D46FE56000246C3 /* ListArtistsViewControllerTests.swift */; };
+		45CD50092D4702C0000246C3 /* ListArtistsViewSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CD50082D4702B9000246C3 /* ListArtistsViewSpy.swift */; };
+		45CD500B2D4703D9000246C3 /* ArtistsViewModelSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CD500A2D4703D5000246C3 /* ArtistsViewModelSpy.swift */; };
+		45CD500D2D4706D6000246C3 /* ListArtistsViewControllerDelegateSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CD500C2D4706D3000246C3 /* ListArtistsViewControllerDelegateSpy.swift */; };
 		45D7BE072D3B26B200010084 /* AlamofireNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D7BE062D3B26B200010084 /* AlamofireNetworkRequest.swift */; };
 		45D7BE0A2D3B2D5200010084 /* NetworkMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D7BE092D3B2D5200010084 /* NetworkMethod.swift */; };
 		45D7BE0C2D3B33C000010084 /* NetworkParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D7BE0B2D3B33C000010084 /* NetworkParameterEncoding.swift */; };
@@ -48,6 +61,16 @@
 		45D97DC22D3F2547007F2222 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D97DC12D3F2547007F2222 /* Album.swift */; };
 		870E177E7E053CCE394D9A2E /* Pods_tune_finder_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7CD7E85B46743176DEBD857 /* Pods_tune_finder_app.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		45C4FD012D44742700D447C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 457856822D0F0C1D00998CB5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 457856892D0F0C1D00998CB5;
+			remoteInfo = "tune-finder-app";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4578568A2D0F0C1D00998CB5 /* tune-finder-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tune-finder-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +96,20 @@
 		4598B9AE2D22031C009FE677 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		45A6100F2D370C800098494E /* StartAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartAppCoordinator.swift; sourceTree = "<group>"; };
 		45A610112D3717230098494E /* ArtistsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsCoordinator.swift; sourceTree = "<group>"; };
+		45BE04A72D45A2D800D61B3E /* ArtistsConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsConfigurationTests.swift; sourceTree = "<group>"; };
+		45BE04A92D45A75000D61B3E /* ArtistsRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsRepositoryTests.swift; sourceTree = "<group>"; };
+		45BE04AD2D45AFBF00D61B3E /* NetworkSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSpy.swift; sourceTree = "<group>"; };
+		45C4FCFD2D44742700D447C8 /* tune-finder-app-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "tune-finder-app-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		45CD4FF42D45CAD9000246C3 /* ArtistsResponseFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsResponseFixture.swift; sourceTree = "<group>"; };
+		45CD4FF72D45D392000246C3 /* NSErrorFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSErrorFixture.swift; sourceTree = "<group>"; };
+		45CD4FFA2D45D74E000246C3 /* ArtistsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsViewModelTests.swift; sourceTree = "<group>"; };
+		45CD4FFD2D45D7A1000246C3 /* ArtistsRepositorySpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsRepositorySpy.swift; sourceTree = "<group>"; };
+		45CD4FFF2D45D91E000246C3 /* ListArtistsDisplaySpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListArtistsDisplaySpy.swift; sourceTree = "<group>"; };
+		45CD50012D45DA6A000246C3 /* ArtistFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistFixture.swift; sourceTree = "<group>"; };
+		45CD50062D46FE56000246C3 /* ListArtistsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListArtistsViewControllerTests.swift; sourceTree = "<group>"; };
+		45CD50082D4702B9000246C3 /* ListArtistsViewSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListArtistsViewSpy.swift; sourceTree = "<group>"; };
+		45CD500A2D4703D5000246C3 /* ArtistsViewModelSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsViewModelSpy.swift; sourceTree = "<group>"; };
+		45CD500C2D4706D3000246C3 /* ListArtistsViewControllerDelegateSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListArtistsViewControllerDelegateSpy.swift; sourceTree = "<group>"; };
 		45D7BE062D3B26B200010084 /* AlamofireNetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkRequest.swift; sourceTree = "<group>"; };
 		45D7BE092D3B2D5200010084 /* NetworkMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMethod.swift; sourceTree = "<group>"; };
 		45D7BE0B2D3B33C000010084 /* NetworkParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkParameterEncoding.swift; sourceTree = "<group>"; };
@@ -105,6 +142,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		45C4FCFA2D44742700D447C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -129,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				4598B9AF2D22031C009FE677 /* tune-finder-app */,
+				45C4FD072D44744200D447C8 /* tune-finder-app-tests */,
 				455A35312D13294F00CE3737 /* Frameworks */,
 				4578568B2D0F0C1D00998CB5 /* Products */,
 				00A1A34DC3087800E8B28077 /* Pods */,
@@ -139,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				4578568A2D0F0C1D00998CB5 /* tune-finder-app.app */,
+				45C4FCFD2D44742700D447C8 /* tune-finder-app-tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -184,6 +230,106 @@
 				4598B9AE2D22031C009FE677 /* SceneDelegate.swift */,
 			);
 			path = "tune-finder-app";
+			sourceTree = "<group>";
+		};
+		45BE04AB2D45AF3800D61B3E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				45CD4FF62D45D353000246C3 /* Fixture */,
+				45BE04AC2D45AFBA00D61B3E /* Doubles */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		45BE04AC2D45AFBA00D61B3E /* Doubles */ = {
+			isa = PBXGroup;
+			children = (
+				45BE04AD2D45AFBF00D61B3E /* NetworkSpy.swift */,
+			);
+			path = Doubles;
+			sourceTree = "<group>";
+		};
+		45C4FD072D44744200D447C8 /* tune-finder-app-tests */ = {
+			isa = PBXGroup;
+			children = (
+				45C4FD092D44745F00D447C8 /* Features */,
+				45BE04AB2D45AF3800D61B3E /* Network */,
+			);
+			path = "tune-finder-app-tests";
+			sourceTree = "<group>";
+		};
+		45C4FD092D44745F00D447C8 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				45C4FD0A2D44747500D447C8 /* Artists */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		45C4FD0A2D44747500D447C8 /* Artists */ = {
+			isa = PBXGroup;
+			children = (
+				45C4FD0C2D4474DC00D447C8 /* Doubles */,
+				45CD4FF32D45CAAC000246C3 /* Fixtures */,
+				45C4FD0B2D44748700D447C8 /* Repository */,
+				45CD4FF92D45D742000246C3 /* ViewModel */,
+				45CD50052D46FE3A000246C3 /* ViewController */,
+			);
+			path = Artists;
+			sourceTree = "<group>";
+		};
+		45C4FD0B2D44748700D447C8 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				45BE04A92D45A75000D61B3E /* ArtistsRepositoryTests.swift */,
+				45BE04A72D45A2D800D61B3E /* ArtistsConfigurationTests.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		45C4FD0C2D4474DC00D447C8 /* Doubles */ = {
+			isa = PBXGroup;
+			children = (
+				45CD500C2D4706D3000246C3 /* ListArtistsViewControllerDelegateSpy.swift */,
+				45CD500A2D4703D5000246C3 /* ArtistsViewModelSpy.swift */,
+				45CD50082D4702B9000246C3 /* ListArtistsViewSpy.swift */,
+				45CD4FFF2D45D91E000246C3 /* ListArtistsDisplaySpy.swift */,
+				45CD4FFD2D45D7A1000246C3 /* ArtistsRepositorySpy.swift */,
+			);
+			path = Doubles;
+			sourceTree = "<group>";
+		};
+		45CD4FF32D45CAAC000246C3 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				45CD4FF42D45CAD9000246C3 /* ArtistsResponseFixture.swift */,
+				45CD50012D45DA6A000246C3 /* ArtistFixture.swift */,
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		45CD4FF62D45D353000246C3 /* Fixture */ = {
+			isa = PBXGroup;
+			children = (
+				45CD4FF72D45D392000246C3 /* NSErrorFixture.swift */,
+			);
+			path = Fixture;
+			sourceTree = "<group>";
+		};
+		45CD4FF92D45D742000246C3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				45CD4FFA2D45D74E000246C3 /* ArtistsViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		45CD50052D46FE3A000246C3 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				45CD50062D46FE56000246C3 /* ListArtistsViewControllerTests.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		45D7BE052D3B268D00010084 /* Providers */ = {
@@ -414,6 +560,26 @@
 			productReference = 4578568A2D0F0C1D00998CB5 /* tune-finder-app.app */;
 			productType = "com.apple.product-type.application";
 		};
+		45C4FCFC2D44742700D447C8 /* tune-finder-app-tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 45C4FD032D44742700D447C8 /* Build configuration list for PBXNativeTarget "tune-finder-app-tests" */;
+			buildPhases = (
+				45C4FCF92D44742700D447C8 /* Sources */,
+				45C4FCFA2D44742700D447C8 /* Frameworks */,
+				45C4FCFB2D44742700D447C8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				45C4FD022D44742700D447C8 /* PBXTargetDependency */,
+			);
+			name = "tune-finder-app-tests";
+			packageProductDependencies = (
+			);
+			productName = "tune-finder-app-tests";
+			productReference = 45C4FCFD2D44742700D447C8 /* tune-finder-app-tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -426,6 +592,11 @@
 				TargetAttributes = {
 					457856892D0F0C1D00998CB5 = {
 						CreatedOnToolsVersion = 16.2;
+					};
+					45C4FCFC2D44742700D447C8 = {
+						CreatedOnToolsVersion = 16.2;
+						LastSwiftMigration = 1620;
+						TestTargetID = 457856892D0F0C1D00998CB5;
 					};
 				};
 			};
@@ -448,6 +619,7 @@
 			projectRoot = "";
 			targets = (
 				457856892D0F0C1D00998CB5 /* tune-finder-app */,
+				45C4FCFC2D44742700D447C8 /* tune-finder-app-tests */,
 			);
 		};
 /* End PBXProject section */
@@ -458,6 +630,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4598B9B02D22031C009FE677 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45C4FCFB2D44742700D447C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,7 +729,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		45C4FCF92D44742700D447C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45BE04AE2D45AFC300D61B3E /* NetworkSpy.swift in Sources */,
+				45CD500D2D4706D6000246C3 /* ListArtistsViewControllerDelegateSpy.swift in Sources */,
+				45CD4FFB2D45D751000246C3 /* ArtistsViewModelTests.swift in Sources */,
+				45CD50022D45DA6D000246C3 /* ArtistFixture.swift in Sources */,
+				45CD50072D46FE5A000246C3 /* ListArtistsViewControllerTests.swift in Sources */,
+				45CD500B2D4703D9000246C3 /* ArtistsViewModelSpy.swift in Sources */,
+				45CD50092D4702C0000246C3 /* ListArtistsViewSpy.swift in Sources */,
+				45CD4FFE2D45D7A1000246C3 /* ArtistsRepositorySpy.swift in Sources */,
+				45BE04AA2D45A75600D61B3E /* ArtistsRepositoryTests.swift in Sources */,
+				45BE04A82D45A2D800D61B3E /* ArtistsConfigurationTests.swift in Sources */,
+				45CD4FF82D45D398000246C3 /* NSErrorFixture.swift in Sources */,
+				45CD50002D45D929000246C3 /* ListArtistsDisplaySpy.swift in Sources */,
+				45CD4FF52D45CADD000246C3 /* ArtistsResponseFixture.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		45C4FD022D44742700D447C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 457856892D0F0C1D00998CB5 /* tune-finder-app */;
+			targetProxy = 45C4FD012D44742700D447C8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		4578569E2D0F0C1F00998CB5 /* Debug */ = {
@@ -740,6 +947,45 @@
 			};
 			name = Release;
 		};
+		45C4FD042D44742700D447C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.limasgeovane.tune-finder-app-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/tune-finder-app.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/tune-finder-app";
+			};
+			name = Debug;
+		};
+		45C4FD052D44742700D447C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.limasgeovane.tune-finder-app-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/tune-finder-app.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/tune-finder-app";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -757,6 +1003,15 @@
 			buildConfigurations = (
 				4578569E2D0F0C1F00998CB5 /* Debug */,
 				4578569F2D0F0C1F00998CB5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		45C4FD032D44742700D447C8 /* Build configuration list for PBXNativeTarget "tune-finder-app-tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45C4FD042D44742700D447C8 /* Debug */,
+				45C4FD052D44742700D447C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
