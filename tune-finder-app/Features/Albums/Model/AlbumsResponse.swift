@@ -5,16 +5,16 @@
 //  Created by Geovane Lima dos Santos on 18/12/24.
 //
 
-struct AlbumsResponse: Decodable {
+struct AlbumsResponse: Decodable, Equatable {
     let items: [Item]
     
-    struct Item: Decodable {
+    struct Item: Decodable, Equatable {
         let name: String
         let totalTracks: Int
         let releaseDate: String
         let images: [Image]
         
-        struct Image: Decodable {
+        struct Image: Decodable, Equatable {
             let url: String?
         }
         

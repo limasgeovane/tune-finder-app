@@ -12,10 +12,10 @@ protocol ListAlbumsDisplayable: AnyObject {
 }
 
 class ListAlbumsViewController: UIViewController {
-    private let contentView: ListAlbumsView
+    private let contentView: ListAlbumsViewLogic
     private var viewModel: AlbumsViewModelLogic
     
-    init(contentView: ListAlbumsView, viewModel: AlbumsViewModelLogic) {
+    init(contentView: ListAlbumsViewLogic, viewModel: AlbumsViewModelLogic) {
         self.contentView = contentView
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)

@@ -5,7 +5,7 @@
 //  Created by Geovane Lima dos Santos on 20/01/25.
 //
 
-struct Album {
+struct Album: Equatable {
     let image: String?
     let name: String
     let releaseDate: String

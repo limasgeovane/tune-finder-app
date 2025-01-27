@@ -12,9 +12,9 @@ protocol AlbumsRepositoryLogic {
 }
 
 struct AlbumsRepository: AlbumsRepositoryLogic {
-    private let network: Network
+    private let network: NetworkLogic
     
-    init(network: Network = Network()) {
+    init(network: NetworkLogic = Network()) {
         self.network = network
     }
     

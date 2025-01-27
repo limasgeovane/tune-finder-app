@@ -7,7 +7,12 @@
 
 import UIKit
 
-class ListAlbumsView: UIView {
+protocol ListAlbumsViewLogic: UIView, AnyObject {
+    var artistName: String { get set }
+    var albums: [Album] { get set }
+}
+
+class ListAlbumsView: UIView, ListAlbumsViewLogic {
     var artistName: String = "" {
         didSet {
             artistTitle.text = artistName
@@ -20,7 +25,7 @@ class ListAlbumsView: UIView {
         }
     }
     
-    let artistTitle: UILabel = {
+    private let artistTitle: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .whitePrimaryColor
