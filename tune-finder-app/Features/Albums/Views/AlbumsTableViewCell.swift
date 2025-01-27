@@ -1,5 +1,5 @@
 //
-//  ListAlbumsTableViewCell.swift
+//  AlbumsTableViewCell.swift
 //  tune-finder-app
 //
 //  Created by Geovane Lima dos Santos on 17/12/24.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-class ListAlbumsTableViewCell: UITableViewCell {
-    static let identifier: String = "ListAlbumsTableViewCell"
+class AlbumsTableViewCell: UITableViewCell {
+    static let identifier: String = "albumsTableViewCell"
     
     private let imageAlbum: UIImageView = {
         let imageView = UIImageView()

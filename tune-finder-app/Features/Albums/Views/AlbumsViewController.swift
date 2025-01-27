@@ -1,5 +1,5 @@
 //
-//  ListAlbumsViewController.swift
+//  AlbumsViewController.swift
 //  tune-finder-app
 //
 //  Created by Geovane Lima dos Santos on 17/12/24.
@@ -7,15 +7,15 @@
 
 import UIKit
 
-protocol ListAlbumsDisplayable: AnyObject {
+protocol AlbumsDisplayable: AnyObject {
     func displayAlbums(artistName: String, albums: [Album])
 }
 
-class ListAlbumsViewController: UIViewController {
-    private let contentView: ListAlbumsViewLogic
+class AlbumsViewController: UIViewController {
+    private let contentView: AlbumsViewLogic
     private var viewModel: AlbumsViewModelLogic
     
-    init(contentView: ListAlbumsViewLogic, viewModel: AlbumsViewModelLogic) {
+    init(contentView: AlbumsViewLogic, viewModel: AlbumsViewModelLogic) {
         self.contentView = contentView
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -47,7 +47,7 @@ class ListAlbumsViewController: UIViewController {
     }
 }
 
-extension ListAlbumsViewController: ListAlbumsDisplayable {
+extension AlbumsViewController: AlbumsDisplayable {
     func displayAlbums(artistName: String, albums: [Album]) {
         contentView.artistName = artistName
         contentView.albums = albums

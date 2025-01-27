@@ -8,14 +8,14 @@
 import Foundation
 
 protocol ArtistsViewModelLogic {
-    var display: ListArtistsDisplayable? { get set }
+    var display: ArtistsDisplayable? { get set }
     func fetchArtists()
     func fetchArtists(artistName: String)
     func selectArtist(indexPath: IndexPath)
 }
 
 class ArtistsViewModel: ArtistsViewModelLogic {
-    weak var display: ListArtistsDisplayable?
+    weak var display: ArtistsDisplayable?
     private var artistsResponse: ArtistsResponse?
     
     private let repository: ArtistsRepositoryLogic

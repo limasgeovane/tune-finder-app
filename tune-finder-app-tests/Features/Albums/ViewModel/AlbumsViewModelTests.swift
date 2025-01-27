@@ -10,7 +10,7 @@ import XCTest
 
 final class AlbumsViewModelTests: XCTestCase {
     let repositorySpy = AlbumsRepositorySpy()
-    let displaySpy = ListAlbumsDisplaySpy()
+    let displaySpy = AlbumsDisplaySpy()
     
     lazy var sut: AlbumsViewModel = {
         let viewModel = AlbumsViewModel(

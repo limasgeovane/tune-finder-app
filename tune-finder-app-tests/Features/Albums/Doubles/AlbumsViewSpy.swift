@@ -1,5 +1,5 @@
 //
-//  ListAlbumsViewSpy.swift
+//  AlbumsViewSpy.swift
 //  tune-finder-app
 //
 //  Created by Geovane Lima dos Santos on 26/01/25.
@@ -9,7 +9,7 @@
 @testable import tune_finder_app
 import UIKit
 
-class ListAlbumsViewSpy: UIView, ListAlbumsViewLogic {
+class AlbumsViewSpy: UIView, AlbumsViewLogic {
     var artistNameGetterCount = 0
     var stubbedArtistName: String = ""
     var artistNameSetterCount = 0

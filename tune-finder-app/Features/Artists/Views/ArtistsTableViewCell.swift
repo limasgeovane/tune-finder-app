@@ -1,5 +1,5 @@
 //
-//  ListArtistsTableViewCell.swift
+//  ArtistsTableViewCell.swift
 //  tune-finder-app
 //
 //  Created by Geovane Lima dos Santos on 17/12/24.
@@ -8,8 +8,8 @@
 import UIKit
 import Kingfisher
 
-class ListArtistsTableViewCell: UITableViewCell {
-    static let identifier: String = "ListArtistsTableViewCell"
+class ArtistsTableViewCell: UITableViewCell {
+    static let identifier: String = "ArtistsTableViewCell"
     
     private let imageArtist: UIImageView = {
         let imageView = UIImageView()

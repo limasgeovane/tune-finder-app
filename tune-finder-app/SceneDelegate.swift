@@ -15,8 +15,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
-        let startAppCoordinator = StartAppCoordinator()
-        let rootViewController: UIViewController = startAppCoordinator.start()
+        let splashAppCoordinator = SplashAppCoordinator()
+        let rootViewController: UIViewController = splashAppCoordinator.start()
     
         window.rootViewController = rootViewController
         self.window = window

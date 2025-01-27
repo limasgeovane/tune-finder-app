@@ -1,5 +1,5 @@
 //
-//  ListArtistsViewController.swift
+//  ArtistsViewController.swift
 //  tune-finder-app
 //
 //  Created by Geovane Lima dos Santos on 16/12/24.
@@ -7,24 +7,24 @@
 
 import UIKit
 
-protocol ListArtistsViewControllerDelegate: AnyObject {
-    func listArtistsDidSelectArtist(artistId: String, artistName: String)
+protocol ArtistsViewControllerDelegate: AnyObject {
+    func ArtistsDidSelectArtist(artistId: String, artistName: String)
 }
 
-protocol ListArtistsDisplayable: AnyObject {
+protocol ArtistsDisplayable: AnyObject {
     func displayArtists(isShowLastArtist: Bool, artists: [Artist])
     func displayArtist(id: String, name: String)
 }
 
-class ListArtistsViewController: UIViewController {
-    private let contentView: ListArtistsViewLogic
+class ArtistsViewController: UIViewController {
+    private let contentView: ArtistsViewLogic
     private var viewModel: ArtistsViewModelLogic
-    private weak var delegate: ListArtistsViewControllerDelegate?
+    private weak var delegate: ArtistsViewControllerDelegate?
     
     init(
-        contentView: ListArtistsViewLogic,
+        contentView: ArtistsViewLogic,
         viewModel: ArtistsViewModelLogic,
-        delegate: ListArtistsViewControllerDelegate
+        delegate: ArtistsViewControllerDelegate
     ) {
         self.contentView = contentView
         self.viewModel = viewModel
@@ -49,18 +49,18 @@ class ListArtistsViewController: UIViewController {
     }
 }
 
-extension ListArtistsViewController: ListArtistsDisplayable {
+extension ArtistsViewController: ArtistsDisplayable {
     func displayArtists(isShowLastArtist: Bool, artists: [Artist]) {
         contentView.isShowLastArtist = isShowLastArtist
         contentView.artists = artists
     }
     
     func displayArtist(id: String, name: String) {
-        delegate?.listArtistsDidSelectArtist(artistId: id, artistName: name)
+        delegate?.ArtistsDidSelectArtist(artistId: id, artistName: name)
     }
 }
 
-extension ListArtistsViewController: ListArtistsViewDelegate {
+extension ArtistsViewController: ArtistsViewDelegate {
     func didSelectArtist(indexPath: IndexPath) {
         viewModel.selectArtist(indexPath: indexPath)
     }

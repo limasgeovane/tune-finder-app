@@ -8,12 +8,12 @@
 import Foundation
 
 protocol AlbumsViewModelLogic {
-    var display: ListAlbumsDisplayable? { get set }
+    var display: AlbumsDisplayable? { get set }
     func fetchAlbums()
 }
 
 class AlbumsViewModel: AlbumsViewModelLogic {
-    weak var display: ListAlbumsDisplayable?
+    weak var display: AlbumsDisplayable?
     private var albumsResponse: AlbumsResponse?
     
     private let repository: AlbumsRepositoryLogic

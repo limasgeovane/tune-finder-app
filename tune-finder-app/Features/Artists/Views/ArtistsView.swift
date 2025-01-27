@@ -1,5 +1,5 @@
 //
-//  ListArtistsView.swift
+//  ArtistsView.swift
 //  tune-finder-app
 //
 //  Created by Geovane Lima dos Santos on 16/12/24.
@@ -7,18 +7,18 @@
 
 import UIKit
 
-protocol ListArtistsViewLogic: AnyObject, UIView {
+protocol ArtistsViewLogic: AnyObject, UIView {
     var artists: [Artist] { get set }
     var isShowLastArtist: Bool { get set }
-    var delegate: ListArtistsViewDelegate? { get set }
+    var delegate: ArtistsViewDelegate? { get set }
 }
 
-protocol ListArtistsViewDelegate: AnyObject {
+protocol ArtistsViewDelegate: AnyObject {
     func didSelectArtist(indexPath: IndexPath)
     func searchArtist(artistName: String)
 }
 
-class ListArtistsView: UIView, ListArtistsViewLogic {
+class ArtistsView: UIView, ArtistsViewLogic {
     private let lastSearchLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -72,7 +72,7 @@ class ListArtistsView: UIView, ListArtistsViewLogic {
     private lazy var artistsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(ListArtistsTableViewCell.self, forCellReuseIdentifier: ListArtistsTableViewCell.identifier)
+        tableView.register(ArtistsTableViewCell.self, forCellReuseIdentifier: ArtistsTableViewCell.identifier)
         tableView.backgroundColor = .black
         tableView.delegate = self
         tableView.dataSource = self
@@ -91,7 +91,7 @@ class ListArtistsView: UIView, ListArtistsViewLogic {
         }
     }
     
-    weak var delegate: ListArtistsViewDelegate?
+    weak var delegate: ArtistsViewDelegate?
     private let userDefaults = UserDefaults.standard
     
     override init(frame: CGRect) {
@@ -153,7 +153,7 @@ class ListArtistsView: UIView, ListArtistsViewLogic {
     }
 }
 
-extension ListArtistsView: UITextFieldDelegate {
+extension ArtistsView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         if let searchText = textField.text, !searchText.isEmpty {
@@ -163,7 +163,7 @@ extension ListArtistsView: UITextFieldDelegate {
     }
 }
 
-extension ListArtistsView: UITableViewDelegate {
+extension ArtistsView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         84
     }
@@ -173,13 +173,13 @@ extension ListArtistsView: UITableViewDelegate {
     }
 }
 
-extension ListArtistsView: UITableViewDataSource {
+extension ArtistsView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         artists.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ListArtistsTableViewCell.identifier, for: indexPath) as? ListArtistsTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ArtistsTableViewCell.identifier, for: indexPath) as? ArtistsTableViewCell else {
             return UITableViewCell()
         }
         let artist = artists[indexPath.row]

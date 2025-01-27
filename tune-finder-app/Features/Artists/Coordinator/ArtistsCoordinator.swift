@@ -19,29 +19,29 @@ class ArtistsCoordinator {
     }
     
     func start() {
-        let listArtitsView = ListArtistsView()
+        let artitsView = ArtistsView()
         let viewModel = ArtistsViewModel(
             repository: ArtistsRepository(),
             artistName: artistName,
             isShowLastArtist: isShowLastArtist
         )
-        let listArtistsViewController = ListArtistsViewController(
-            contentView: listArtitsView,
+        let ArtistsViewController = ArtistsViewController(
+            contentView: artitsView,
             viewModel: viewModel,
             delegate: self
         )
-        navigationController.pushViewController(listArtistsViewController, animated: true)
+        navigationController.pushViewController(ArtistsViewController, animated: true)
     }
 }
 
-extension ArtistsCoordinator: ListArtistsViewControllerDelegate {
-    func listArtistsDidSelectArtist(artistId: String, artistName: String) {
-        let listAlbumsView = ListAlbumsView()
+extension ArtistsCoordinator: ArtistsViewControllerDelegate {
+    func ArtistsDidSelectArtist(artistId: String, artistName: String) {
+        let albumsView = AlbumsView()
         let viewModel = AlbumsViewModel(repository: AlbumsRepository(), artistId: artistId, artistName: artistName)
-        let listAlbumsViewController = ListAlbumsViewController(
-            contentView: listAlbumsView,
+        let albumsViewController = AlbumsViewController(
+            contentView: albumsView,
             viewModel: viewModel
         )
-        navigationController.pushViewController(listAlbumsViewController, animated: true)
+        navigationController.pushViewController(albumsViewController, animated: true)
     }
 }

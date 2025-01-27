@@ -10,11 +10,11 @@ import Foundation
 
 class AlbumsViewModelSpy: AlbumsViewModelLogic {
     var displayGetterCount = 0
-    var stubbedDisplay: ListAlbumsDisplayable?
+    var stubbedDisplay: AlbumsDisplayable?
     var displaySetterCount = 0
-    var invokedDisplay: ListAlbumsDisplayable?
+    var invokedDisplay: AlbumsDisplayable?
 
-    var display: ListAlbumsDisplayable? {
+    var display: AlbumsDisplayable? {
         get {
             displayGetterCount += 1
             return stubbedDisplay

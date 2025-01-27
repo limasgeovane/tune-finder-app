@@ -1,5 +1,5 @@
 //
-//  ListAlbumsViewControllerTests.swift
+//  AlbumsViewControllerTests.swift
 //  tune-finder-app
 //
 //  Created by Geovane Lima dos Santos on 26/01/25.
@@ -8,11 +8,11 @@
 import XCTest
 @testable import tune_finder_app
 
-final class ListAlbumsViewControllerTests: XCTestCase {
-    let contentViewSpy = ListAlbumsViewSpy()
+final class albumsViewControllerTests: XCTestCase {
+    let contentViewSpy = AlbumsViewSpy()
     let viewModelSpy = AlbumsViewModelSpy()
     
-    lazy var sut = ListAlbumsViewController(
+    lazy var sut = AlbumsViewController(
         contentView: contentViewSpy,
         viewModel: viewModelSpy
     )
@@ -20,7 +20,7 @@ final class ListAlbumsViewControllerTests: XCTestCase {
     func test_loadView_shouldSetView() {
         sut.loadView()
         
-        XCTAssertTrue(sut.view is ListAlbumsViewLogic)
+        XCTAssertTrue(sut.view is AlbumsViewLogic)
     }
     
     func test_viewDidLoad_shouldCallFetchArtists() {

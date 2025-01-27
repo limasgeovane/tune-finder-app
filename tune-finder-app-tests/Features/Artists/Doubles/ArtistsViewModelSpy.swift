@@ -10,11 +10,11 @@ import Foundation
 
 class ArtistsViewModelSpy: ArtistsViewModelLogic {
     var displayGetterCount = 0
-    var stubbedDisplay: ListArtistsDisplayable?
+    var stubbedDisplay: ArtistsDisplayable?
     var displaySetterCount = 0
-    var invokedDisplay: ListArtistsDisplayable?
+    var invokedDisplay: ArtistsDisplayable?
 
-    var display: ListArtistsDisplayable? {
+    var display: ArtistsDisplayable? {
         get {
             displayGetterCount += 1
             return stubbedDisplay

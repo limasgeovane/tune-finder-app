@@ -1,5 +1,5 @@
 //
-//  ListArtistsViewControllerTests.swift
+//  ArtistsViewControllerTests.swift
 //  tune-finder-app
 //
 //  Created by Geovane Lima dos Santos on 26/01/25.
@@ -8,12 +8,12 @@
 import XCTest
 @testable import tune_finder_app
 
-final class ListArtistsViewControllerTests: XCTestCase {
-    let contentViewSpy = ListArtistsViewSpy()
+final class ArtistsViewControllerTests: XCTestCase {
+    let contentViewSpy = ArtistsViewSpy()
     let viewModelSpy = ArtistsViewModelSpy()
-    let delegateSpy = ListArtistsViewControllerDelegateSpy()
+    let delegateSpy = ArtistsViewControllerDelegateSpy()
     
-    lazy var sut = ListArtistsViewController(
+    lazy var sut = ArtistsViewController(
         contentView: contentViewSpy,
         viewModel: viewModelSpy,
         delegate: delegateSpy
@@ -22,7 +22,7 @@ final class ListArtistsViewControllerTests: XCTestCase {
     func test_loadView_shouldSetView() {
         sut.loadView()
         
-        XCTAssertTrue(sut.view is ListArtistsViewLogic)
+        XCTAssertTrue(sut.view is ArtistsViewLogic)
     }
     
     func test_viewDidLoad_shouldCallFetchArtists() {
@@ -48,9 +48,9 @@ final class ListArtistsViewControllerTests: XCTestCase {
     func test_displayArtist_shouldCallDelegate() {
         sut.displayArtist(id: "203", name: "Xuxa")
         
-        XCTAssertEqual(delegateSpy.listArtistsDidSelectArtistCount, 1)
-        XCTAssertEqual(delegateSpy.listArtistsDidSelectArtistParameterArtistId, "203")
-        XCTAssertEqual(delegateSpy.listArtistsDidSelectArtistParameterArtistName, "Xuxa")
+        XCTAssertEqual(delegateSpy.ArtistsDidSelectArtistCount, 1)
+        XCTAssertEqual(delegateSpy.ArtistsDidSelectArtistParameterArtistId, "203")
+        XCTAssertEqual(delegateSpy.ArtistsDidSelectArtistParameterArtistName, "Xuxa")
     }
     
     func test_didSelectArtist_shouldSelectArtist() {

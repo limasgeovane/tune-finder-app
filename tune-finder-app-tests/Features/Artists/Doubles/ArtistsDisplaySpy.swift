@@ -1,5 +1,5 @@
 //
-//  ListArtistsDisplaySpy.swift
+//  ArtistsDisplaySpy.swift
 //  tune-finder-app
 //
 //  Created by Geovane Lima dos Santos on 25/01/25.
@@ -7,7 +7,7 @@
 
 @testable import tune_finder_app
 
-class ListArtistsDisplaySpy: ListArtistsDisplayable {
+class ArtistsDisplaySpy: ArtistsDisplayable {
     var displayArtistsCount = 0
     var displayArtistsParameterIsShowLastArtist = false
     var displayArtistsParameterArtists: [Artist] = []

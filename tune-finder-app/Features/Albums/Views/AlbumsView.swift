@@ -1,5 +1,5 @@
 //
-//  ListAlbumsView.swift
+//  AlbumsView.swift
 //  tune-finder-app
 //
 //  Created by Geovane Lima dos Santos on 17/12/24.
@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol ListAlbumsViewLogic: UIView, AnyObject {
+protocol AlbumsViewLogic: UIView, AnyObject {
     var artistName: String { get set }
     var albums: [Album] { get set }
 }
 
-class ListAlbumsView: UIView, ListAlbumsViewLogic {
+class AlbumsView: UIView, AlbumsViewLogic {
     var artistName: String = "" {
         didSet {
             artistTitle.text = artistName
@@ -36,7 +36,7 @@ class ListAlbumsView: UIView, ListAlbumsViewLogic {
     private lazy var albumsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(ListAlbumsTableViewCell.self, forCellReuseIdentifier: ListAlbumsTableViewCell.identifier)
+        tableView.register(AlbumsTableViewCell.self, forCellReuseIdentifier: AlbumsTableViewCell.identifier)
         tableView.backgroundColor = .black
         tableView.delegate = self
         tableView.dataSource = self
@@ -72,19 +72,19 @@ class ListAlbumsView: UIView, ListAlbumsViewLogic {
     }
 }
 
-extension ListAlbumsView: UITableViewDelegate {
+extension AlbumsView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         130
     }
 }
 
-extension ListAlbumsView: UITableViewDataSource {
+extension AlbumsView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         albums.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ListAlbumsTableViewCell.identifier, for: indexPath) as? ListAlbumsTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AlbumsTableViewCell.identifier, for: indexPath) as? AlbumsTableViewCell else {
             return UITableViewCell()
         }
         let album = albums[indexPath.row]

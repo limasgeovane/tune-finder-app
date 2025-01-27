@@ -1,5 +1,5 @@
 //
-//  ListArtistsViewSpy.swift
+//  ArtistsViewSpy.swift
 //  tune-finder-app
 //
 //  Created by Geovane Lima dos Santos on 26/01/25.
@@ -8,7 +8,7 @@
 @testable import tune_finder_app
 import UIKit
 
-class ListArtistsViewSpy: UIView, ListArtistsViewLogic {
+class ArtistsViewSpy: UIView, ArtistsViewLogic {
     var artistsGetterCount = 0
     var stubbedArtists: [Artist] = []
     var artistsSetterCount = 0
@@ -43,11 +43,11 @@ class ListArtistsViewSpy: UIView, ListArtistsViewLogic {
     }
 
     var delegateGetterCount = 0
-    var stubbedDelegate: ListArtistsViewDelegate?
+    var stubbedDelegate: ArtistsViewDelegate?
     var delegateSetterCount = 0
-    var invokedDelegate: ListArtistsViewDelegate?
+    var invokedDelegate: ArtistsViewDelegate?
 
-    var delegate: ListArtistsViewDelegate? {
+    var delegate: ArtistsViewDelegate? {
         get {
             delegateGetterCount += 1
             return stubbedDelegate
