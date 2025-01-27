@@ -12,19 +12,21 @@ protocol ListArtistsViewControllerDelegate: AnyObject {
 }
 
 protocol ListArtistsDisplayable: AnyObject {
-    func displayArtists(artists: [Artist])
+    func displayArtists(isShowLastArtist: Bool, artists: [Artist])
     func displayArtist(id: String, name: String)
 }
 
 class ListArtistsViewController: UIViewController {
     private let contentView: ListArtistsViewLogic
-    private let isShowLastArtist: Bool
     private var viewModel: ArtistsViewModelLogic
     private weak var delegate: ListArtistsViewControllerDelegate?
     
-    init(contentView: ListArtistsViewLogic, isShowLastArtist: Bool, viewModel: ArtistsViewModelLogic, delegate: ListArtistsViewControllerDelegate) {
+    init(
+        contentView: ListArtistsViewLogic,
+        viewModel: ArtistsViewModelLogic,
+        delegate: ListArtistsViewControllerDelegate
+    ) {
         self.contentView = contentView
-        self.isShowLastArtist = isShowLastArtist
         self.viewModel = viewModel
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
@@ -42,14 +44,14 @@ class ListArtistsViewController: UIViewController {
         super.viewDidLoad()
         viewModel.display = self
         contentView.delegate = self
-        contentView.setupLastSearchState(isShowLastArtist: isShowLastArtist)
         viewModel.fetchArtists()
         title = "Artistas"
     }
 }
 
 extension ListArtistsViewController: ListArtistsDisplayable {
-    func displayArtists(artists: [Artist]) {
+    func displayArtists(isShowLastArtist: Bool, artists: [Artist]) {
+        contentView.isShowLastArtist = isShowLastArtist
         contentView.artists = artists
     }
     

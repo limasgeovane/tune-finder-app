@@ -9,8 +9,8 @@ import UIKit
 
 protocol ListArtistsViewLogic: AnyObject, UIView {
     var artists: [Artist] { get set }
+    var isShowLastArtist: Bool { get set }
     var delegate: ListArtistsViewDelegate? { get set }
-    func setupLastSearchState(isShowLastArtist: Bool)
 }
 
 protocol ListArtistsViewDelegate: AnyObject {
@@ -23,6 +23,7 @@ class ListArtistsView: UIView, ListArtistsViewLogic {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Última busca"
+        label.isHidden = true
         label.textColor = .whitePrimaryColor
         label.font = .secondaryFont
         label.numberOfLines = 0
@@ -79,8 +80,14 @@ class ListArtistsView: UIView, ListArtistsViewLogic {
     }()
     
     var artists: [Artist] = [] {
-        didSet{
+        didSet {
             artistsTableView.reloadData()
+        }
+    }
+    
+    var isShowLastArtist: Bool = false {
+        didSet {
+            lastSearchLabel.isHidden = !isShowLastArtist
         }
     }
     
@@ -129,11 +136,7 @@ class ListArtistsView: UIView, ListArtistsViewLogic {
             artistsTableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
-    
-    func setupLastSearchState(isShowLastArtist: Bool) {
-        lastSearchLabel.isHidden = !isShowLastArtist
-    }
-    
+
     @objc
     private func clearSearchArtistTextField() {
         UIView.animate(withDuration: 0.1,

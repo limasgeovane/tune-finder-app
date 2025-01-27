@@ -20,10 +20,16 @@ class ArtistsViewModel: ArtistsViewModelLogic {
     
     private let repository: ArtistsRepositoryLogic
     private var artistName: String
+    private let isShowLastArtist: Bool
     
-    init(repository: ArtistsRepositoryLogic, artistName: String) {
+    init(
+        repository: ArtistsRepositoryLogic,
+        artistName: String,
+        isShowLastArtist: Bool
+    ) {
         self.repository = repository
         self.artistName = artistName
+        self.isShowLastArtist = isShowLastArtist
     }
     
     func fetchArtists() {
@@ -40,7 +46,10 @@ class ArtistsViewModel: ArtistsViewModelLogic {
             case .success(let artistsResponse):
                 self.artistsResponse = artistsResponse
                 let artists = toArtists(response: artistsResponse)
-                display?.displayArtists(artists: artists)
+                display?.displayArtists(
+                    isShowLastArtist: self.isShowLastArtist,
+                    artists: artists
+                )
             case .failure(let error):
                 print("Erro: \(error.localizedDescription)")
             }
