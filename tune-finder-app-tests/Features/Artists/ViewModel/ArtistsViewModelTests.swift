@@ -15,7 +15,8 @@ final class ArtistsViewModelTests: XCTestCase {
     lazy var sut: ArtistsViewModel = {
         let viewModel = ArtistsViewModel(
             repository: repositorySpy,
-            artistName: "Roberto Carlos"
+            artistName: "Roberto Carlos",
+            isShowLastArtist: true
         )
         viewModel.display = displaySpy
         
@@ -32,6 +33,7 @@ final class ArtistsViewModelTests: XCTestCase {
         XCTAssertEqual(repositorySpy.fetchArtistsArtistName, "Roberto Carlos")
         XCTAssertEqual(displaySpy.displayArtistsCount, 1)
         XCTAssertEqual(displaySpy.displayArtistsParameterArtists.first, .fixture())
+        XCTAssertEqual(displaySpy.displayArtistsParameterIsShowLastArtist, true)
     }
     
     func test_selectArtist_shouldDisplayArtist() {

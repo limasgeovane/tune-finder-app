@@ -9,10 +9,12 @@
 
 class ListArtistsDisplaySpy: ListArtistsDisplayable {
     var displayArtistsCount = 0
+    var displayArtistsParameterIsShowLastArtist = false
     var displayArtistsParameterArtists: [Artist] = []
 
-    func displayArtists(artists: [Artist]) {
+    func displayArtists(isShowLastArtist: Bool, artists: [Artist]) {
         displayArtistsCount += 1
+        displayArtistsParameterIsShowLastArtist = isShowLastArtist
         displayArtistsParameterArtists = artists
     }
 

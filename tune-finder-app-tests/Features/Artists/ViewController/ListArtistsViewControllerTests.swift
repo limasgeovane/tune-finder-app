@@ -15,7 +15,6 @@ final class ListArtistsViewControllerTests: XCTestCase {
     
     lazy var sut = ListArtistsViewController(
         contentView: contentViewSpy,
-        isShowLastArtist: true,
         viewModel: viewModelSpy,
         delegate: delegateSpy
     )
@@ -33,17 +32,17 @@ final class ListArtistsViewControllerTests: XCTestCase {
         XCTAssertEqual(contentViewSpy.delegateSetterCount, 1)
         XCTAssertNotNil(contentViewSpy.invokedDelegate)
         XCTAssertEqual(viewModelSpy.fetchArtistsCount, 1)
-        XCTAssertEqual(contentViewSpy.setupLastSearchStateCount, 1)
-        XCTAssertTrue(contentViewSpy.setupLastSearchStateParameterIsShowLastArtist)
         XCTAssertEqual(viewModelSpy.fetchArtistsCount, 1)
         XCTAssertEqual(sut.title, "Artistas")
     }
     
     func test_displayArtists_shouldSetArtists() {
-        sut.displayArtists(artists: [.fixture()])
+        sut.displayArtists(isShowLastArtist: true, artists: [.fixture()])
         
         XCTAssertEqual(contentViewSpy.artistsSetterCount, 1)
         XCTAssertEqual(contentViewSpy.invokedArtists, [.fixture()])
+        XCTAssertEqual(contentViewSpy.isShowLastArtistSetterCount, 1)
+        XCTAssertEqual(contentViewSpy.invokedIsShowLastArtist, true)
     }
     
     func test_displayArtist_shouldCallDelegate() {

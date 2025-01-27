@@ -24,7 +24,24 @@ class ListArtistsViewSpy: UIView, ListArtistsViewLogic {
             invokedArtists = newValue
         }
     }
-    
+
+
+    var isShowLastArtistGetterCount = 0
+    var stubbedIsShowLastArtist = false
+    var isShowLastArtistSetterCount = 0
+    var invokedIsShowLastArtist: Bool?
+
+    var isShowLastArtist: Bool {
+        get {
+            isShowLastArtistGetterCount += 1
+            return stubbedIsShowLastArtist
+        }
+        set {
+            isShowLastArtistSetterCount += 1
+            invokedIsShowLastArtist = newValue
+        }
+    }
+
     var delegateGetterCount = 0
     var stubbedDelegate: ListArtistsViewDelegate?
     var delegateSetterCount = 0
@@ -41,11 +58,4 @@ class ListArtistsViewSpy: UIView, ListArtistsViewLogic {
         }
     }
 
-    var setupLastSearchStateCount = 0
-    var setupLastSearchStateParameterIsShowLastArtist: Bool = false
-    
-    func setupLastSearchState(isShowLastArtist: Bool) {
-        setupLastSearchStateCount += 1
-        setupLastSearchStateParameterIsShowLastArtist = isShowLastArtist
-    }
 }
