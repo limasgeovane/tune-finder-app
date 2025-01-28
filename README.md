@@ -11,12 +11,6 @@
 
 ---
 
-## 🚧 App em Desenvolvimento - Próximos passos
-
-- Inclusão da camada de Testes
-
----
-
 ## 🚀 Funcionalidades
 
 - **Busca de Artistas**: Encontre artistas e explore seus álbuns e faixas.
@@ -40,5 +34,13 @@
   - Gerenciador: [CocoaPods](https://cocoapods.org/)
 - **Kingfisher**: Biblioteca para download e cache de imagens.
   - Gerenciador: [Swift Package Manager (SPM)](https://swift.org/package-manager/)
+
+---
+
+## 🎬 Demonstração do App em Execução
+
+Confira o **TuneFinder** em ação! Veja como a busca por artistas e álbuns funciona diretamente no aplicativo:
+
+![Demonstração do App](Images-demo/gif1.gif)
 
 ---
